@@ -1,7 +1,23 @@
 "use strict";
 var express = require('express');
 var router = express.Router();
-const path = require('path')
+const path = require('path');
+
+let json2array=function (json){
+	let result;
+    let result1=[];
+    // console.log(json)
+    for(let i=0;i<json.length;i++){
+    result = [];
+    let temp=json[i];
+    var keys = Object.keys(temp);
+    keys.forEach(function(key){
+        result.push(temp[key]);
+    });
+    result1.push(result);
+    }
+    return result1;
+};
 
 router.post('/insert', (req, res) => {
 	let client=req.db;
@@ -15,6 +31,8 @@ router.post('/insert', (req, res) => {
 	let dates= year+ '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds;
 	
 	let values = req.body.array;
+	
+	values=json2array(values);
 	
 	for(let i=0;i<values.length;i++){
 		values[i].push(dates);
