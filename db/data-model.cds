@@ -20,3 +20,10 @@ entity T_MD_OBJ_TAG_REPO {
 		C_CHANGED_BY	:	String(256);
 		C_CHANGED_ON	:	Timestamp;
 };
+
+// define view V_GENERIC as select from T_MD_OBJ_TAG_REPO 
+// {
+// 	key MODULE,
+// 	key SUB_MODULE,
+// 	TAG_DOMAIN
+// };

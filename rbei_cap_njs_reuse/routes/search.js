@@ -8,6 +8,9 @@ router.get('/', (req, res) => {
 	let tag_domain=req.query.tag_domain;
 	let module=req.query.module;
 	let sub_module=req.query.sub_module;
+	if(!tag_domain){
+		tag_domain='D';
+	}
 	let query="";
 	if(!limit){
 		limit=7;
@@ -34,11 +37,35 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.get('/tag',(req,res)=>{
+router.get('/result',(req,res)=>{
 	let tag=req.query.tag;
+	let module=req.query.module;
+	let sub_module=req.query.submodule;
+	let tag_domain=req.query.tag_doamin;
 	let client=req.db;
-	let query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where tags='"+tag+"'";
-	// console.log(query);
+	let query="";
+	if(!tag){
+		if(!module & !sub_module){
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"'";
+	}
+	else if(!sub_module){
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and MODULE='"+module+"'";
+	}
+	else{
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and MODULE='"+module+"' and SUB_MODULE='"+sub_module+"'";
+	}
+	}else{
+	if(!module & !sub_module){
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"'";
+	}
+	else if(!sub_module){
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"' and MODULE='"+module+"'";
+	}
+	else{
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"' and MODULE='"+module+"' and SUB_MODULE='"+sub_module+"'";
+	}
+	}
+	console.log(query);
 	client.exec(query,(error,result)=>{
 		if(!error){
 			res.send(result);
