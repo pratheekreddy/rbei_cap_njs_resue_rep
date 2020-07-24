@@ -42,27 +42,35 @@ router.get('/result',(req,res)=>{
 	let module=req.query.module;
 	let sub_module=req.query.submodule;
 	let tag_domain=req.query.tag_doamin;
+	let top=req.query.top;
+	let skip=req.query.skip;
 	let client=req.db;
 	let query="";
+	if(!top){
+		top=50;
+	}
+	if(!skip){
+		skip=0
+	}
 	if(!tag){
 		if(!module & !sub_module){
-		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"'";
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' order by OBJECT_NAME limit "+top+" offset "+skip+"";
 	}
 	else if(!sub_module){
-		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and MODULE='"+module+"'";
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and MODULE='"+module+"' order by OBJECT_NAME limit "+top+" offset "+skip+"";
 	}
 	else{
-		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and MODULE='"+module+"' and SUB_MODULE='"+sub_module+"'";
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and MODULE='"+module+"' and SUB_MODULE='"+sub_module+"' order by OBJECT_NAME limit "+top+" offset "+skip+"";
 	}
 	}else{
 	if(!module & !sub_module){
-		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"'";
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"' order by OBJECT_NAME limit "+top+" offset "+skip+"";
 	}
 	else if(!sub_module){
-		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"' and MODULE='"+module+"'";
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"' and MODULE='"+module+"' order by OBJECT_NAME limit "+top+" offset "+skip+"";
 	}
 	else{
-		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"' and MODULE='"+module+"' and SUB_MODULE='"+sub_module+"'";
+		query="select MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,DEV_CLASS,REUSPR from RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO where TAG_DOMAIN='"+tag_domain+"' and tags='"+tag+"' and MODULE='"+module+"' and SUB_MODULE='"+sub_module+"' order by OBJECT_NAME limit "+top+" offset "+skip+"";
 	}
 	}
 	console.log(query);

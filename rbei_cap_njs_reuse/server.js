@@ -21,7 +21,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use('/generic',require("./routes/search"));
-app.use("/specfic", require("./routes/specfic_search"));
+app.use("/specific", require("./routes/specific_search"));
 
 app.use("/bulk", require("./routes/bulk"));
 

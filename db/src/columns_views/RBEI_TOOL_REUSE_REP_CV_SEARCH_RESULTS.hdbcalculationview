@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="RBEI_TOOL_REUSE_REP_CV_SEARCH_RESULTS" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="RBEI_TOOL_REUSE_REP_CV_SEARCH_RESULTS"/>
+<localVariables>
+  <variable id="IP_TAG_DOMAIN" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="1" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_MODULE" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="5" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_SUB_MODULE" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="15" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_TAG" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="500" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="TF_SEARCH_RESULT">
+    <targetVariable name="IP_TAG_DOMAIN" resourceUri="TF_SEARCH_RESULT"/>
+    <localVariable>IP_TAG_DOMAIN</localVariable>
+  </mapping>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="TF_SEARCH_RESULT">
+    <targetVariable name="IP_SUB_MODULE" resourceUri="TF_SEARCH_RESULT"/>
+    <localVariable>IP_SUB_MODULE</localVariable>
+  </mapping>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="TF_SEARCH_RESULT">
+    <targetVariable name="IP_TAG" resourceUri="TF_SEARCH_RESULT"/>
+    <localVariable>IP_TAG</localVariable>
+  </mapping>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="TF_SEARCH_RESULT">
+    <targetVariable name="IP_MODULE" resourceUri="TF_SEARCH_RESULT"/>
+    <localVariable>IP_MODULE</localVariable>
+  </mapping>
+</variableMappings>
+<dataSources>
+  <DataSource id="TF_SEARCH_RESULT" type="TABLE_FUNCTION">
+    <resourceUri>TF_SEARCH_RESULT</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="TF_SEARCH_RESULT">
+  <attributes>
+    <attribute id="DESCRIPTION" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESCRIPTION"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="DESCRIPTION"/>
+    </attribute>
+    <attribute id="DEV_CLASS" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEV_CLASS"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="DEV_CLASS"/>
+    </attribute>
+    <attribute id="MODULE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODULE"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="MODULE"/>
+    </attribute>
+    <attribute id="REUSPR" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REUSPR"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="REUSPR"/>
+    </attribute>
+    <attribute id="SUB_MODULE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SUB_MODULE"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="SUB_MODULE"/>
+    </attribute>
+    <attribute id="TAG_DOMAIN" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAG_DOMAIN"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="TAG_DOMAIN"/>
+    </attribute>
+    <attribute id="CONTACT_ID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONTACT_ID"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="CONTACT_ID"/>
+    </attribute>
+    <attribute id="OBJECT_TYPE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OBJECT_TYPE"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="OBJECT_TYPE"/>
+    </attribute>
+    <attribute id="TAGS" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAGS"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="TAGS"/>
+    </attribute>
+    <attribute id="OBJECT_NAME" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OBJECT_NAME"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="OBJECT_NAME"/>
+    </attribute>
+    <attribute id="CONTACT_GROUP" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONTACT_GROUP"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="CONTACT_GROUP"/>
+    </attribute>
+    <attribute id="FUNC_GROUP" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FUNC_GROUP"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="FUNC_GROUP"/>
+    </attribute>
+    <attribute id="SYSTEM_ID" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SYSTEM_ID"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="SYSTEM_ID"/>
+    </attribute>
+    <attribute id="DOCUMENT_LINK" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOCUMENT_LINK"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="DOCUMENT_LINK"/>
+    </attribute>
+    <attribute id="C_CREATED_BY" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C_CREATED_BY"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="C_CREATED_BY"/>
+    </attribute>
+    <attribute id="C_CREATED_ON" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C_CREATED_ON"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="C_CREATED_ON"/>
+    </attribute>
+    <attribute id="C_CHANGED_BY" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C_CHANGED_BY"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="C_CHANGED_BY"/>
+    </attribute>
+    <attribute id="C_CHANGED_ON" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C_CHANGED_ON"/>
+      <keyMapping columnObjectName="TF_SEARCH_RESULT" columnName="C_CHANGED_ON"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
