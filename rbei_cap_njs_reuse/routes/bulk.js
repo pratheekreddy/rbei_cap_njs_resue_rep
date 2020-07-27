@@ -2,12 +2,17 @@
 var express = require('express');
 var router = express.Router();
 const path = require('path');
+const excelToJson = require('convert-excel-to-json');
+const multer=require('multer');
 
-let json2array=function (json){
+
+
+let json2array=function (json1){
 	let result;
     let result1=[];
+    let json=json1.Sheet1;
     // console.log(json)
-    for(let i=0;i<json.length;i++){
+    for(let i=4;i<json.length;i++){
     result = [];
     let temp=json[i];
     var keys = Object.keys(temp);
@@ -19,7 +24,9 @@ let json2array=function (json){
     return result1;
 };
 
-router.post('/insert', (req, res) => {
+const upload=multer();
+
+router.post('/insert', upload.single('file'),(req, res) => {
 	let client=req.db;
 	let date_ob = new Date();
 	let date = ("0" + date_ob.getDate()).slice(-2);
@@ -30,20 +37,28 @@ router.post('/insert', (req, res) => {
 	let seconds = date_ob.getSeconds();
 	let dates= year+ '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds;
 	
-	let values = req.body.array;
+	// let values = req.body.array;
+	let file=req.file.buffer;
+	// console.log(file);
+    const value = excelToJson({
+        source:file
+    });
+	// console.log(value);
 	
-	values=json2array(values);
 	
+	let uploded_by='pratheekreddy.katta@in.bosch.com'
+	let values=json2array(value);
 	for(let i=0;i<values.length;i++){
+		values[i].push(uploded_by);
 		values[i].push(dates);
 		for(let j=0;j<7;j++){
 			values[i][j]=values[i][j].toUpperCase();
 			}
 	}
-	console.log(values);
-	// console.log(values)
-	let insert='INSERT INTO RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO (MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,TAG_DOMAIN,TAGS,FUNC_GROUP,DEV_CLASS,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,DESCRIPTION,C_CREATED_BY,C_CREATED_ON) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-	client.prepare(insert,(err,statement)=>{
+	// console.log(values);
+	// console.log(values)MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,TAG_DOMAIN,TAGS,FUNC_GROUP,DEV_CLASS,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,DESCRIPTION,C_CREATED_BY,
+	let insertq='INSERT INTO RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO (TAGS,TAG_DOMAIN,DEV_CLASS,FUNC_GROUP,SYSTEM_ID,MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,DESCRIPTION,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,C_CREATED_BY,C_CREATED_ON) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+	client.prepare(insertq,(err,statement)=>{
 
 		if(!err){
 			statement.exec(values,(error,result)=>{

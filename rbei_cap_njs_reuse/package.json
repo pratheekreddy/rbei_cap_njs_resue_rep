@@ -3,7 +3,11 @@
   	"@sap/hdbext": "latest",
   	"@sap/xssec": "latest",
 	"@sap/xsenv": "latest",
-	"express": "latest"
+	"express": "latest",
+	"passport":"latest",
+	"body-parser":"latest",
+	"multer":"latest",
+	"convert-excel-to-json":"latest"
   },
   "description": "my description",
   "devDependencies": {
