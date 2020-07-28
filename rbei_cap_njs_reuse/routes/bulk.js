@@ -7,21 +7,45 @@ const multer=require('multer');
 
 
 
-let json2array=function (json1){
-	let result;
-    let result1=[];
-    let json=json1.Sheet1;
-    // console.log(json)
-    for(let i=4;i<json.length;i++){
-    result = [];
-    let temp=json[i];
-    var keys = Object.keys(temp);
-    keys.forEach(function(key){
-        result.push(temp[key]);
-    });
-    result1.push(result);
-    }
-    return result1;
+// let json2array=function (json){
+// 	let result;
+//     let result1=[];
+//    // let json=json1.Sheet1;
+//     // console.log(json)
+//     for(let i=4;i<json.length;i++){
+//     result = [];
+//     let temp=json[i];
+//     var keys = Object.keys(temp);
+//     keys.forEach(function(key){
+//         result.push(temp[key]);
+//     });
+//     result1.push(result);
+//     }
+//     return result1;
+// };
+
+let json2array=function (json){
+	
+	let value=[];
+	for(let i=4;i<json.length;i++){
+		var row=[];
+		row.push(json[i].A.toUpperCase());
+		row.push(json[i].B.toUpperCase());
+		row.push(json[i].C);
+		row.push(json[i].D);
+		row.push(json[i].E);
+		row.push(json[i].F.toUpperCase());
+		row.push(json[i].G.toUpperCase());
+		row.push(json[i].H.toUpperCase());
+		row.push(json[i].I.toUpperCase());
+		row.push(json[i].J);
+		row.push(json[i].K);
+		row.push(json[i].L);
+		row.push(json[i].M);
+		row.push(json[i].N);
+		value.push(row);
+	}
+	return value;
 };
 
 const upload=multer();
@@ -45,17 +69,16 @@ router.post('/insert', upload.single('file'),(req, res) => {
     });
 	// console.log(value);
 	
-	
-	let uploded_by='pratheekreddy.katta@in.bosch.com'
-	let values=json2array(value);
+	let uploded_by='pratheekreddy.katta@in.bosch.com';
+	let values=json2array(value.Sheet1);
 	for(let i=0;i<values.length;i++){
 		values[i].push(uploded_by);
 		values[i].push(dates);
-		for(let j=0;j<7;j++){
-			values[i][j]=values[i][j].toUpperCase();
-			}
+		// for(let j=0;j<7;j++){
+		// 	values[i][j]=values[i][j].toUpperCase();
+		// 	}
 	}
-	// console.log(values);
+	console.log(values);
 	// console.log(values)MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,TAG_DOMAIN,TAGS,FUNC_GROUP,DEV_CLASS,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,DESCRIPTION,C_CREATED_BY,
 	let insertq='INSERT INTO RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO (TAGS,TAG_DOMAIN,DEV_CLASS,FUNC_GROUP,SYSTEM_ID,MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,DESCRIPTION,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,C_CREATED_BY,C_CREATED_ON) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 	client.prepare(insertq,(err,statement)=>{
