@@ -29,15 +29,17 @@ let json2array=function (json){
 	let value=[];
 	for(let i=4;i<json.length;i++){
 		var row=[];
-		row.push(json[i].A.toUpperCase());
-		row.push(json[i].B.toUpperCase());
+		
+		// console.log(json[i])//ABFGHI  126789
+		row.push(json[i].A);
+		row.push(json[i].B);
 		row.push(json[i].C);
 		row.push(json[i].D);
 		row.push(json[i].E);
-		row.push(json[i].F.toUpperCase());
-		row.push(json[i].G.toUpperCase());
-		row.push(json[i].H.toUpperCase());
-		row.push(json[i].I.toUpperCase());
+		row.push(json[i].F);
+		row.push(json[i].G);
+		row.push(json[i].H);
+		row.push(json[i].I);
 		row.push(json[i].J);
 		row.push(json[i].K);
 		row.push(json[i].L);
@@ -72,6 +74,17 @@ router.post('/insert', upload.single('file'),(req, res) => {
 	let uploded_by='pratheekreddy.katta@in.bosch.com';
 	let values=json2array(value.Sheet1);
 	for(let i=0;i<values.length;i++){
+		for(let j=0;j<14;j++){
+			if(values[i][j]==undefined){
+				values[i][j]='N/A'
+			}
+		}
+		values[i][0]=values[i][0].toUpperCase()
+		values[i][1]=values[i][1].toUpperCase()
+		values[i][5]=values[i][5].toUpperCase()
+		values[i][6]=values[i][6].toUpperCase()
+		values[i][7]=values[i][7].toUpperCase()
+		values[i][8]=values[i][8].toUpperCase()
 		values[i].push(uploded_by);
 		values[i].push(dates);
 		// for(let j=0;j<7;j++){
