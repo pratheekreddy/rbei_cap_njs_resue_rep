@@ -1,6 +1,7 @@
 namespace rbei.tool.reuse_rep;
 
 entity T_MD_OBJ_TAG_REPO {
+		ID				:	Integer;
 	key MODULE			:	String(15);
 	key SUB_MODULE		:	String(50);
 	key OBJECT_TYPE		:	String(4);
@@ -19,9 +20,19 @@ entity T_MD_OBJ_TAG_REPO {
 		C_CREATED_ON	:	Timestamp;
 		C_CHANGED_BY	:	String(256);
 		C_CHANGED_ON	:	Timestamp;
+		IMPL_STEPS		:	String(150);
+		EFFORTS_SAVED	:	Integer;
 };
 
+entity T_MD_MOD_MASTER{
+	key MODULE			:	String(15);
+	key SUB_MODULE		:	String(50);	
+}
 
+entity TMD_OBJ_TYP_MASTER{
+	key OBJECT_TYPE		:	String(4);
+		OBJ_DESC		:	String(100);
+}
 
 define view V_DROPDOWN as select from T_MD_OBJ_TAG_REPO distinct
 {

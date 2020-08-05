@@ -28,7 +28,10 @@ router.get('/', (req, res) => {
 	console.log(query);
 	client.exec(query,(error,result)=>{
 		if(!error){
-			res.send(result);
+			if(result.length!=0){
+			return res.send(result);
+			}
+			//CODE WHEN 
 			// console.log(result);
 		}
 		else{
@@ -36,6 +39,12 @@ router.get('/', (req, res) => {
 		}
 	});
 });
+
+
+
+
+
+
 
 router.get('/result',(req,res)=>{
 	let tag=req.query.tag;
