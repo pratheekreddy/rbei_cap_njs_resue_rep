@@ -7,6 +7,17 @@ var bodyParser = require('body-parser');
 const HDBConn = require("@sap/hdbext");
 const passport = require('passport');
 const JWTStrategy = require('@sap/xssec').JWTStrategy;
+const app = express();
+const cors=require('cors');
+app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 
 // var gxssrv = xsenv.getServices({
 // 	uaa: {
@@ -30,7 +41,7 @@ var hanaOptions = xsenv.getServices({
 	}
 });
 
-const app = express();
+
 app.use(
 	HDBConn.middleware(hanaOptions.hana)
 );

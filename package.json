@@ -22,6 +22,9 @@
         "db"
     ],
     "cds": {
+    	"hana": {
+            "deploy-format": "hdbtable"
+        },
         "odata": {
             "version": "v4"
         },

@@ -45,6 +45,10 @@ let json2array=function (json){
 		row.push(json[i].L);
 		row.push(json[i].M);
 		row.push(json[i].N);
+		row.push(json[i].O);
+		row.push(json[i].P);
+		row.push(json[i].Q);
+		row.push(json[i].R);
 		value.push(row);
 	}
 	return value;
@@ -53,6 +57,10 @@ let json2array=function (json){
 const upload=multer();
 
 router.post('/insert', upload.single('file'),(req, res) => {
+	// console.log('start')
+	// console.log(req.body)
+	// console.log(req.file)
+	// console.log(req)
 	let client=req.db;
 	let date_ob = new Date();
 	let date = ("0" + date_ob.getDate()).slice(-2);
@@ -74,7 +82,11 @@ router.post('/insert', upload.single('file'),(req, res) => {
 	let uploded_by='pratheekreddy.katta@in.bosch.com';
 	let values=json2array(value.Sheet1);
 	for(let i=0;i<values.length;i++){
-		for(let j=0;j<14;j++){
+		if(values[i][17]==undefined){
+			values[i][17]=0
+		}
+		for(let j=0;j<18;j++){
+			
 			if(values[i][j]==undefined){
 				values[i][j]='N/A'
 			}
@@ -93,7 +105,7 @@ router.post('/insert', upload.single('file'),(req, res) => {
 	}
 	console.log(values);
 	// console.log(values)MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,SYSTEM_ID,TAG_DOMAIN,TAGS,FUNC_GROUP,DEV_CLASS,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,DESCRIPTION,C_CREATED_BY,
-	let insertq='INSERT INTO RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO (TAGS,TAG_DOMAIN,DEV_CLASS,FUNC_GROUP,SYSTEM_ID,MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,DESCRIPTION,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,C_CREATED_BY,C_CREATED_ON,ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,repo.nextval)';
+	let insertq='INSERT INTO RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO (TAGS,TAG_DOMAIN,DEV_CLASS,FUNC_GROUP,SYSTEM_ID,MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,DESCRIPTION,REUSPR,CONTACT_ID,CONTACT_GROUP,DOCUMENT_LINK,TARGET_TEAMS,USAGE_SCEN,IMPL_STEPS,EFFORTS_SAVED,C_CREATED_BY,C_CREATED_ON) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 	client.prepare(insertq,(err,statement)=>{
 
 		if(!err){
