@@ -1,0 +1,129 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+    <ViewSettingsDialog>
+        
+        <filterItems>
+            
+            <ViewSettingsFilterItem text="ID" key="ID"
+                                    items="{path: '/ID'}">
+                <items>
+                    <ViewSettingsItem key="String___ID___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="MODULE" key="MODULE"
+                                    items="{path: '/MODULE'}">
+                <items>
+                    <ViewSettingsItem key="String___MODULE___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="SRC_SYS" key="SRC_SYS"
+                                    items="{path: '/SRC_SYS'}">
+                <items>
+                    <ViewSettingsItem key="String___SRC_SYS___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="FM" key="FM"
+                                    items="{path: '/FM'}">
+                <items>
+                    <ViewSettingsItem key="String___FM___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="CREATED_BY" key="CREATED_BY"
+                                    items="{path: '/CREATED_BY'}">
+                <items>
+                    <ViewSettingsItem key="String___CREATED_BY___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="SYSTEM" key="SYSTEM"
+                                    items="{path: '/SYSTEM'}">
+                <items>
+                    <ViewSettingsItem key="String___SYSTEM___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="REUSABLE" key="REUSABLE"
+                                    items="{path: '/REUSABLE'}">
+                <items>
+                    <ViewSettingsItem key="String___REUSABLE___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="TAGS" key="TAGS"
+                                    items="{path: '/TAGS'}">
+                <items>
+                    <ViewSettingsItem key="String___TAGS___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+            <ViewSettingsFilterItem text="SUB_MODULE" key="SUB_MODULE"
+                                    items="{path: '/SUB_MODULE'}">
+                <items>
+                    <ViewSettingsItem key="String___SUB_MODULE___{}" text="{}"></ViewSettingsItem>
+                </items>
+            </ViewSettingsFilterItem>
+            
+            
+        </filterItems>
+        
+
+        
+        <sortItems>
+            
+            <ViewSettingsItem text="ID" key="ID"/>
+            
+            <ViewSettingsItem text="MODULE" key="MODULE"/>
+            
+            <ViewSettingsItem text="SRC_SYS" key="SRC_SYS"/>
+            
+            <ViewSettingsItem text="FM" key="FM"/>
+            
+            <ViewSettingsItem text="CREATED_BY" key="CREATED_BY"/>
+            
+            <ViewSettingsItem text="SYSTEM" key="SYSTEM"/>
+            
+            <ViewSettingsItem text="REUSABLE" key="REUSABLE"/>
+            
+            <ViewSettingsItem text="TAGS" key="TAGS"/>
+            
+            <ViewSettingsItem text="SUB_MODULE" key="SUB_MODULE"/>
+            
+        </sortItems>
+        
+
+        
+        <groupItems>
+            
+            <ViewSettingsItem text="ID" key="ID"/>
+            
+            <ViewSettingsItem text="MODULE" key="MODULE"/>
+            
+            <ViewSettingsItem text="SRC_SYS" key="SRC_SYS"/>
+            
+            <ViewSettingsItem text="FM" key="FM"/>
+            
+            <ViewSettingsItem text="CREATED_BY" key="CREATED_BY"/>
+            
+            <ViewSettingsItem text="SYSTEM" key="SYSTEM"/>
+            
+            <ViewSettingsItem text="REUSABLE" key="REUSABLE"/>
+            
+            <ViewSettingsItem text="TAGS" key="TAGS"/>
+            
+            <ViewSettingsItem text="SUB_MODULE" key="SUB_MODULE"/>
+            
+        </groupItems>
+        
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

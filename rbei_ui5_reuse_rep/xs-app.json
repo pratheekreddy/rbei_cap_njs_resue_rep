@@ -1,0 +1,35 @@
+{
+  "welcomeFile": "/rbei_ui5_reuse_rep/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/RBEI_Repo_OData/(.*)$",
+      "target": "$1",
+      "authenticationType": "none",
+      "destination": "RBEI_Repo_OData",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/rbei_ui5_reuse_rep/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    },
+    {
+      "source": "^/rbei_ui5_reuse_rep_test/(.*)$",
+      "target": "$1",
+      "destination": "rbei_cap_njs_reuse_api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/srv_test/(.*)$",
+      "target": "$1",
+      "destination": "srv_api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": false
+    }
+  ]
+}

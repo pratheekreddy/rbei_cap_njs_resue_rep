@@ -1,0 +1,101 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="86de5eb6724b639b138fe088" xml:lang="en" sap:schema-version="0000" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="86de5eb6724b639b138fe088_Entities" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="DB_DATASet" EntityType="86de5eb6724b639b138fe088.DB_DATA" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <EntitySet Name="DB_DATA_NEWSet" EntityType="86de5eb6724b639b138fe088.DB_DATA_NEW" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <EntitySet Name="BuildImportSet" EntityType="86de5eb6724b639b138fe088.BuildImport" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <EntitySet Name="Sheet1Set" EntityType="86de5eb6724b639b138fe088.Sheet1" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <EntitySet Name="MODULESet" EntityType="86de5eb6724b639b138fe088.MODULE" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <AssociationSet Name="MODULERelationNameSUB_MODULE" Association="86de5eb6724b639b138fe088.MODULERelationNameSUB_MODULE" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+                    <End EntitySet="MODULESet" Role="FromRole_MODULERelationNameSUB_MODULE"/>
+                    <End EntitySet="SUB_MODULESet" Role="ToRole_MODULERelationNameSUB_MODULE"/>
+                </AssociationSet>
+                <EntitySet Name="SUB_MODULESet" EntityType="86de5eb6724b639b138fe088.SUB_MODULE" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+            </EntityContainer>
+            <EntityType Name="DB_DATA">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="FM" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="FM"/>
+                <Property Name="FG" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="FG"/>
+                <Property Name="OBJ_TYPE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="OBJ_TYPE"/>
+                <Property Name="DEV_CLASS" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="DEV_CLASS"/>
+                <Property Name="SRC_SYS" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="SRC_SYS"/>
+                <Property Name="CREATED_BY" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="CREATED_BY"/>
+                <Property Name="SYSTEM" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="SYSTEM"/>
+                <Property Name="REUSABLE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="REUSABLE"/>
+                <Property Name="TAGS" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="TAGS"/>
+                <Property Name="MODULE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="MODULE"/>
+                <Property Name="SUB_MODULE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="SUB_MODULE"/>
+                <Property Name="DETAILED_DESCRIPTION" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="DETAILED_DESCRIPTION"/>
+            </EntityType>
+            <EntityType Name="DB_DATA_NEW">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="Product" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Product"/>
+                <Property Name="Supplier" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Supplier"/>
+                <Property Name="Price" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Price"/>
+            </EntityType>
+            <EntityType Name="BuildImport">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="FM" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="FM"/>
+                <Property Name="FG" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="FG"/>
+            </EntityType>
+            <EntityType Name="Sheet1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="FM" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="FM"/>
+                <Property Name="FG" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="FG"/>
+                <Property Name="OBJ_TYPE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="OBJ_TYPE"/>
+                <Property Name="DEV_CLASS" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="DEV_CLASS"/>
+                <Property Name="SRC_SYS" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="SRC_SYS"/>
+                <Property Name="CREATED_BY" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="CREATED_BY"/>
+                <Property Name="SYSTEM" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="SYSTEM"/>
+                <Property Name="REUSABLE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="REUSABLE"/>
+                <Property Name="TAGS" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="TAGS"/>
+                <Property Name="MODULE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="MODULE"/>
+                <Property Name="SUB_MODULE" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="SUB_MODULE"/>
+                <Property Name="DETAILED_DESCRIPTION" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="DETAILED_DESCRIPTION"/>
+                <Property Name="URL" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="URL"/>
+            </EntityType>
+            <EntityType Name="MODULE">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="NAME" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="NAME"/>
+                <Property Name="___FK_e7c2bbcc99e9ec211393afd2_00017" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_e7c2bbcc99e9ec211393afd2_00017"/>
+                <NavigationProperty Name="RelationName" Relationship="86de5eb6724b639b138fe088.MODULERelationNameSUB_MODULE" FromRole="FromRole_MODULERelationNameSUB_MODULE" ToRole="ToRole_MODULERelationNameSUB_MODULE"/>
+            </EntityType>
+            <Association Name="MODULERelationNameSUB_MODULE">
+                <End Type="86de5eb6724b639b138fe088.MODULE" Multiplicity="1" Role="FromRole_MODULERelationNameSUB_MODULE"/>
+                <End Type="86de5eb6724b639b138fe088.SUB_MODULE" Multiplicity="1" Role="ToRole_MODULERelationNameSUB_MODULE"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_MODULERelationNameSUB_MODULE">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="FromRole_MODULERelationNameSUB_MODULE">
+                        <PropertyRef Name="___FK_e7c2bbcc99e9ec211393afd2_00017"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityType Name="SUB_MODULE">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+                <Property Name="NAME" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="NAME"/>
+                <Property Name="CHILD" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="CHILD"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

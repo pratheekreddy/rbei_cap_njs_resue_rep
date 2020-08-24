@@ -1,0 +1,50 @@
+{
+	"selectedKey": "DevelopmentArtifacts",
+	"navigation": [{
+		"title": "Development Artifacts",
+		"icon": "sap-icon://product",
+		"expanded": true,
+		"key": "DevelopmentArtifacts",
+		"enabled": true,
+		"visible": true
+	}, {
+		"title": "Migration Artifacts",
+		"icon": "sap-icon://employee",
+		"expanded": true,
+		"key": "MigrationArtifacts",
+		"enabled": true,
+		"visible": true
+	},
+	
+	{"title": "Administration",
+		"icon": "sap-icon://key-user-settings",
+		"expanded": true,
+		"key": "Administration",
+		"enabled": true,
+		"visible": true,
+		
+		"Sublevel1": [
+                {
+                    "title": "Artifact Maintenance",
+                     "key": "ArtifactMaintenance",
+                    "enabled": true,
+		            "visible": true
+                },
+                {
+                   "title": "Workflows"
+                }
+            ]
+	}],
+	
+	  "fixedNavigation": [
+	  	
+	  	
+	  	    {
+                        "title": "Help",
+                        "icon": "sap-icon://search"
+            }, {
+                        "title": "Logout",
+                        "icon": "sap-icon://product"
+            }] 
+
+}
