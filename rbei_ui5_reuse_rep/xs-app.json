@@ -1,0 +1,14 @@
+{
+  "welcomeFile": "/rbei_ui5_reuse_rep/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/rbei_ui5_reuse_rep/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    }
+  ]
+}

@@ -31,8 +31,37 @@ modules:
           url: '${default-url}'
     requires:
       - name: rbei_cap_njs_reuse_rep-db-hdi-container
+
+  - name: rbei_ui5_reuse_rep
+    type: html5
+    path: rbei_ui5_reuse_rep
+    parameters:
+       disk-quota: 512M
+       memory: 256M
+    build-parameters:
+       builder: grunt
+    requires:
+     - name: uaa_rbei_cap_njs_reuse_rep
+     - name: dest_rbei_cap_njs_reuse_rep
+     - name: rbei_cap_njs_reuse_api
+     - name: srv_api
+
 resources:
   - name: rbei_cap_njs_reuse_rep-db-hdi-container
     type: com.sap.xs.hdi-container
     properties:
       hdi-container-name: '${service-name}'
+
+  - name: uaa_rbei_cap_njs_reuse_rep
+    parameters:
+       path: ./xs-security.json
+       service-plan: application
+       service: xsuaa
+    type: org.cloudfoundry.managed-service
+
+
+  - name: dest_rbei_cap_njs_reuse_rep
+    parameters:
+       service-plan: lite
+       service: destination
+    type: org.cloudfoundry.managed-service
