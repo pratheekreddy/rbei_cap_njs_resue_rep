@@ -18,7 +18,16 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/srv_test",
+      "target": {
+        "type": "destination",
+        "name": "RBEI_Repo_OData"
+      },
+      "description": "AI SRV"
     }
+    
   ],
   "sendWelcomeFileRedirect": true
 }

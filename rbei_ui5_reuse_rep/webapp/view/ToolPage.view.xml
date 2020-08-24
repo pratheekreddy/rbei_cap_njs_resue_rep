@@ -1,0 +1,279 @@
+<mvc:View controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.ToolPage" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt"
+	height="100%" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:fb="sap.ui.comp.filterbar">
+	<tnt:ToolPage id="id-toolpage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button icon="sap-icon://menu2" type="Transparent" press="onCollapseExpandPress"/>
+				<Image width="8rem" src="./../webapp/image/Bosch_logo_V0.jpg"/>
+				<Text text="Reuse Enabler" wrapping="false"/>
+				<ToolbarSpacer/>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation expanded="false" selectedKey="{app>/SIDE_NAV_KEY}" itemSelect="onItemSelect">
+				<tnt:NavigationList items="{path: 'navigation>/navigation', templateShareable:false}">
+					<tnt:NavigationListItem text="{navigation>title}" icon="{navigation>icon}" enabled="{navigation>enabled}" visible="{navigation>visible}"
+						expanded="{navigation>expanded}" items="{path: 'navigation>items', templateShareable:false}" key="{navigation>key}">
+						<tnt:NavigationListItem text="{navigation>title}" key="{navigation>key}" enabled="{navigation>enabled}" visible="{navigation>visible}"></tnt:NavigationListItem>
+		
+					</tnt:NavigationListItem>
+
+		</tnt:NavigationList>
+				<tnt:fixedItem>
+					<tnt:NavigationList items="{path: 'navigation>/fixedNavigation'}">
+						<tnt:NavigationListItem text="{navigation>title}" icon="navigation>{icon}"/>
+					</tnt:NavigationList>
+				</tnt:fixedItem>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer" initialPage="DevelopmentArtifacts">
+				<pages>
+					<ScrollContainer id="DevelopmentArtifacts" horizontal="false" vertical="true" height="100%">
+						<f:DynamicPage id="dynamicPageId" headerExpanded="true">
+							<f:header>
+								<f:DynamicPageHeader pinnable="true">
+									<f:content>
+										<!--<ImageContent src="sap-icon://bar-code"/>-->
+										<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false" filterContainerWidth="6rem"  >
+											<fb:filterItems>
+												<!--<fb:filteritem name = "C" >-->
+												<!--	<fb:control>-->
+												<!--	<toolbarButton text = "Settings"/>-->
+												<!--	</fb:control>-->
+											<!--<OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true"-->
+											<!--	visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress6"/>-->
+												<!--</fb:filteritem>-->
+												<fb:FilterItem name="A" label="Free Search" class="sapUiResponsiveMargin">
+													<fb:control>
+
+														<Input type="Text" />
+													</fb:control>
+												</fb:FilterItem>
+												<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">
+													<fb:control>
+														<MultiComboBox width="90px" items="{ path: 'products>/ProductCollection', sorter: {path: 'SupplierName', descending: false, group: true} }">
+															<!--<core:Item key="{products>ProductId}" text="{path: 'products>Name', formatter: '.sortGroups'}" />-->
+															<core:Item key="{products>ProductId}" text="{products>Name}"/>
+														</MultiComboBox>
+														<!--<MultiComboBox width="200px" class="sapUiSmallMarginTop"></MultiComboBox>-->
+													</fb:control>
+												</fb:FilterItem>
+											</fb:filterItems>
+										</fb:FilterBar>
+									</f:content>
+								</f:DynamicPageHeader>
+							</f:header>
+							<f:content>
+								<Table id="idProductsTable" inset="false">
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Module"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Sub_Module"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="System"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Object"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Object Type"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Object Description"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="RBEI Contact"/>
+										</Column>
+									</columns>
+								<items>
+								<!--<ColumnListItem>-->
+								<!--	<cells>-->
+								<!--		<Text class="smallText" text="{odata_model>MODULE}"/>-->
+								<!--		<Text class="smallText" text="{odata_model>SUB_MODULE}"/>-->
+								<!--		<Text class="smallText" text="{odata_model>SYSTEM}"/>-->
+								<!--		<Text class="smallText" text="{odata_model>OBJECT}"/>-->
+								<!--		<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>-->
+								<!--		<Text class="smallText" text="{odata_model>DESCRIPTION}"/>-->
+								<!--		<Text class="smallText" text="{odata_model>RBEI_CONTACT}"/>-->
+								<!--	</cells>-->
+								<!--</ColumnListItem>-->
+							</items>
+								</Table>
+							</f:content>
+						</f:DynamicPage>
+					</ScrollContainer>
+					<ScrollContainer id="MigrationArtifacts" horizontal="false" vertical="true" height="100%">
+						<!--<content>-->
+						<!--	<HBox alignItems="Stretch" direction="Row" fitContainer="true" width="auto" height="41.94000000px" justifyContent="Start" renderType="Div"-->
+						<!--		visible="true" displayInline="false">-->
+						<!--<items>-->
+						<!--	<Text text="Tags:" width="39.00000000px" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"-->
+						<!--		class="sapUiTinyMargin"/>-->
+						<!--	<Tokenizer width="657.46875px">-->
+						<!--		<tokens>-->
+						<!--			<Token text="SD/Orders/Migration*" editable="true" selected="true"/>-->
+						<!--		</tokens>-->
+						<!--	</Tokenizer>-->
+						<!--</items>-->
+						<!--		<layoutData/>-->
+						<!--	</HBox>-->
+						<!--	<Table-->
+						<!--		id="sap_Responsive_Page_0-content-sap_m_IconTabBar-1590496821795-items-sap_m_IconTabFilter-3-content-build_simple_Table-1590571689980"-->
+						<!--		width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true"-->
+						<!--		class="sapUiResponsiveMargin" itemPress="_onTableItemPress" items="{path:'/Sheet1Set', templateShareable:true}">-->
+						<!--		<infoToolbar>-->
+						<!--			<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">-->
+						<!--				<content>-->
+						<!--					<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</content>-->
+						<!--			</Toolbar>-->
+						<!--		</infoToolbar>-->
+						<!--		<headerToolbar>-->
+						<!--			<OverflowToolbar width="auto" height="auto" design="Solid" visible="true" enabled="true">-->
+						<!--				<content>-->
+						<!--					<Title text="Module/Sub Module" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="true"/>-->
+						<!--					<SearchField value="" placeholder="Search by Tags" showSearchButton="true" visible="true" width="auto" class="sapUiResponsiveMargin"/>-->
+						<!--					<ToolbarSpacer width=""/>-->
+						<!--					<OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true"-->
+						<!--						iconDensityAware="false" press="_onOverflowToolbarButtonPress4"/>-->
+						<!--					<OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true"-->
+						<!--						iconDensityAware="false" press="_onOverflowToolbarButtonPress5"/>-->
+						<!--					<OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true"-->
+						<!--						visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress6"/>-->
+						<!--					<OverflowToolbarButton text="Export" type="Transparent" icon="sap-icon://download" iconFirst="true" width="auto" enabled="true"-->
+						<!--						visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress7"/>-->
+						<!--				</content>-->
+						<!--			</OverflowToolbar>-->
+						<!--		</headerToolbar>-->
+						<!--		<columns>-->
+						<!--			<Column width="30px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="true">-->
+						<!--				<header>-->
+						<!--					<Text text="ID" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--			<Column width="80px" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+						<!--				<header>-->
+						<!--					<Text text="Module" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--			<Column width="68px" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+						<!--				<header>-->
+						<!--					<Text text="System" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--			<Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+						<!--				<header>-->
+						<!--					<Text text="Sub Module" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--			<Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+						<!--				<header>-->
+						<!--					<Text text="Object" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--			<Column width="15rem" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+						<!--				<header>-->
+						<!--					<Text text="Object Type" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--			<Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+						<!--				<header>-->
+						<!--					<Text text="Author" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--			<Column width="5rem" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">-->
+						<!--				<header>-->
+						<!--					<Text text="Reusable" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--				</header>-->
+						<!--				<footer/>-->
+						<!--			</Column>-->
+						<!--		</columns>-->
+						<!--		<items>-->
+						<!--			<ColumnListItem type="Active">-->
+						<!--				<cells>-->
+						<!--					<Text text="{ID}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--					<Text text="{MODULE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--					<Text text="{SRC_SYS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--					<Text text="Orders" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--					<Text text="{FM}" width="auto" maxLines="1" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>-->
+						<!--					<CheckBox text="Migration" selected="true" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"-->
+						<!--						wrapping="false" useEntireWidth="true"/>-->
+						<!--					<Text text="{CREATED_BY}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+						<!--					<core:Icon src="sap-icon://repost" size="15px" color="{SYSTEM}" height="48px" width="48px" activeColor="{REUSABLE}" hoverColor="{TAGS}"-->
+						<!--						backgroundColor="{MODULE}" visible="true" tooltip="{SUB_MODULE}"/>-->
+						<!--				</cells>-->
+						<!--			</ColumnListItem>-->
+						<!--		</items>-->
+						<!--	</Table>-->
+						<!--</content>-->
+						<f:DynamicPage id="dynamicPageIdMA" headerExpanded="true">
+							<f:header>
+								<f:DynamicPageHeader pinnable="true">
+									<f:content>
+										<!--<ImageContent src="sap-icon://bar-code"/>-->
+										<fb:FilterBar id="filterbarMA" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false" filterContainerWidth="6rem">
+											<fb:filterItems>
+												<fb:FilterItem name="A" label="Free Search" class="sapUiResponsiveMargin">
+													<fb:control>
+														<Input type="Text" />
+													</fb:control>
+												</fb:FilterItem>
+												<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">
+													<fb:control>
+														<MultiComboBox width="200px" items="{ path: 'products>/ProductCollection', sorter: {path: 'SupplierName', descending: false, group: true} }">
+															<!--<core:Item key="{products>ProductId}" text="{path: 'products>Name', formatter: '.sortGroups'}" />-->
+															<core:Item key="{products>ProductId}" text="{products>Name}"/>
+														</MultiComboBox>
+														<!--<MultiComboBox width="200px" class="sapUiSmallMarginTop"></MultiComboBox>-->
+													</fb:control>
+												</fb:FilterItem>
+											</fb:filterItems>
+										</fb:FilterBar>
+									</f:content>
+								</f:DynamicPageHeader>
+							</f:header>
+							<f:content>
+								<Table id="idProductsTableMA" inset="false">
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Module"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Sub_Module"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="System"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Object"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Object Type"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="Object Description"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+											<Text text="RBEI Contact"/>
+										</Column>
+									</columns>
+								</Table>
+							</f:content>
+						</f:DynamicPage>
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>
