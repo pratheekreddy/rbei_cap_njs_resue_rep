@@ -18,7 +18,6 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
-<<<<<<< HEAD
     },
     {
       "path": "/srv_test",
@@ -29,9 +28,6 @@
       "description": "AI SRV"
     }
     
-=======
-    }
->>>>>>> refs/heads/master
   ],
   "sendWelcomeFileRedirect": true
 }

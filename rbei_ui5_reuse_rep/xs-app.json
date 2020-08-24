@@ -6,7 +6,6 @@
   },
   "routes": [
     {
-<<<<<<< HEAD
       "source": "^/RBEI_Repo_OData/(.*)$",
       "target": "$1",
       "authenticationType": "none",
@@ -31,11 +30,6 @@
       "destination": "srv_api",
       "authenticationType": "xsuaa",
       "csrfProtection": false
-=======
-      "source": "^/rbei_ui5_reuse_rep/(.*)$",
-      "target": "$1",
-      "localDir": "webapp"
->>>>>>> refs/heads/master
     }
   ]
 }
