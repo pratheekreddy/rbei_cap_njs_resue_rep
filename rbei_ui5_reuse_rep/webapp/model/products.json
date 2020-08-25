@@ -1,0 +1,36 @@
+{
+	"ProductCollection": [
+		{
+			"ProductId": "1",
+			"SupplierName": "SPD",
+			"Name": "Orders"
+		},
+		{
+			"ProductId": "2",
+			"SupplierName": "SD",
+			"Name": "Delivery"
+		},
+		{
+			"ProductId": "3",
+			"SupplierName": "SD",
+			"Name": "Invoice"
+		},
+		{
+			"ProductId": "4",
+			"SupplierName": "SD",
+			"Name": "Pricing"
+		}
+		
+	],
+	"ProductCollectionStats": {
+	
+		"Groups": {
+			
+			"SupplierName": {
+				"SD": 5
+				
+			}
+		}
+	
+	}
+}
