@@ -50,15 +50,6 @@ define view V_DROPDOWN as select from T_MD_OBJ_TAG_REPO distinct
 	key T_MD_OBJ_TAG_REPO.MODULE, key T_MD_OBJ_TAG_REPO.SUB_MODULE
 };
 
-@Search.searchable : true 
-define view TAG_SEARCH as select from T_MD_OBJ_TAG_REPO
-{
-	@Search.defaultSearchElement : true 
-	@Search.fuzzinessThreshold : 0.7
-	@Search.ranking : #HIGH        
-	key TAGS,
-	KEY OBJECT_NAME
-};
 
 VIEW FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
 FROM T_MD_OBJ_TAG_REPO

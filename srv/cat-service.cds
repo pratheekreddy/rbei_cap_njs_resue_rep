@@ -10,6 +10,5 @@ service repo @(impl:'service.js'){
 	entity dropdown as projection on rbei.T_MD_MOD_MASTER;
 	entity proj_type as projection on rbei.T_PROJ_TYPE_MASTER;
 	entity team_type as projection on rbei.T_TEAMS_MASTER;
-	entity tag_search as projection on rbei.TAG_SEARCH;
 	entity search_result (TAG : String) AS SELECT from rbei.FUZZY_SEARCH (TAG: :TAG) 
 };
