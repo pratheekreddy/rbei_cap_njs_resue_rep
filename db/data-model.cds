@@ -49,3 +49,12 @@ define view V_DROPDOWN as select from T_MD_OBJ_TAG_REPO distinct
 {
 	key T_MD_OBJ_TAG_REPO.MODULE, key T_MD_OBJ_TAG_REPO.SUB_MODULE
 };
+
+
+VIEW FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
+FROM T_MD_OBJ_TAG_REPO
+{
+	key TAGS,
+	key	OBJECT_NAME
+}
+WHERE CONTAINS(TAGS, :TAG, FUZZY(0.7,'similarCalculationMode=searchCompare'));

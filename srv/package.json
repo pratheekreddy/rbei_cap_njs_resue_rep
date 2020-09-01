@@ -10,7 +10,7 @@
         "validator":"13.1.1"
     },
     "engines": {
-        "node": "10.19.0",
+        "node": "^10 || ^12",
         "npm": "6.11.3"
     },
     "devDependencies": {},

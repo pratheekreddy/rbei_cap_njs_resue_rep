@@ -28,9 +28,9 @@ router.get('/', (req, res) => {
 	console.log(query);
 	client.exec(query,(error,result)=>{
 		if(!error){
-			if(result.length!=0){
+			// if(result.length!=0){
 			return res.send(result);
-			}
+			// }
 			//CODE WHEN 
 			// console.log(result);
 		}

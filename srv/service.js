@@ -42,4 +42,7 @@ module.exports = cds.service.impl(srv => {
 		}
 
 	})
+	srv.before('READ','search_result', (req)=>{
+		console.log(req.params)
+	})
 })
