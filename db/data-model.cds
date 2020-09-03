@@ -50,8 +50,57 @@ define view V_DROPDOWN as select from T_MD_OBJ_TAG_REPO distinct
 	key T_MD_OBJ_TAG_REPO.MODULE, key T_MD_OBJ_TAG_REPO.SUB_MODULE
 };
 
+define view V_OBJ_TYPE as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.OBJECT_TYPE
+};
 
-VIEW FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
+define view V_OBJ_NAME as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.OBJECT_NAME
+};
+
+define view V_SYS_ID as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.SYSTEM_ID
+};
+
+define view V_FUNC_GRP as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.FUNC_GROUP
+};
+
+define view V_DEV_CLASS as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.DEV_CLASS
+};
+
+define view V_CONTACT_ID as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.CONTACT_ID
+};
+
+define view V_CONTACT_GROUP as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.CONTACT_GROUP
+};
+
+define view V_TARGET_TEAMS as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.TARGET_TEAMS
+};
+
+define view V_USAGE_SCEN as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.USAGE_SCEN
+};
+
+define view V_IMPL_STEPS as select from T_MD_OBJ_TAG_REPO distinct
+{
+	key T_MD_OBJ_TAG_REPO.IMPL_STEPS
+};
+
+VIEW V_FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
 FROM T_MD_OBJ_TAG_REPO
 {
 	key TAGS,
