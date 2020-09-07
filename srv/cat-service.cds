@@ -4,6 +4,7 @@ service repo @(impl:'service.js'){
 	entity obj_repo as projection on rbei.T_MD_OBJ_TAG_REPO; 
 	// entity dev as select from rbei.T_MD_OBJ_TAG_REPO where TAG_DOMAIN='D';
 	// entity mig as select from rbei.T_MD_OBJ_TAG_REPO where TAG_DOMAIN='M';
+	entity obj_repo_search (SEARCH :String) as select from rbei.V_OBJ_REPO(SEARCH: :SEARCH);
 	entity proj_type as projection on rbei.T_PROJ_TYPE_MASTER;
 	entity team_type as projection on rbei.T_TEAMS_MASTER;
 	entity search_result (TAG : String) AS SELECT from rbei.V_FUZZY_SEARCH (TAG: :TAG) 
