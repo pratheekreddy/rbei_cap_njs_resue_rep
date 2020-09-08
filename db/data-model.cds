@@ -101,7 +101,7 @@ define view V_IMPL_STEPS as select from T_MD_OBJ_TAG_REPO distinct
 };
 
 VIEW V_OBJ_REPO (SEARCH :String(100)) as select from T_MD_OBJ_TAG_REPO{*}
-where CONTAINS((MODULE,SUB_MODULE,OBJECT_NAME,OBJECT_TYPE,TAGS,FUNC_GROUP,DEV_CLASS,DESCRIPTION), :SEARCH, FUZZY(0.7,'similarCalculationMode=searchCompare'));
+where CONTAINS(TAGS, :SEARCH, FUZZY(0.7,'similarCalculationMode=searchCompare'));
 
 
 VIEW V_FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
