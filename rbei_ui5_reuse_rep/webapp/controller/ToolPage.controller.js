@@ -2,16 +2,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		"sap/m/MessageBox",
 		"./utilities",
 		"sap/ui/core/routing/History",
-		"sap/ui/core/SeparatorItem",
 		"sap/ui/model/json/JSONModel",
-		"sap/ui/core/SeparatorItem"
-
+		"sap/ui/model/Filter",
+		"sap/ui/core/SeparatorItem",
+		"sap/ui/model/FilterOperator",
 	],
 
-	function (BaseController, MessageBox, Utilities, History, JSONModel, SeparatorItem) {
+	function (BaseController, MessageBox, Utilities, History, JSONModel, Filter, SeparatorItem, FilterOperator) {
 		"use strict";
 
 		return BaseController.extend("RBEI_UI5.rbei_ui5_reuse_rep.controller.ToolPage", {
+
+			filterArr: [],
 			createViewSettingsDialog: function (sDialogFragmentName) {
 				var oDialog = this._mViewSettingsDialogs[sDialogFragmentName];
 
@@ -22,11 +24,102 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}
 				return oDialog;
 			},
+
+			// suggestion:function(oEvent){ debugger; },
+			onSuggest: function (oEvent) {
+
+			},
+			LiveSearch: function (oEvent) {
+
+				debugger;
+        
+				jQuery.get({
+					url: "/srv_test/repo/search_result(TAG='*')/Set",
+					success: function (data) {
+						
+					},
+					error: function (error) {
+						// your error logic
+					
+					}
+				});
+            
+			},
+
+			// jQuery.ajax({
+			// 	url: "/srv_test/repo/search_result(TAG='SD')/Set",
+			// 	method: "GET",
+			// 	dataType: "json",
+			// 	contentType: "application/json",
+			// 	success: jQuery.proxy(successCallbackFunc, this),
+			// 	error: jQuery.proxy(errorCallbackFunc, this)
+
+			// });
+
+			// 	this.fnQuery(sSkiptokenUrl, fnSuccess, fnError);
+			// successCallbackFunc: function (oEvent) {
+			// 		console.log("TriggeedS");
+			// 	},
+			// 	errorCallbackFunc: function (oEvent) {
+			// 		console.log("TriggeedF");
+			// 	},
+
+			onSearch: function (oEvent) {
+				//Filter value 
+				// this.oFilter = new Filter(this.filterArr,true);
+				this.oFilter = new Filter(this.filterArr, true);
+
+				var oTable = this.getView().byId("idProductsTable");
+				if (oTable.getBinding("items")) {
+					oTable.getBinding("items").filter(this.oFilter);
+				}
+
+				// var filterinput = this.getView().byId("input"); //Filter iD
+				// var sQuery = this.getView().byId("input").getValue(); //Filter value
+				// var filters = [];
+				// var filters = new sap.ui.model.Filter("FreeSearch", sap.ui.model.FilterOperator.Contains, sQuery);
+				//	debugger;
+				// var aFilters = [];
+				// var filterArr = [];
+				// var sQuery = oEvent.getSource().getValue();
+				// if (sQuery && sQuery.length > 0) {
+				// 	var filter1 = new Filter("Module", sap.ui.model.FilterOperator.Contains, sQuery);
+				// 	var filter2 = new Filter("Sub-Module", sap.ui.model.FilterOperator.Contains, sQuery);
+				// 	var filter3 = new Filter("Object Type", sap.ui.model.FilterOperator.Contains, sQuery);
+				// 	var filter = new Filter([filter1, filter2, filter3], false);
+				// 	aFilters.push(filter);
+				// }
+				// // update list binding
+				// var list = this.getView().byId("idProductsTable");
+				// var binding = list.getBinding("items");
+				// binding.filter(aFilters, "Application");
+			},
+
+			// onSearch: function() {
+			// 		debugger;
+			// 		var aCurrentFilterValues = [];
+			// 		// aCurrentFilterValues.push(this.getSelectedItemText(this.oSelectName));
+			// 		// this.filterTable(aCurrentFilterValues);
+			// 	},
+			// getSelectedItemText: function(oSelect) {
+			// 	debugger;
+			// 	return oSelect.getSelectedItem() ? oSelect.getSelectedItem().getKey() : "";
+			// },
+			// 	getSelect: function(sId) {
+			// 	debugger;
+			// 	return this.getView().byId(sId);
+			// },
+
+			onToggleHeader: function () {
+
+				this.getPage().setHeaderExpanded(!this.getPage().getHeaderExpanded());
+			},
+
 			_onOverflowToolbarButtonPress: function () {
 				this.createViewSettingsDialog("sap.tnt.sample.ToolPage.view.ViewSettingsDialog1").open();
 			},
 			handleRouteMatched: function (oEvent) {
-				debugger;
+
 				var sAppId = "App5ecd0d7b14c2661de83cd81e";
 
 				var oParams = {};
@@ -74,6 +167,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				});
 
 			},
+
 			doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 				var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
 				var oModel = (oBindingContext) ? oBindingContext.getModel() : null;
@@ -130,6 +224,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			},
 			_onTableItemPress: function (oEvent) {
+				debugger;
 
 				var oBindingContext = oEvent.getParameter("listItem").getBindingContext();
 
@@ -990,15 +1085,164 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				return typeof sTextValue === 'string' ? sTextValue.substr(0, 2) : undefined;
 
 			},
-			onInit: function () {
-				this._mViewSettingsDialogs = {};
+			// fnBasicSearch: function (oEvent) {
+			// 	// var sQuery = oEvent.getParameter("query");
+			// 	var sQuery = oEvent.getSource().getValue().toUpperCase();
+			// 	var oTable = this.getView().byId("idProductsTable");
+			// 	//FilterOperator
+			// 	// var filter = new Filter("MODULE", sap.ui.model.FilterOperator.Contains, selectedItem);
+			// 	// 	this._selectedItems(filter, selectedItem, true);
+			// 	var aFilters = [];
+			// 	var aFinalFilter = [];
+			// 	if (sQuery) {
 
-				// this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				// this.oRouter.getTarget("SearchPage").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-				// var oModel = this.getOwnerComponent().getModel("navigation");
-				// this.getView().setModel(oModel);
+			// 		aFilters.push(new Filter("SUB_MODULE", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("MODULE", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("OBJECT_TYPE", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("OBJECT_NAME", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("SYSTEM_ID", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("TAG_DOMAIN", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("TAGS", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("FUNC_GROUP", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("DEV_CLASS", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("CONTACT_ID", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("CONTACT_GROUP", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("DOCUMENT_LINK", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("DESCRIPTION", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("C_CREATED_BY", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("C_CHANGED_BY", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("TARGET_TEAMS", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("USAGE_SCEN", FilterOperator.Contains, sQuery));
+			// 		aFilters.push(new Filter("IMPL_STEPS", FilterOperator.Contains, sQuery));
+
+			// 		//OBJECT
+			// 		aFinalFilter.push(new Filter(aFilters, false));
+			// 	}
+			// 	if (oTable.getBinding("items")) {
+			// 		oTable.getBinding("items").filter(aFinalFilter);
+			// 	}
+			// },
+			onSelectionChange: function (oEvent) {
+
+				// var selectedItems = [];
+				// var oSrc = oEvent.getSource();
+				// //var oField = oSrc.getId().split("--")[2];
+				// var localArr = [];
+				// localArr = [...this.filterArr];
+				// localArr.forEach(ele => {
+				// 	if (ele.sPath === "MODULE" || ele.sPath === "SUB_MODULE")
+				// 		this.filterArr.splice(this.filterArr.indexOf(ele), 1);
+				// });
+				// var aItems = oSrc.getSelectedItems();
+				// for (var i = 0; i < aItems.length; i++) {
+				// 	var selectedItem = aItems[i].getProperty("text").toUpperCase();
+				// 	// selectedItems.push(selectedItem);
+
+				// 	var filter = new Filter("SUB_MODULE", sap.ui.model.FilterOperator.Contains, selectedItem);
+				// 	this._selectedItems(filter, selectedItem, false);
+				// 	selectedItem = aItems[i].getProperty("key").toUpperCase();
+				// 	// selectedItems.push(selectedItem);
+
+				// 	filter = new Filter("MODULE", sap.ui.model.FilterOperator.Contains, selectedItem);
+				// 	this._selectedItems(filter, selectedItem, false);
+				// }
+				// //this.oFilter = 
+			},
+			onSelection: function (oEvent) {
+
+				// var selectedItems = [];
+				// var oSrc = oEvent.getSource();
+				// var oField = oSrc.getId().split("--")[2];
+				// var localArr = [];
+				// localArr = [...this.filterArr];
+				// localArr.forEach(ele => {
+				// 	if (ele.sPath === oField)
+				// 		this.filterArr.splice(this.filterArr.indexOf(ele), 1);
+				// });
+				// var aItems = oSrc.getSelectedItems();
+				// for (var i = 0; i < aItems.length; i++) {
+				// 	var selectedItem = aItems[i].getProperty("text").toUpperCase();
+				// 	// selectedItems.push(selectedItem);
+
+				// 	var filter = new Filter(oField, sap.ui.model.FilterOperator.Contains, selectedItem);
+				// 	this._selectedItems(filter, selectedItem, true);
+				// }
+				// //this.oFilter = new Filter(filterArr);
 
 			},
+			_selectedItems: function (filter, selectedItem, notMOdSub) {
+
+				// var addIt = true;
+				// if (notMOdSub) {
+				// 	this.filterArr.forEach(ele => {
+				// 		if (ele.oValue1 === selectedItem) {
+				// 			this.filterArr.splice(this.filterArr.indexOf(ele), 1);
+				// 			// addIt = false;
+				// 			return;
+				// 		} // else
+				// 		// else
+				// 		// 	addIt = true; // this.filterArr.push(filter);	
+				// 	});
+				// } else {
+				// 	this.filterArr.forEach(ele => {
+				// 		if (this.filterArr.length % 2 !== 0)
+				// 			return;
+				// 		else if (ele.oValue1 === selectedItem) {
+				// 			this.filterArr.splice(this.filterArr.indexOf(ele), 2);
+				// 			// addIt = false;
+				// 			return;
+				// 		} // else
+				// 		// else
+				// 		// 	addIt = true; // this.filterArr.push(filter);	
+				// 	});
+				// }
+
+				// // if (addIt)
+				// this.filterArr.push(filter);
+				// // var aSelected = [];
+				// // $.each(aItems, function (i, o) {
+				// // 	aSelected.push(o.getBindingContext("odata_model").getObject());
+				// // });
+
+			},
+			onChange: function () {
+
+			},
+			onInit: function () {
+
+				this._mViewSettingsDialogs = {};
+				//        	this.oSelectName = this.getSelect("FreeSearch");
+				var oFB = this.getView().byId("filterbar");
+				if (oFB) {
+					// oFB.variantsInitialized();
+					var a = oFB.determineFilterItemByName("A");
+					var b = oFB.determineFilterItemByName("B");
+					var c = oFB.determineFilterItemByName("D");
+					//var q = sap.ui.getCore().byId("Search");
+				}
+
+			
+				//	this.oSelObjectType = this.getSelect("idObjectType");
+				// var oSearchField = oFB.getBasicSearch();
+				// var oBasicSearch;
+				// if (!oSearchField) {
+				// 	oBasicSearch = new sap.m.SearchField({
+				// 		showSearchButton: true,
+				// 		search: jQuery.proxy(this.fnBasicSearch, this)
+				// 	});
+				// } else {
+				// 	oSearchField = null;
+				// }
+				var multiCombo = this.getView().byId("idObjectType");
+				// oFB.setBasicSearch(oBasicSearch);
+
+				// oBasicSearch.attachBrowserEvent("keyup", function (e) {
+				// 	//logic for search
+
+				// 	// this.fnBasicSearch();
+				// }.bind(this));
+			},
+
 			onExit: function () {
 
 				// to destroy templates for bound aggregations when templateShareable is true on exit to prevent duplicateId issue
