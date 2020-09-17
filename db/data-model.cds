@@ -105,9 +105,8 @@ where CONTAINS((TAGS,DESCRIPTION), :SEARCH, FUZZY(0.7,'similarCalculationMode=se
 
 
 VIEW V_FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
-FROM T_MD_OBJ_TAG_REPO
+FROM T_MD_OBJ_TAG_REPO distinct
 {
-	key TAGS,
-	key	OBJECT_NAME
+	key TAGS
 }
 WHERE CONTAINS((TAGS,DESCRIPTION), :TAG, FUZZY(0.7,'similarCalculationMode=searchCompare'));
