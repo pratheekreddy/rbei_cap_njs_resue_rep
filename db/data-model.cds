@@ -20,8 +20,8 @@ entity T_MD_OBJ_TAG_REPO {
 		C_CREATED_ON	:	Timestamp;
 		C_CHANGED_BY	:	String(256);
 		C_CHANGED_ON	:	Timestamp;
-		TARGET_TEAMS	:	String(25);
-		USAGE_SCEN		:	String(25);
+		TARGET_TEAMS	:	String(250);
+		USAGE_SCEN		:	String(250);
 		IMPL_STEPS		:	String(150);
 		EFFORTS_SAVED	:	Integer;
 };
@@ -101,7 +101,7 @@ define view V_IMPL_STEPS as select from T_MD_OBJ_TAG_REPO distinct
 };
 
 VIEW V_OBJ_REPO (SEARCH :String(100)) as select from T_MD_OBJ_TAG_REPO{*}
-where CONTAINS(TAGS, :SEARCH, FUZZY(0.7,'similarCalculationMode=searchCompare'));
+where CONTAINS((TAGS,DESCRIPTION), :SEARCH, FUZZY(0.7,'similarCalculationMode=searchCompare'));
 
 
 VIEW V_FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
@@ -110,4 +110,4 @@ FROM T_MD_OBJ_TAG_REPO
 	key TAGS,
 	key	OBJECT_NAME
 }
-WHERE CONTAINS(TAGS, :TAG, FUZZY(0.7,'similarCalculationMode=searchCompare'));
+WHERE CONTAINS((TAGS,DESCRIPTION), :TAG, FUZZY(0.7,'similarCalculationMode=searchCompare'));

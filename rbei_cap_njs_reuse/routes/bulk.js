@@ -83,20 +83,20 @@ router.post('/insert', upload.single('file'),(req, res) => {
 	let values=json2array(value.Sheet1);
 	for(let i=0;i<values.length;i++){
 		if(values[i][17]==undefined){
-			values[i][17]=0
+			values[i][17]=0;
 		}
 		for(let j=0;j<18;j++){
 			
 			if(values[i][j]==undefined){
-				values[i][j]='N/A'
+				values[i][j]='N/A';
 			}
 		}
-		values[i][0]=values[i][0].toUpperCase()
-		values[i][1]=values[i][1].toUpperCase()
-		values[i][5]=values[i][5].toUpperCase()
-		values[i][6]=values[i][6].toUpperCase()
-		values[i][7]=values[i][7].toUpperCase()
-		values[i][8]=values[i][8].toUpperCase()
+		values[i][0]=values[i][0].toUpperCase();
+		values[i][1]=values[i][1].toUpperCase();
+		values[i][5]=values[i][5].toUpperCase();
+		values[i][6]=values[i][6].toUpperCase();
+		values[i][7]=values[i][7].toUpperCase();
+		values[i][8]=values[i][8].toUpperCase();
 		values[i].push(uploded_by);
 		values[i].push(dates);
 		// for(let j=0;j<7;j++){
