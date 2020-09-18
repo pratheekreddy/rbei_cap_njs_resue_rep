@@ -1,7 +1,7 @@
 const cds = require('@sap/cds')
 
 module.exports = cds.service.impl(srv => {
-	const {proj_type,team_type}=srv.entities
+	const {proj_type,team_type,search_result}=srv.entities
 
 	srv.after('READ','obj_repo',async (result)=>{
 
@@ -42,7 +42,23 @@ module.exports = cds.service.impl(srv => {
 		}
 
 	})
-	srv.before('READ','search_result', (req)=>{
-		console.log(req.params)
+	srv.before('READ','search_result', async (req)=>{
+		// console.log(req.params)
+	})
+	srv.after('READ','search_result', async (result,req)=>{
+		// if(result.length===0){
+		// console.log(req.params)
+		// let search=req.params[0].TAG
+		// // console.log(search)
+		// let m_result=await cds.run("SELECT OBJECT_NAME,tags FROM RBEI_TOOL_REUSE_REP_T_MD_OBJ_TAG_REPO WHERE CONTAINS (DESCRIPTION, '"+search+"', FUZZY (0.7,'similarCalculationMode=searchCompare'))")
+		// // console.log(m_result)
+		// result=[...m_result]
+		// }
+		// let i=0;
+		// for(let each of result){
+		// 	console.log(each);
+			
+		// }
+		// console.log(i)
 	})
 })
