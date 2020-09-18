@@ -1,50 +1,88 @@
 {
 	"selectedKey": "DevelopmentArtifacts",
-	"navigation": [{
-		"title": "Development Artifacts",
-		"icon": "sap-icon://product",
+	"navigation1": [{
+		"title": "Reusable Artifacts",
+		"icon": "sap-icon://key-user-settings",
 		"expanded": true,
-		"key": "DevelopmentArtifacts",
+		"key": "Reusable",
 		"enabled": true,
-		"visible": true
+		"visible": true,
+		"Sublevel1": [{
+			"title": "Development Artifacts",
+			"icon": "sap-icon://product",
+			"expanded": true,
+			"key": "DevelopmentArtifacts",
+			"enabled": true,
+			"visible": true
+		}, {
+			"title": "Migration Artifacts",
+			"icon": "sap-icon://employee",
+			"expanded": true,
+			"key": "MigrationArtifacts",
+			"enabled": true,
+			"visible": true
+		}]
 	}, {
-		"title": "Migration Artifacts",
-		"icon": "sap-icon://employee",
-		"expanded": true,
-		"key": "MigrationArtifacts",
-		"enabled": true,
-		"visible": true
-	},
-	
-	{"title": "Administration",
+		"title": "Administration",
 		"icon": "sap-icon://key-user-settings",
 		"expanded": true,
 		"key": "Administration",
 		"enabled": true,
 		"visible": true,
-		
-		"Sublevel1": [
-                {
-                    "title": "Artifact Maintenance",
-                     "key": "ArtifactMaintenance",
-                    "enabled": true,
-		            "visible": true
-                },
-                {
-                   "title": "Workflows"
-                }
-            ]
+
+		"Sublevel1": [{
+			"title": "Artifact Maintenance",
+			"key": "ArtifactMaintenance",
+			"enabled": true,
+			"expanded": true,
+			"visible": true,
+			"Sublevel2": [{
+				"title": "Bulk Upload",
+				"key": "BulkUpload",
+				"expanded": true,
+				"enabled": true,
+				"visible": true
+			}, {
+				"title": "Create an Artifact",
+				"key": "CreateanArtifact",
+				"enabled": true,
+				"expanded": true,
+				"visible": true
+			}, {
+				"title": "Change an Artifact",
+				"key": "ChangeanArtifact",
+				"enabled": true,
+				"visible": true
+			}, {
+				"title": "Delete an Artifact",
+				"key": "DeleteanArtifact",
+				"enabled": true,
+				"visible": true
+			}]
+		}, {
+			"title": "Workflows",
+			"key": "Workflows",
+			"enabled": true,
+			"expanded": true,
+			"visible": true,
+			"Sublevel2": [{
+				"title": "My Workitems",
+				"key": "MyWorkitems",
+				"enabled": true,
+				"visible": true
+			}]
+		}]
 	}],
-	
-	  "fixedNavigation": [
-	  	
-	  	
-	  	    {
-                        "title": "Help",
-                        "icon": "sap-icon://search"
-            }, {
-                        "title": "Logout",
-                        "icon": "sap-icon://product"
-            }] 
+
+	"fixedNavigation": [
+
+		{
+			"title": "Help",
+			"icon": "sap-icon://search"
+		}, {
+			"title": "Logout",
+			"icon": "sap-icon://product"
+		}
+	]
 
 }

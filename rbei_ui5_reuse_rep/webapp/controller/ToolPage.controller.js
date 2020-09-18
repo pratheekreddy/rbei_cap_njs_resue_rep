@@ -1,14 +1,16 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 		"sap/m/MessageBox",
 		"./utilities",
+		"./PersoService",
 		"sap/ui/core/routing/History",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/model/Filter",
 		"sap/ui/core/SeparatorItem",
 		"sap/ui/model/FilterOperator",
+		"sap/m/TablePersoController"
 	],
 
-	function (BaseController, MessageBox, Utilities, History, JSONModel, Filter, SeparatorItem, FilterOperator) {
+	function (BaseController, MessageBox, Utilities,PersoService, History, JSONModel, Filter, SeparatorItem, FilterOperator,TablePersoController) {
 		"use strict";
 
 		return BaseController.extend("RBEI_UI5.rbei_ui5_reuse_rep.controller.ToolPage", {
@@ -26,24 +28,40 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			},
 
 			// suggestion:function(oEvent){ debugger; },
+			// onSuggest: function (oEvent) {
+
+			// },
 			onSuggest: function (oEvent) {
-
-			},
-			LiveSearch: function (oEvent) {
-
-				debugger;
-        
+				var newvalue = oEvent.getSource().getValue();
+				var t = this;
 				jQuery.get({
-					url: "/srv_test/repo/search_result(TAG='*')/Set",
+					url: "/srv_test/repo/search_result(TAG='" + newvalue + "')/Set",
 					success: function (data) {
-						
+						var searchmodel = new JSONModel(data.value);
+						t.getView().byId("Search").setModel(searchmodel, "searchMdl");
+						t.getView().byId("Search").suggest();
 					},
 					error: function (error) {
 						// your error logic
-					
+
 					}
 				});
-            
+				/*var oSource = oEvent.getSource();
+				var sTerm = oEvent.getParameter("suggestValue");
+				if (!sTerm) {
+					sTerm = "*";
+				}
+				var serachCnd = "/search_result(TAG='" + sTerm + "')/Set";
+				oEvent.getSource().bindAggregation("suggestionItems", serachCnd, new sap.m.SuggestionItem({
+					text: "{TAGS}"
+				}))
+
+				var oBinding = oEvent.getSource().getBinding("suggestionItems");
+				oBinding.attachEventOnce("dataReceived", function () {
+					// now activate suggestion popup
+					oSource.suggest();
+				});*/
+
 			},
 
 			// jQuery.ajax({
@@ -63,16 +81,140 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// 	errorCallbackFunc: function (oEvent) {
 			// 		console.log("TriggeedF");
 			// 	},
-
+			onClear: function (oEvent) {
+				this.getView().byId("Search").setValue(null);
+				this.getView().byId("module").setSelectedItems(null);
+				this.getView().byId("OBJECT_NAME").setSelectedItems(null);
+				this.getView().byId("OBJECT_TYPE").setSelectedItems(null);
+				this.getView().byId("CONTACT_GROUP").setSelectedItems(null);
+				this.onSearch();
+				// var oItems = this.getView().byId("module").getSelectedItems();
+				// var oItems = this.getView().byId("module").getSelectedItems()[0].getProperty("text")
+			},
 			onSearch: function (oEvent) {
 				//Filter value 
 				// this.oFilter = new Filter(this.filterArr,true);
-				this.oFilter = new Filter(this.filterArr, true);
+				var searchvalue = this.getView().byId("Search").getValue();
+				if (searchvalue === "") {
+					searchvalue = "*";
+				}
+				var oFilters = [];
+				var modulevalues = []; //this.getView().byId("module").getSelectedItems()[0].getProperty("key");
+				var moduledata = this.getView().byId("module").getSelectedItems();
+				for (var m = 0; m < this.getView().byId("module").getSelectedItems().length; m++) {
+					modulevalues.push(this.getView().byId("module").getSelectedItems()[m].getProperty("key"));
+				}
+				if (modulevalues.length > 0) {
+					var modulefilter = [];
+					for (var i = 0; i < modulevalues.length; i++) {
+						var filters4 = new Filter({
+							path: 'MODULE',
+							operator: sap.ui.model.FilterOperator.EQ,
+							value1: modulevalues[i]
+						});
+						modulefilter.push(filters4);
+					}
+					var filterModule = new Filter({
+						filters: modulefilter,
+						and: false
+					});
+					oFilters.push(filterModule);
+				}
+				//for object name
+				var objvalues = []; //this.getView().byId("module").getSelectedItems()[0].getProperty("key");
+				for (var m = 0; m < this.getView().byId("OBJECT_NAME").getSelectedItems().length; m++) {
+					objvalues.push(this.getView().byId("OBJECT_NAME").getSelectedItems()[m].getProperty("key"));
+				}
+				if (objvalues.length > 0) {
+					var objFilter = [];
+					for (var i = 0; i < objvalues.length; i++) {
+						var filters4 = new Filter({
+							path: 'OBJECT_NAME',
+							operator: sap.ui.model.FilterOperator.EQ,
+							value1: objvalues[i]
+						});
+						objFilter.push(filters4);
+					}
+					var filterObj = new Filter({
+						filters: objFilter,
+						and: false
+					});
+					oFilters.push(filterObj);
+				}
+				//for object type
+				var objtypevalues = []; //this.getView().byId("module").getSelectedItems()[0].getProperty("key");
+				for (var m = 0; m < this.getView().byId("OBJECT_TYPE").getSelectedItems().length; m++) {
+					objtypevalues.push(this.getView().byId("OBJECT_TYPE").getSelectedItems()[m].getProperty("key"));
+				}
+				if (objtypevalues.length > 0) {
+					var objtypeFilter = [];
+					for (var i = 0; i < objtypevalues.length; i++) {
+						var filters4 = new Filter({
+							path: 'OBJECT_TYPE',
+							operator: sap.ui.model.FilterOperator.EQ,
+							value1: objtypevalues[i]
+						});
+						objtypeFilter.push(filters4);
+					}
+					var filterObjtype = new Filter({
+						filters: objtypeFilter,
+						and: false
+					});
+					oFilters.push(filterObjtype);
+				}
+
+				//for object type
+				var contactValues = []; //this.getView().byId("module").getSelectedItems()[0].getProperty("key");
+				for (var m = 0; m < this.getView().byId("CONTACT_GROUP").getSelectedItems().length; m++) {
+					contactValues.push(this.getView().byId("CONTACT_GROUP").getSelectedItems()[m].getProperty("key"));
+				}
+				if (contactValues.length > 0) {
+					var contactFilter = [];
+					for (var i = 0; i < contactValues.length; i++) {
+						var filters4 = new Filter({
+							path: 'CONTACT_GROUP',
+							operator: sap.ui.model.FilterOperator.EQ,
+							value1: contactValues[i]
+						});
+						contactFilter.push(filters4);
+					}
+					var filterContact = new Filter({
+						filters: contactFilter,
+						and: false
+					});
+					oFilters.push(filterContact);
+				}
+				/*var template = new sap.m.ColumnListItem({
+					cells: [
+						new sap.m.Text({
+							text: "{odata_model>MODULE}"
+						}),
+						new sap.m.Text({
+							text: "{odata_model>SUB_MODULE}"
+						}),
+						new sap.m.Text({
+							text: "{odata_model>OBJECT_TYPE}"
+						}),
+						new sap.m.Text({
+							text: "{odata_model>OBJECT_NAME}"
+						}),
+						new sap.m.Text({
+							text: "{odata_model>DESCRIPTION}"
+						}),
+						new sap.m.Text({
+							text: "{odata_model>CONTACT_GROUP}"
+						})
+					]
+				});*/
+				// this.oFilter = new Filter(this.filterArr, true);
 
 				var oTable = this.getView().byId("idProductsTable");
-				if (oTable.getBinding("items")) {
-					oTable.getBinding("items").filter(this.oFilter);
-				}
+				oTable.getBinding("items").sPath = "/obj_repo_search(SEARCH='" + searchvalue + "')/Set";
+				oTable.getBinding("items").filter(oFilters, "Application");
+				// oTable.bindItems(sPath,template,filter1);
+				// if (oTable.getBinding("items")) {
+				// 	oTable.getBinding("items").filter(this.oFilter);
+				// }
 
 				// var filterinput = this.getView().byId("input"); //Filter iD
 				// var sQuery = this.getView().byId("input").getValue(); //Filter value
@@ -93,6 +235,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// var list = this.getView().byId("idProductsTable");
 				// var binding = list.getBinding("items");
 				// binding.filter(aFilters, "Application");
+			},
+			onPersoButtonPressed:function(oEvent){
+					this._oTPC.openDialog();
 			},
 
 			// onSearch: function() {
@@ -224,7 +369,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			},
 			_onTableItemPress: function (oEvent) {
-				debugger;
+			//	debugger;
 
 				var oBindingContext = oEvent.getParameter("listItem").getBindingContext();
 
@@ -1221,7 +1366,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					//var q = sap.ui.getCore().byId("Search");
 				}
 
-			
 				//	this.oSelObjectType = this.getSelect("idObjectType");
 				// var oSearchField = oFB.getBasicSearch();
 				// var oBasicSearch;
@@ -1241,6 +1385,12 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 				// 	// this.fnBasicSearch();
 				// }.bind(this));
+				this._oTPC = new TablePersoController({
+				table: this.byId("idProductsTable"),
+				//specify the first part of persistence ids e.g. 'demoApp-productsTable-dimensionsCol'
+				componentName: "perso",
+				persoService: PersoService
+			}).activate();
 			},
 
 			onExit: function () {
