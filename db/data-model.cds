@@ -26,6 +26,12 @@ entity T_MD_OBJ_TAG_REPO {
 		EFFORTS_SAVED	:	Integer;
 };
 
+entity T_SEARCH_VALUE{
+	key ID				:	Integer;
+		SEARCH			:	String(400);
+		FLAG			:	String(1);
+}
+
 entity T_MD_MOD_MASTER{
 	key MODULE			:	String(15);
 	key SUB_MODULE		:	String(50);	
