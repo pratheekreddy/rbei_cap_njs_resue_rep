@@ -11,7 +11,7 @@ service repo @(impl:'service.js'){
 };
 
 service master{
-	entity module as projection on rbei.T_MD_MOD_MASTER;
+	entity module as projection on rbei.V_DROPDOWN;
 	entity obj_type as projection on rbei.V_OBJ_TYPE;
 	entity obj_name as projection on rbei.V_OBJ_NAME;
 	entity sys_id as projection on rbei.V_SYS_ID;
