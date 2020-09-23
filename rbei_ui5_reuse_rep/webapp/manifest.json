@@ -129,6 +129,13 @@
 				"target": [
 					"View2"
 				]
+			},
+			{
+				"name": "ObjectsDetailsPage",
+				"pattern": "ObjectsDetailsPage",
+				"target": [
+					"ObjectsDetailsPage"
+				]
 			}],
 			"targets": {
 				"TargetView1": {
@@ -141,6 +148,11 @@
 				"View2": {
 					"viewType": "XML",
 					"viewName": "View2"
+				},
+			
+				"ObjectsDetailsPage" : {
+					"viewType": "XML",
+					"viewName": "ObjectsDetailsPage"
 				}
 			}
 		}

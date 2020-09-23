@@ -23,20 +23,12 @@
 			"visible": true
 		}]
 	}, {
-		"title": "Administration",
-		"icon": "sap-icon://key-user-settings",
-		"expanded": true,
-		"key": "Administration",
-		"enabled": true,
-		"visible": true,
-
-		"Sublevel1": [{
 			"title": "Artifact Maintenance",
 			"key": "ArtifactMaintenance",
 			"enabled": true,
 			"expanded": true,
 			"visible": true,
-			"Sublevel2": [{
+			"Sublevel1": [{
 				"title": "Bulk Upload",
 				"key": "BulkUpload",
 				"expanded": true,
@@ -65,13 +57,12 @@
 			"enabled": true,
 			"expanded": true,
 			"visible": true,
-			"Sublevel2": [{
+			"Sublevel1": [{
 				"title": "My Workitems",
 				"key": "MyWorkitems",
 				"enabled": true,
 				"visible": true
 			}]
-		}]
 	}],
 
 	"fixedNavigation": [

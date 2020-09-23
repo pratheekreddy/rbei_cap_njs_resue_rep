@@ -10,7 +10,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		"sap/m/TablePersoController"
 	],
 
-	function (BaseController, MessageBox, Utilities,PersoService, History, JSONModel, Filter, SeparatorItem, FilterOperator,TablePersoController) {
+	function (BaseController, MessageBox, Utilities, PersoService, History,JSONModel, Filter, SeparatorItem, FilterOperator,
+		TablePersoController) {
 		"use strict";
 
 		return BaseController.extend("RBEI_UI5.rbei_ui5_reuse_rep.controller.ToolPage", {
@@ -27,25 +28,29 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				return oDialog;
 			},
 
-			// suggestion:function(oEvent){ debugger; },
+			// suggestion:function(oEvent){ // // debugger; },
 			// onSuggest: function (oEvent) {
 
 			// },
 			onSuggest: function (oEvent) {
 				var newvalue = oEvent.getSource().getValue();
 				var t = this;
-				jQuery.get({
-					url: "/srv_test/repo/search_result(TAG='" + newvalue + "')/Set",
-					success: function (data) {
-						var searchmodel = new JSONModel(data.value);
-						t.getView().byId("Search").setModel(searchmodel, "searchMdl");
-						t.getView().byId("Search").suggest();
-					},
-					error: function (error) {
-						// your error logic
+				if (newvalue === "") {
+					newvalue = "*";
+				} else {
+					jQuery.get({
+						url: "/srv_test/repo/search_result(TAG='" + newvalue + "')/Set?$skip=0&$top=10",
+						success: function (data) {
+							var searchmodel = new JSONModel(data.value);
+							t.getView().byId("Search").setModel(searchmodel, "searchMdl");
+							t.getView().byId("Search").suggest();
+						},
+						error: function (error) {
+							// your error logic
 
-					}
-				});
+						}
+					});
+				}
 				/*var oSource = oEvent.getSource();
 				var sTerm = oEvent.getParameter("suggestValue");
 				if (!sTerm) {
@@ -92,6 +97,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// var oItems = this.getView().byId("module").getSelectedItems()[0].getProperty("text")
 			},
 			onSearch: function (oEvent) {
+				// // // debugger;
+				sap.ui.core.BusyIndicator.show(60000);
 				//Filter value 
 				// this.oFilter = new Filter(this.filterArr,true);
 				var searchvalue = this.getView().byId("Search").getValue();
@@ -207,10 +214,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					]
 				});*/
 				// this.oFilter = new Filter(this.filterArr, true);
-
 				var oTable = this.getView().byId("idProductsTable");
 				oTable.getBinding("items").sPath = "/obj_repo_search(SEARCH='" + searchvalue + "')/Set";
 				oTable.getBinding("items").filter(oFilters, "Application");
+				
 				// oTable.bindItems(sPath,template,filter1);
 				// if (oTable.getBinding("items")) {
 				// 	oTable.getBinding("items").filter(this.oFilter);
@@ -220,7 +227,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// var sQuery = this.getView().byId("input").getValue(); //Filter value
 				// var filters = [];
 				// var filters = new sap.ui.model.Filter("FreeSearch", sap.ui.model.FilterOperator.Contains, sQuery);
-				//	debugger;
+				//	// // debugger;
 				// var aFilters = [];
 				// var filterArr = [];
 				// var sQuery = oEvent.getSource().getValue();
@@ -235,23 +242,24 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// var list = this.getView().byId("idProductsTable");
 				// var binding = list.getBinding("items");
 				// binding.filter(aFilters, "Application");
+				sap.ui.core.BusyIndicator.hide();
 			},
-			onPersoButtonPressed:function(oEvent){
-					this._oTPC.openDialog();
+			onPersoButtonPressed: function (oEvent) {
+				this._oTPC.openDialog();
 			},
 
 			// onSearch: function() {
-			// 		debugger;
+			// 		// // debugger;
 			// 		var aCurrentFilterValues = [];
 			// 		// aCurrentFilterValues.push(this.getSelectedItemText(this.oSelectName));
 			// 		// this.filterTable(aCurrentFilterValues);
 			// 	},
 			// getSelectedItemText: function(oSelect) {
-			// 	debugger;
+			// 	// // debugger;
 			// 	return oSelect.getSelectedItem() ? oSelect.getSelectedItem().getKey() : "";
 			// },
 			// 	getSelect: function(sId) {
-			// 	debugger;
+			// 	// // debugger;
 			// 	return this.getView().byId(sId);
 			// },
 
@@ -314,6 +322,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			},
 
 			doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
+				// // debugger;
 				var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
 				var oModel = (oBindingContext) ? oBindingContext.getModel() : null;
 
@@ -369,7 +378,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			},
 			_onTableItemPress: function (oEvent) {
-			//	debugger;
+				// // // debugger;
 
 				var oBindingContext = oEvent.getParameter("listItem").getBindingContext();
 
@@ -819,24 +828,25 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				});
 
 			},
-			_onRowPress: function (oEvent) {
-
-				var oBindingContext = oEvent.getSource().getBindingContext();
-
-				return new Promise(function (fnResolve) {
-
-					this.doNavigate("ObjectDetailsPage", oBindingContext, fnResolve, "");
-				}.bind(this)).catch(function (err) {
-					if (err !== undefined) {
-						MessageBox.error(err.message);
-					}
-				});
+			onRowPress: function (oEvent) {
+			
+		  //  var oBindingContext = oEvent.getSource().getBindingContext("odata_model");
+				// return new Promise(function (fnResolve) {
+                
+				// 	this.doNavigate("ObjectDetailsPage", oBindingContext, fnResolve, "");
+				// }.bind(this)).catch(function (err) {
+				// 	if (err !== undefined) {
+				// 		MessageBox.error(err.message);
+				// 	}
+				// });
 
 			},
+
 			_onTableItemPress1: function (oEvent) {
-
+				// debugger;
 				var oBindingContext = oEvent.getParameter("listItem").getBindingContext();
-
+				
+            
 				return new Promise(function (fnResolve) {
 					this.doNavigate("MigrationDetailsPage", oBindingContext, fnResolve, "");
 				}.bind(this)).catch(function (err) {
@@ -1354,7 +1364,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			},
 			onInit: function () {
-
 				this._mViewSettingsDialogs = {};
 				//        	this.oSelectName = this.getSelect("FreeSearch");
 				var oFB = this.getView().byId("filterbar");
@@ -1378,6 +1387,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// 	oSearchField = null;
 				// }
 				var multiCombo = this.getView().byId("idObjectType");
+				this.getView().byId("idProductsTable").getBinding("items").changeParameters({"$select":"MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,DESCRIPTION,CONTACT_GROUP"});
 				// oFB.setBasicSearch(oBasicSearch);
 
 				// oBasicSearch.attachBrowserEvent("keyup", function (e) {
@@ -1386,11 +1396,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// 	// this.fnBasicSearch();
 				// }.bind(this));
 				this._oTPC = new TablePersoController({
-				table: this.byId("idProductsTable"),
-				//specify the first part of persistence ids e.g. 'demoApp-productsTable-dimensionsCol'
-				componentName: "perso",
-				persoService: PersoService
-			}).activate();
+					table: this.byId("idProductsTable"),
+					//specify the first part of persistence ids e.g. 'demoApp-productsTable-dimensionsCol'
+					componentName: "perso",
+					persoService: PersoService
+				}).activate();
 			},
 
 			onExit: function () {
@@ -1437,7 +1447,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
 			},
 
-			//debugger
+			//// debugger
 			getGroupHeader: function (oGroup) {
 				return new SeparatorItem({
 					text: oGroup.key

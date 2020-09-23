@@ -5,7 +5,7 @@
 		<tnt:header>
 			<tnt:ToolHeader>
 				<Button icon="sap-icon://menu2" type="Transparent" press="onCollapseExpandPress"/>
-				<Image width="8rem" src="./../webapp/image/bosch_new1.png"/>
+				<Image width="8rem" src="./image/bosch_new1.png"/>
 				<Text text="RBEI-Reusable Repository" wrapping="false"/>
 				<ToolbarSpacer/>
 			</tnt:ToolHeader>
@@ -15,9 +15,8 @@
 				<tnt:NavigationList items="{path: 'navigation>/navigation1', templateShareable:false}">
 					<tnt:NavigationListItem text="{navigation>title}" icon="{navigation>icon}" enabled="{navigation>enabled}" visible="{navigation>visible}"
 						expanded="{navigation>expanded}" items="{path: 'navigation>Sublevel1', templateShareable:false}" key="{navigation>key}">
-						<tnt:NavigationListItem text="{navigation>title}" key="{navigation>key}" enabled="{navigation>enabled}" visible="{navigation>visible}"
-							expanded="{navigation>expanded}" items="{path: 'navigation>Sublevel2', templateShareable:false}">
-							<tnt:NavigationListItem text="{navigation>title}"></tnt:NavigationListItem>
+						<tnt:NavigationListItem text="{navigation>title}" key="{navigation>key}" enabled="{navigation>enabled}" visible="{navigation>visible}">
+							<!--<tnt:NavigationListItem text="{navigation>title}"></tnt:NavigationListItem>-->
 						</tnt:NavigationListItem>
 					</tnt:NavigationListItem>
 				</tnt:NavigationList>
@@ -32,10 +31,10 @@
 			<NavContainer id="pageContainer" initialPage="DevelopmentArtifacts">
 				<pages>
 					<ScrollContainer id="DevelopmentArtifacts" horizontal="false" vertical="true" height="100%">
-						<f:DynamicPage id="dynamicPageId" headerExpanded="true">
+					<!--	<f:DynamicPage id="dynamicPageId" headerExpanded="true">
 							<f:header>
 								<f:DynamicPageHeader pinnable="true">
-									<f:content>
+									<f:content>-->
 										<!--<ImageContent src="sap-icon://bar-code"/>-->
 										<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true" clear="onClear"
 											showFilterConfiguration="false">
@@ -48,9 +47,14 @@
 																<SuggestionItem text="{TAGS}" key="{TAGS}"/>
 															</suggestionItems>
 														</SearchField>-->
-														<SearchField id="Search" enableSuggestions="true" suggest="onSuggest" liveChange="LiveSearch" suggestionItems="{searchMdl>/}">
+														<SearchField id="Search" enableSuggestions="true" suggest="onSuggest" search="onSearch" liveChange="LiveSearch"
+															suggestionItems="{searchMdl>/}">
 															<suggestionItems>
-																<SuggestionItem text="{searchMdl>TAGS}" key="{searchMdl>TAGS}"/>
+																<SuggestionItem text="{searchMdl>TAGS}" key="{searchMdl>TAGS}" tooltip="{searchMdl>TAGS}">
+																<!--	<tooltip>
+																		<TooltipBase text="{searchMdl>TAGS}"/>
+																	</tooltip>-->
+																	</SuggestionItem>
 															</suggestionItems>
 														</SearchField>
 													</fb:control>
@@ -77,7 +81,7 @@
 														</MultiComboBox>
 													</fb:control>
 												</fb:FilterItem>
-												<fb:FilterItem name="E" label="RBEI Contact">
+												<fb:FilterItem name="E" label="Contact Group">
 													<fb:control>
 														<!--<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="CONTACT_ID">-->
 														<!--	<core:Item key="{odata_model>CONTACT_ID}" text="{odata_model>CONTACT_ID}"/>-->
@@ -150,12 +154,14 @@
 										<!--		</smartFilterBar:ControlConfiguration>-->
 										<!--	</smartFilterBar:controlConfiguration>-->
 										<!--</smartFilterBar:SmartFilterBar>-->
-									</f:content>
+								<!--	</f:content>
 								</f:DynamicPageHeader>
 							</f:header>
-							<f:content>
+							<f:content>-->
 								<!--<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo}" itemPress="onTableItemPress" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}">-->
-								<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}" itemPress="onTableItemPress">
+							<Panel>
+								<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}" itemPress="onRowPress"
+									growingThreshold="70" growing="true" growingScrollToLoad="true">
 									<headerToolbar>
 										<OverflowToolbar>
 											<ToolbarSpacer/>
@@ -193,7 +199,7 @@
 										</Column>
 									</columns>
 									<items>
-										<ColumnListItem type="Navigation">
+										<ColumnListItem type="Navigation" press="onRowPress">
 											<cells>
 												<Text class="smallText" text="{odata_model>MODULE}"/>
 												<Text class="smallText" text="{odata_model>SUB_MODULE}"/>
@@ -207,8 +213,9 @@
 										</ColumnListItem>
 									</items>
 								</Table>
-							</f:content>
-						</f:DynamicPage>
+						<!--	</f:content>
+						</f:DynamicPage>-->
+						</Panel>
 					</ScrollContainer>
 					<ScrollContainer id="MigrationArtifacts" horizontal="false" vertical="true" height="100%">
 						<!--<f:DynamicPage id="dynamicPageIdMA" headerExpanded="true">-->
