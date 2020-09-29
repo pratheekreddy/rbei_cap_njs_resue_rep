@@ -50,8 +50,10 @@ app.use(bodyParser.json());
 
 app.use('/generic',require("./routes/search"));
 app.use("/specific", require("./routes/specific_search"));
-
+app.use('/user',require('./login/signup'));
+app.use('/user/auth',require('./login/login'));
 app.use("/bulk", require("./routes/bulk"));
+app.use('/admin',require('./admin/userApprove'));
 
 app.listen(port, function () {
 	console.log('myapp is using Node.js version: ' + process.version); 

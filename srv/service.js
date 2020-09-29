@@ -46,7 +46,7 @@ module.exports = cds.service.impl(srv => {
 		// console.log(req.params)
 	})
 	
-	srv.after('READ',['search_result','obj_repo_search'], async (result,req)=>{
+	srv.after('READ',['search_result'], async (result,req)=>{
 		let search=req.params[0].TAG
 		let flag=''
 		if(search===undefined){
@@ -70,7 +70,7 @@ module.exports = cds.service.impl(srv => {
 				i=j[0].I;
 				i++;
 			}
-			let result1=await cds.run("insert into RBEI_TOOL_REUSE_REP_T_SEARCH_VALUE (ID,SEARCH,FLAG) values ("+i+",'"+search+"','"+flag+"')")
+			let result1=await cds.run("insert into RBEI_TOOL_REUSE_REP_T_SEARCH_VALUE (ID,SEARCH,FLAG,DATE) values ("+i+",'"+search+"','"+flag+"',CURRENT_DATE)")
 			// console.log(result1)
 			//i++;
 		}
