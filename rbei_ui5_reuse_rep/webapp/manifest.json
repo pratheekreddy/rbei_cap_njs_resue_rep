@@ -22,7 +22,7 @@
 					"odataVersion": "4.0"
 				}
 			},
-				"master": {
+			"master": {
 				"uri": "/srv_test/master/",
 				"type": "OData",
 				"settings": {
@@ -30,8 +30,7 @@
 					"odataVersion": "4.0"
 				}
 			}
-
-	}
+		}
 	},
 	"sap.ui": {
 		"technology": "UI5",
@@ -113,46 +112,40 @@
 				"viewType": "XML",
 				"async": true,
 				"viewPath": "RBEI_UI5.rbei_ui5_reuse_rep.view",
-				"controlAggregation": "pages",
 				"controlId": "app",
-				"clearControlAggregation": false
+				"controlAggregation": "pages",
+				"clearControlAggregation": false,
+				"viewLevel": 1
 			},
 			"routes": [{
-				"name": "RouteView1",
+				"name": "ToolPage",
 				"pattern": "RouteView1",
-				"target": [
-					"TargetView1"
-				]
+				"target": ["TargetView1"]
 			}, {
-				"name": "View1",
+				"name": "View2",
 				"pattern": "RouteView1",
-				"target": [
-					"View2"
-				]
-			},
-			{
+				"target": ["View2"]
+			}, {
+				"pattern": "ObjectsDetailsPage/{productsPath}/{id}/{id1}/{id3}/{id4}",
 				"name": "ObjectsDetailsPage",
-				"pattern": "ObjectsDetailsPage",
-				"target": [
-					"ObjectsDetailsPage"
-				]
+				"target": ["ObjectsDetailsPage"]
 			}],
 			"targets": {
 				"TargetView1": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewId": "View1",
-					"viewName": "View1"
+					"viewName": "ToolPage"
 				},
 				"View2": {
 					"viewType": "XML",
 					"viewName": "View2"
 				},
-			
-				"ObjectsDetailsPage" : {
+				"ObjectsDetailsPage": {
 					"viewType": "XML",
-					"viewName": "ObjectsDetailsPage"
+					"viewName": "ObjectsDetailsPage",
+					"viewId": "ObjectsDetailsPageId",
+					"clearControlAggregation": true
 				}
 			}
 		}

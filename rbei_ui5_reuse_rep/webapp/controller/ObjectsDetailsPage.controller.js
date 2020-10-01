@@ -2,11 +2,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
 	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+], function (BaseController, MessageBox, Utilities, History) {
 	"use strict";
 
-	return BaseController.extend("com.sap.build.standard.freestylePrototypeForLookupObjects.controller.ObjectDetailsPage", {
-		handleRouteMatched: function(oEvent) {
+	return BaseController.extend("RBEI_UI5.rbei_ui5_reuse_rep.controller.ObjectsDetailsPage", {
+		handleRouteMatched: function (oEvent) {
 			var sAppId = "App5ecd0d7b14c2661de83cd81e";
 
 			var oParams = {};
@@ -16,7 +16,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			} else {
 				if (this.getOwnerComponent().getComponentData()) {
-					var patternConvert = function(oParam) {
+					var patternConvert = function (oParam) {
 						if (Object.keys(oParam).length !== 0) {
 							for (var prop in oParam) {
 								if (prop !== "sourcePrototype" && prop.includes("Set")) {
@@ -46,21 +46,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		_onButtonPress: function(oEvent) {
+		_onButtonPress: function (oEvent) {
 
 			var oBindingContext = oEvent.getSource().getBindingContext();
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("ToolPage");
+			// return new Promise(function(fnResolve) {
 
-			return new Promise(function(fnResolve) {
-
-				this.doNavigate("SearchReformed", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
+			// 	this.doNavigate("ToolPage", oBindingContext, fnResolve, "");
+			// }.bind(this)).catch(function(err) {
+			// 	if (err !== undefined) {
+			// 		MessageBox.error(err.message);
+			// 	}
+			// });
 
 		},
-		doNavigate: function(sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
+		doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
 			var oModel = (oBindingContext) ? oBindingContext.getModel() : null;
 
@@ -75,7 +76,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sMasterContext = this.sMasterContext ? this.sMasterContext : sPath;
 
 			if (sEntityNameSet !== null) {
-				sNavigationPropertyName = sViaRelation || this.getOwnerComponent().getNavigationPropertyForNavigationWithContext(sEntityNameSet, sRouteName);
+				sNavigationPropertyName = sViaRelation || this.getOwnerComponent().getNavigationPropertyForNavigationWithContext(sEntityNameSet,
+					sRouteName);
 			}
 			if (sNavigationPropertyName !== null && sNavigationPropertyName !== undefined) {
 				if (sNavigationPropertyName === "") {
@@ -84,7 +86,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						masterContext: sMasterContext
 					}, false);
 				} else {
-					oModel.createBindingContext(sNavigationPropertyName, oBindingContext, null, function(bindingContext) {
+					oModel.createBindingContext(sNavigationPropertyName, oBindingContext, null, function (bindingContext) {
 						if (bindingContext) {
 							sPath = bindingContext.getPath();
 							if (sPath.substring(0, 1) === "/") {
@@ -114,10 +116,28 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		onInit: function() {
-			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			this.oRouter.getTarget("ObjectDetailsPage").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-
+		onInit: function () {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.getRoute("ObjectsDetailsPage").attachPatternMatched(this._onObjectMatched, this);
+			// oRouter.getTarget("ObjectsDetailsPage").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
+		},
+		
+		
+	_onObjectMatched: function (oEvent) {
+			var key = oEvent.getParameter("arguments").productsPath; 
+			var key1 = oEvent.getParameter("arguments").id; 
+			var key2 = oEvent.getParameter("arguments").id1; 
+			var key3 = oEvent.getParameter("arguments").id3; 
+			var key4 = oEvent.getParameter("arguments").id4; 
+			var per = key4.concat("%");
+			this.getView().byId("idfm").setText(key);
+			this.getView().byId("idfm1").setText(key1);
+			this.getView().byId("idfm2").setText(key2);
+			this.getView().byId("idfm3").setText(key3);
+			this.getView().byId("pind1").setPercentValue(per);
+			this.getView().byId("pind1").setDisplayValue(per);
+			this.getView().byId("pind").setDisplayValue(per);
+			this.getView().byId("pind").setPercentValue(per);
 		}
 	});
 }, /* bExport= */ true);

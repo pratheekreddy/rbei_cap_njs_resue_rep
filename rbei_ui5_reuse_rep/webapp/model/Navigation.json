@@ -25,6 +25,7 @@
 	}, {
 			"title": "Artifact Maintenance",
 			"key": "ArtifactMaintenance",
+			"icon": "sap-icon://cancel-maintenance",
 			"enabled": true,
 			"expanded": true,
 			"visible": true,
@@ -54,6 +55,7 @@
 		}, {
 			"title": "Workflows",
 			"key": "Workflows",
+			"icon":"sap-icon://workflow-tasks",
 			"enabled": true,
 			"expanded": true,
 			"visible": true,

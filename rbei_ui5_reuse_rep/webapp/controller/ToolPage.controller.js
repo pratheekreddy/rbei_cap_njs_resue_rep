@@ -10,7 +10,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		"sap/m/TablePersoController"
 	],
 
-	function (BaseController, MessageBox, Utilities, PersoService, History,JSONModel, Filter, SeparatorItem, FilterOperator,
+	function (BaseController, MessageBox, Utilities, PersoService, History, JSONModel, Filter, SeparatorItem, FilterOperator,
 		TablePersoController) {
 		"use strict";
 
@@ -217,7 +217,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oTable = this.getView().byId("idProductsTable");
 				oTable.getBinding("items").sPath = "/obj_repo_search(SEARCH='" + searchvalue + "')/Set";
 				oTable.getBinding("items").filter(oFilters, "Application");
-				
+
 				// oTable.bindItems(sPath,template,filter1);
 				// if (oTable.getBinding("items")) {
 				// 	oTable.getBinding("items").filter(this.oFilter);
@@ -322,7 +322,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			},
 
 			doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
-				// // debugger;
+
 				var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
 				var oModel = (oBindingContext) ? oBindingContext.getModel() : null;
 
@@ -825,14 +825,35 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					if (err !== undefined) {
 						MessageBox.error(err.message);
 					}
+
 				});
 
 			},
 			onRowPress: function (oEvent) {
-			
-		  //  var oBindingContext = oEvent.getSource().getBindingContext("odata_model");
+				var item1 = oEvent.getParameter("listItem").getCells()[5].getProperty("text");
+				var item2 = oEvent.getParameter("listItem").getCells()[6].getProperty("text");
+				var item3 = oEvent.getParameter("listItem").getCells()[7].getProperty("text");
+				// var item4 = oEvent.getParameter("listItem").getCells()[3].getProperty("text");
+				var item5 = oEvent.getParameter("listItem").getCells()[8].getProperty("text");
+				var item6 = oEvent.getParameter("listItem").getCells()[9].getProperty("text");
+				// var item = "7";
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				// oRouter.navTo("ObjectsDetailsPage");
+
+				// oRouter.navTo("ObjectsDetailsPage", {
+				// 	productsPath: item});
+
+				oRouter.navTo("ObjectsDetailsPage", {
+					productsPath: item1,
+					id: item2,
+					id1: item3,
+					// id2: item4,
+					id3: item5,
+					id4: item6,
+				});
+
 				// return new Promise(function (fnResolve) {
-                
+
 				// 	this.doNavigate("ObjectDetailsPage", oBindingContext, fnResolve, "");
 				// }.bind(this)).catch(function (err) {
 				// 	if (err !== undefined) {
@@ -845,8 +866,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			_onTableItemPress1: function (oEvent) {
 				// debugger;
 				var oBindingContext = oEvent.getParameter("listItem").getBindingContext();
-				
-            
+
 				return new Promise(function (fnResolve) {
 					this.doNavigate("MigrationDetailsPage", oBindingContext, fnResolve, "");
 				}.bind(this)).catch(function (err) {
@@ -1364,6 +1384,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			},
 			onInit: function () {
+				// var title = this.getView().byId("page1");
+				// title.addStyleClass("title");
 				this._mViewSettingsDialogs = {};
 				//        	this.oSelectName = this.getSelect("FreeSearch");
 				var oFB = this.getView().byId("filterbar");
@@ -1387,7 +1409,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// 	oSearchField = null;
 				// }
 				var multiCombo = this.getView().byId("idObjectType");
-				this.getView().byId("idProductsTable").getBinding("items").changeParameters({"$select":"MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,DESCRIPTION,CONTACT_GROUP"});
+				// if (this.getView().byId("idProductsTable").getBinding("items") === undefined) {} else {
+				// 	this.getView().byId("idProductsTable").getBinding("items").changeParameters({
+				// 		"$select": "MODULE,SUB_MODULE,OBJECT_TYPE,OBJECT_NAME,DESCRIPTION,CONTACT_GROUP"
+				// 	});
+				// }
 				// oFB.setBasicSearch(oBasicSearch);
 
 				// oBasicSearch.attachBrowserEvent("keyup", function (e) {
