@@ -2,10 +2,10 @@ using {rbei.tool.reuse_rep as rbei} from '../db/data-model';
 
 service repo @(impl:'service.js'){
 	entity obj_repo as projection on rbei.T_MD_OBJ_TAG_REPO; 
-	entity obj_repo_search (SEARCH :String) as select from rbei.V_OBJ_REPO(SEARCH: :SEARCH);
+	entity obj_repo_search (search :String , score :Decimal(17, 5)) as select from rbei.V_OBJ_REPO(search: :search , score: :score);
 	entity proj_type as projection on rbei.T_PROJ_TYPE_MASTER;
 	entity team_type as projection on rbei.T_TEAMS_MASTER;
-	entity search_result (TAG : String) AS SELECT from rbei.V_FUZZY_SEARCH (TAG: :TAG) ;
+	entity search_result (tag : String , score:Decimal(17, 5)) AS SELECT from rbei.V_FUZZY_SEARCH (tag: :tag , score: :score) ;
 	entity search_value as projection on rbei.T_SEARCH_VALUE;
 };
 

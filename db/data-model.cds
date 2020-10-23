@@ -124,13 +124,13 @@ define view V_IMPL_STEPS as select from T_MD_OBJ_TAG_REPO distinct
 	key T_MD_OBJ_TAG_REPO.IMPL_STEPS
 };
 
-VIEW V_OBJ_REPO (SEARCH :String(100)) as select from T_MD_OBJ_TAG_REPO{*}
-where CONTAINS((TAGS,DESCRIPTION), :SEARCH, FUZZY(0.7,'similarCalculationMode=searchCompare'));
+VIEW V_OBJ_REPO (search :String(100) , score : Decimal(17, 5)) as select from T_MD_OBJ_TAG_REPO{*}
+where CONTAINS((TAGS,DESCRIPTION), :search, FUZZY(:score,'similarCalculationMode=searchCompare'));
 
 
-VIEW V_FUZZY_SEARCH ( TAG : String(100)) AS SELECT 
+VIEW V_FUZZY_SEARCH ( tag : String(100) , score : Decimal(17, 5)) AS SELECT 
 FROM T_MD_OBJ_TAG_REPO distinct
 {
 	key TAGS
 }
-WHERE CONTAINS((TAGS,DESCRIPTION), :TAG, FUZZY(0.7,'similarCalculationMode=searchCompare'));
+WHERE CONTAINS((TAGS,DESCRIPTION), :tag, FUZZY(:score,'similarCalculationMode=searchCompare'));
