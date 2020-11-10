@@ -10,7 +10,7 @@ router.get('/otp',async(req,res)=>{
 	if(userid===undefined){
 		let userid=req.query.username
 	}
-	let userQ="select EMAIL_ID,STATUS from RBEI_TOOL_REUSE_REP_T_MD_USER where (EMAIL_ID='"+userid+"' or USERNAME='"+userid+"')"
+	let userQ="select EMAIL_ID,STATUS from RBEI_TOOL_REUSE_REP_T_MD_USER where (EMAIL_ID='"+userid.toLowerCase()+"' or USERNAME='"+userid+"')"
 	console.log(userQ)
 	let client=req.db;
 	
@@ -49,7 +49,8 @@ router.post('/login', async(req, res) => {
 		user,
 		otp
 	} = req.body;
-
+	user=user.toLowerCase();
+	console.log(user, otp);
 	const client = req.db;
 	//query to check if OTP is valid.
 	let query =
