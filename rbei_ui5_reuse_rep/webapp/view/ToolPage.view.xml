@@ -1,319 +1,317 @@
 <mvc:View controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.ToolPage" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt"
 	height="100%" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:fb="sap.ui.comp.filterbar"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartMultiInput="sap.ui.comp.smartmultiinput">
-	<App id="app">
-		<tnt:ToolPage id="id-toolpage">
-			<tnt:header>
-				<tnt:ToolHeader>
-					<Button icon="sap-icon://menu2" type="Transparent" press="onCollapseExpandPress"/>
-					<Image width="8rem" src="./image/bosch_new1.png"/>
-					<Text text="RBEI-Reusable Repository" wrapping="false"/>
-					<ToolbarSpacer/>
-				</tnt:ToolHeader>
-			</tnt:header>
-			<tnt:sideContent>
-				<tnt:SideNavigation id="idsidenav" expanded="false" selectedKey="{navigation>/selectedKey}" itemSelect="onItemSelect">
-					<tnt:NavigationList items="{path: 'navigation>/navigation1', templateShareable:false}">
-						<tnt:NavigationListItem text="{navigation>title}" icon="{navigation>icon}" enabled="{navigation>enabled}" visible="{navigation>visible}"
-							expanded="{navigation>expanded}" items="{path: 'navigation>Sublevel1', templateShareable:false}" key="{navigation>key}">
-							<tnt:NavigationListItem text="{navigation>title}" key="{navigation>key}" icon="{navigation>icon}" enabled="{navigation>enabled}"
-								visible="{navigation>visible}">
-								<!--<tnt:NavigationListItem text="{navigation>title}"></tnt:NavigationListItem>-->
-							</tnt:NavigationListItem>
+	<tnt:ToolPage id="id-toolpage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button icon="sap-icon://menu2" type="Transparent" press="onCollapseExpandPress"/>
+				<Image width="8rem" src="./image/bosch_new1.png"/>
+				<Text text="RBEI-Reusable Repository" wrapping="false"/>
+				<ToolbarSpacer/>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation id="idsidenav" expanded="false" selectedKey="{navigation>/selectedKey}" itemSelect="onItemSelect">
+				<tnt:NavigationList items="{path: 'navigation>/navigation1', templateShareable:false}">
+					<tnt:NavigationListItem text="{navigation>title}" icon="{navigation>icon}" enabled="{navigation>enabled}" visible="{navigation>visible}"
+						expanded="{navigation>expanded}" items="{path: 'navigation>Sublevel1', templateShareable:false}" key="{navigation>key}">
+						<tnt:NavigationListItem text="{navigation>title}" key="{navigation>key}" icon="{navigation>icon}" enabled="{navigation>enabled}"
+							visible="{navigation>visible}">
+							<!--<tnt:NavigationListItem text="{navigation>title}"></tnt:NavigationListItem>-->
 						</tnt:NavigationListItem>
+					</tnt:NavigationListItem>
+				</tnt:NavigationList>
+				<tnt:fixedItem>
+					<tnt:NavigationList items="{path: 'navigation>/fixedNavigation'}">
+						<tnt:NavigationListItem text="{navigation>title}" icon="navigation>{icon}"/>
 					</tnt:NavigationList>
-					<tnt:fixedItem>
-						<tnt:NavigationList items="{path: 'navigation>/fixedNavigation'}">
-							<tnt:NavigationListItem text="{navigation>title}" icon="navigation>{icon}"/>
-						</tnt:NavigationList>
-					</tnt:fixedItem>
-				</tnt:SideNavigation>
-			</tnt:sideContent>
-			<tnt:mainContents>
-				<NavContainer id="pageContainer" initialPage="DevelopmentArtifacts">
-					<pages>
-						<ScrollContainer id="DevelopmentArtifacts" horizontal="false" vertical="true" height="100%">
-							<!--	<f:DynamicPage id="dynamicPageId" headerExpanded="true">
+				</tnt:fixedItem>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer" initialPage="DevelopmentArtifacts">
+				<pages>
+					<ScrollContainer id="DevelopmentArtifacts" horizontal="false" vertical="true" height="100%">
+						<!--	<f:DynamicPage id="dynamicPageId" headerExpanded="true">
 							<f:header>
 								<f:DynamicPageHeader pinnable="true">
 									<f:content>-->
-							<!--<ImageContent src="sap-icon://bar-code"/>-->
-							<!--<Title id="page1" text="Development Artifacts" textAlign="Center" width="1100px" titleStyle="H1"/>-->
-							<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true" clear="onClear"
-								showFilterConfiguration="false">
-								<fb:filterItems>
-									<fb:FilterItem name="A" label="Search">
-										<fb:control>
-											<!--	<SearchField id="Search" enableSuggestions="true" suggest="onSuggest" liveChange="LiveSearch"
+						<!--<ImageContent src="sap-icon://bar-code"/>-->
+						<!--<Title id="page1" text="Development Artifacts" textAlign="Center" width="1100px" titleStyle="H1"/>-->
+						<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true" clear="onClear"
+							showFilterConfiguration="false">
+							<fb:filterItems>
+								<fb:FilterItem name="A" label="Search">
+									<fb:control>
+										<!--	<SearchField id="Search" enableSuggestions="true" suggest="onSuggest" liveChange="LiveSearch"
 															suggestionItems="{/search_result(TAG='*')/Set}">
 															<suggestionItems>
 																<SuggestionItem text="{TAGS}" key="{TAGS}"/>
 															</suggestionItems>
 														</SearchField>-->
-											<SearchField id="Search" enableSuggestions="true" suggest="onSuggest" search="onSearch" liveChange="LiveSearch"
-												suggestionItems="{searchMdl>/}">
-												<suggestionItems>
-													<SuggestionItem text="{searchMdl>TAGS}" key="{searchMdl>TAGS}" tooltip="{searchMdl>TAGS}">
-														<!--	<tooltip>
+										<SearchField id="Search" enableSuggestions="true" suggest="onSuggest" search="onSearch" liveChange="LiveSearch"
+											suggestionItems="{searchMdl>/}">
+											<suggestionItems>
+												<SuggestionItem text="{searchMdl>TAGS}" key="{searchMdl>TAGS}" tooltip="{searchMdl>TAGS}">
+													<!--	<tooltip>
 																		<TooltipBase text="{searchMdl>TAGS}"/>
 																	</tooltip>-->
-													</SuggestionItem>
-												</suggestionItems>
-											</SearchField>
-										</fb:control>
-									</fb:FilterItem>
-									<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">
-										<fb:control>
-											<MultiComboBox selectionChange="onSelectionChange" id="module"
-												items="{ path: 'odata_model2>/module', sorter: {path: 'MODULE', descending: false, group: true} }">
-												<core:Item key="{odata_model2>MODULE}" text="{odata_model2>SUB_MODULE}"/>
-											</MultiComboBox>
-										</fb:control>
-									</fb:FilterItem>
-									<fb:FilterItem name="C" label="Object Name">
-										<fb:control>
-											<MultiComboBox items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="OBJECT_NAME">
-												<core:Item key="{odata_model>OBJECT_NAME}" text="{odata_model>OBJECT_NAME}"/>
-											</MultiComboBox>
-										</fb:control>
-									</fb:FilterItem>
-									<fb:FilterItem name="D" label="Object Type">
-										<fb:control>
-											<MultiComboBox items="{ path: 'odata_model2>/obj_type' }" selectionChange="onSelection" id="OBJECT_TYPE">
-												<core:Item key="{odata_model2>OBJECT_TYPE}" text="{odata_model2>OBJECT_TYPE}"/>
-											</MultiComboBox>
-										</fb:control>
-									</fb:FilterItem>
-									<fb:FilterItem name="E" label="Contact Group">
-										<fb:control>
-											<!--<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="CONTACT_ID">-->
-											<!--	<core:Item key="{odata_model>CONTACT_ID}" text="{odata_model>CONTACT_ID}"/>-->
-											<!--</MultiComboBox>-->
-											<MultiComboBox items="{ path: 'odata_model2>/contact_group' }" selectionChange="onSelection" id="CONTACT_GROUP">
-												<core:Item key="{odata_model2>CONTACT_GROUP}" text="{odata_model2>CONTACT_GROUP}"/>
-											</MultiComboBox>
-										</fb:control>
-									</fb:FilterItem>
-									<!--	<fb:FilterItem name="E" label="System ID">-->
-									<!--	<fb:control>-->
-									<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }">-->
-									<!--			<core:Item key="{odata_model>SYSTEM_ID}" text="{odata_model>SYSTEM_ID}"/>-->
-									<!--		</MultiComboBox>-->
-									<!--	</fb:control>-->
-									<!--</fb:FilterItem>-->
-									<!--	<fb:FilterItem name="F" label="Tag Domain">-->
-									<!--	<fb:control>-->
-									<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }">-->
-									<!--			<core:Item key="{odata_model>TAG_DOMAIN}" text="{odata_model>TAG_DOMAIN}"/>-->
-									<!--		</MultiComboBox>-->
-									<!--	</fb:control>-->
-									<!--</fb:FilterItem>-->
-									<!--	<fb:FilterItem name="G" label="Tags">-->
-									<!--	<fb:control>-->
-									<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
-									<!--			<core:Item key="{odata_model>TAGS}" text="{odata_model>TAGS}"/>-->
-									<!--		</MultiComboBox>-->
-									<!--	</fb:control>-->
-									<!--</fb:FilterItem>-->
-									<!--	<fb:FilterItem name="H" label="Function Grp">-->
-									<!--	<fb:control>-->
-									<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
-									<!--			<core:Item key="{odata_model>FUNC_GROUP}" text="{odata_model>FUNC_GROUP}"/>-->
-									<!--		</MultiComboBox>-->
-									<!--	</fb:control>-->
-									<!--</fb:FilterItem>-->
-									<!--<fb:FilterItem name="I" label="Dev Class">-->
-									<!--	<fb:control>-->
-									<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
-									<!--			<core:Item key="{odata_model>DEV_CLASS}" text="{odata_model>DEV_CLASS}"/>-->
-									<!--		</MultiComboBox>-->
-									<!--	</fb:control>-->
-									<!--</fb:FilterItem>-->
-									<!--<fb:FilterItem name="J" label="Contact ID>-->
-									<!--	<fb:control>-->
-									<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
-									<!--			<core:Item key="{odata_model>CONTACT_ID}" text="{odata_model>CONTACT_ID}"/>-->
-									<!--		</MultiComboBox>-->
-									<!--	</fb:control>-->
-									<!--</fb:FilterItem>-->
-									<!--<fb:FilterItem name="J" label="Contact Grp">-->
-									<!--	<fb:control>-->
-									<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
-									<!--			<core:Item key="{odata_model>CONTACT_GROUP}" text="{odata_model>CONTACT_GROUP}"/>-->
-									<!--		</MultiComboBox>-->
-									<!--	</fb:control>-->
-									<!--</fb:FilterItem>-->
-								</fb:filterItems>
-							</fb:FilterBar>
-							<!--<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="odata_model>/obj_repo" -->
-							<!--	 liveMode="false" -->
-							<!-- search="onSearch" showFilterConfiguration="false"-->
-							<!--	showClearOnFB="true" clear="onClearpress">-->
-							<!--	<smartFilterBar:controlConfiguration>-->
-							<!--		<smartFilterBar:ControlConfiguration index="0" key="YardNo" label="Yard No" mandatory="mandatory" visibleInAdvancedArea="true">-->
-							<!--			<smartFilterBar:customControl>-->
-							<!--				<Input id="idyard" value="AFLA"/>-->
-							<!--			</smartFilterBar:customControl>-->
-							<!--		</smartFilterBar:ControlConfiguration>-->
-							<!--	</smartFilterBar:controlConfiguration>-->
-							<!--</smartFilterBar:SmartFilterBar>-->
-							<!--	</f:content>
+												</SuggestionItem>
+											</suggestionItems>
+										</SearchField>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">
+									<fb:control>
+										<MultiComboBox selectionChange="onSelectionChange" id="module"
+											items="{ path: 'odata_model2>/module', sorter: {path: 'MODULE', descending: false, group: true} }">
+											<core:Item key="{odata_model2>MODULE}" text="{odata_model2>SUB_MODULE}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="C" label="Object Name">
+									<fb:control>
+										<MultiComboBox items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="OBJECT_NAME">
+											<core:Item key="{odata_model>OBJECT_NAME}" text="{odata_model>OBJECT_NAME}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="D" label="Object Type">
+									<fb:control>
+										<MultiComboBox items="{ path: 'odata_model2>/obj_type' }" selectionChange="onSelection" id="OBJECT_TYPE">
+											<core:Item key="{odata_model2>OBJECT_TYPE}" text="{odata_model2>OBJECT_TYPE}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterItem>
+								<fb:FilterItem name="E" label="Contact Group">
+									<fb:control>
+										<!--<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="CONTACT_ID">-->
+										<!--	<core:Item key="{odata_model>CONTACT_ID}" text="{odata_model>CONTACT_ID}"/>-->
+										<!--</MultiComboBox>-->
+										<MultiComboBox items="{ path: 'odata_model2>/contact_group' }" selectionChange="onSelection" id="CONTACT_GROUP">
+											<core:Item key="{odata_model2>CONTACT_GROUP}" text="{odata_model2>CONTACT_GROUP}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterItem>
+								<!--	<fb:FilterItem name="E" label="System ID">-->
+								<!--	<fb:control>-->
+								<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }">-->
+								<!--			<core:Item key="{odata_model>SYSTEM_ID}" text="{odata_model>SYSTEM_ID}"/>-->
+								<!--		</MultiComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterItem>-->
+								<!--	<fb:FilterItem name="F" label="Tag Domain">-->
+								<!--	<fb:control>-->
+								<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }">-->
+								<!--			<core:Item key="{odata_model>TAG_DOMAIN}" text="{odata_model>TAG_DOMAIN}"/>-->
+								<!--		</MultiComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterItem>-->
+								<!--	<fb:FilterItem name="G" label="Tags">-->
+								<!--	<fb:control>-->
+								<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
+								<!--			<core:Item key="{odata_model>TAGS}" text="{odata_model>TAGS}"/>-->
+								<!--		</MultiComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterItem>-->
+								<!--	<fb:FilterItem name="H" label="Function Grp">-->
+								<!--	<fb:control>-->
+								<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
+								<!--			<core:Item key="{odata_model>FUNC_GROUP}" text="{odata_model>FUNC_GROUP}"/>-->
+								<!--		</MultiComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterItem>-->
+								<!--<fb:FilterItem name="I" label="Dev Class">-->
+								<!--	<fb:control>-->
+								<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
+								<!--			<core:Item key="{odata_model>DEV_CLASS}" text="{odata_model>DEV_CLASS}"/>-->
+								<!--		</MultiComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterItem>-->
+								<!--<fb:FilterItem name="J" label="Contact ID>-->
+								<!--	<fb:control>-->
+								<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
+								<!--			<core:Item key="{odata_model>CONTACT_ID}" text="{odata_model>CONTACT_ID}"/>-->
+								<!--		</MultiComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterItem>-->
+								<!--<fb:FilterItem name="J" label="Contact Grp">-->
+								<!--	<fb:control>-->
+								<!--		<MultiComboBox width="160px" items="{ path: 'odata_model>/obj_repo' }"  >-->
+								<!--			<core:Item key="{odata_model>CONTACT_GROUP}" text="{odata_model>CONTACT_GROUP}"/>-->
+								<!--		</MultiComboBox>-->
+								<!--	</fb:control>-->
+								<!--</fb:FilterItem>-->
+							</fb:filterItems>
+						</fb:FilterBar>
+						<!--<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="odata_model>/obj_repo" -->
+						<!--	 liveMode="false" -->
+						<!-- search="onSearch" showFilterConfiguration="false"-->
+						<!--	showClearOnFB="true" clear="onClearpress">-->
+						<!--	<smartFilterBar:controlConfiguration>-->
+						<!--		<smartFilterBar:ControlConfiguration index="0" key="YardNo" label="Yard No" mandatory="mandatory" visibleInAdvancedArea="true">-->
+						<!--			<smartFilterBar:customControl>-->
+						<!--				<Input id="idyard" value="AFLA"/>-->
+						<!--			</smartFilterBar:customControl>-->
+						<!--		</smartFilterBar:ControlConfiguration>-->
+						<!--	</smartFilterBar:controlConfiguration>-->
+						<!--</smartFilterBar:SmartFilterBar>-->
+						<!--	</f:content>
 								</f:DynamicPageHeader>
 							</f:header>
 							<f:content>-->
-							<!--<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo}" itemPress="onTableItemPress" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}">-->
-							<Panel>
-								<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}" itemPress="onRowPress"
-									growingThreshold="70" growing="true" growingScrollToLoad="true">
-									<headerToolbar>
-										<OverflowToolbar>
-											<ToolbarSpacer/>
-											<Button icon="sap-icon://action-settings" press="onPersoButtonPressed">
-												<layoutData>
-													<OverflowToolbarLayoutData priority="NeverOverflow"/>
-												</layoutData>
-											</Button>
-										</OverflowToolbar>
-									</headerToolbar>
-									<columns>
-										<Column id="idmodule" minScreenWidth="Tablet" demandPopin="true" width="2rem">
-											<Text text="Module"/>
-										</Column>
-										<Column id="idsubmodule" minScreenWidth="Tablet" demandPopin="true" width="3rem">
-											<Text text="Sub-Module"/>
-										</Column>
-										<!--<Column visible="false" minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-										<!--	<Text text="System"/>-->
-										<!--</Column>-->
-										<!--<Column visible="false" minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-										<!--	<Text text="Object"/>-->
-										<!--</Column>-->
-										<Column id="idobjType" minScreenWidth="Tablet" demandPopin="true" width="2rem">
-											<Text text="Object Type"/>
-										</Column>
-										<Column id="idobjName" minScreenWidth="Tablet" demandPopin="true" width="5rem">
-											<Text text="Object Name"/>
-										</Column>
-										<Column id="idobjDesc" minScreenWidth="Tablet" demandPopin="true" width="5rem">
-											<Text text="Object Description"/>
-										</Column>
-										<Column id="idContact" minScreenWidth="Tablet" demandPopin="true" width="4rem">
-											<Text text="Contact Group"/>
-										</Column>
-										<Column id="idContact1" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
-											<Text text="Contact Group1"/>
-										</Column>
-										<Column id="idContact2" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
-											<Text text="Contact Group2"/>
-										</Column>
-										<Column id="idContact3" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
-											<Text text="Contact Group3"/>
-										</Column>
-										<Column id="idContact4" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
-											<Text text="Contact Group4"/>
-										</Column>
-									</columns>
-									<items>
-										<ColumnListItem type="Navigation">
-											<cells>
-												<Text class="smallText" text="{odata_model>MODULE}"/>
-												<Text class="smallText" text="{odata_model>SUB_MODULE}"/>
-												<!--<Text class="smallText" text="{odata_model>SYSTEM}"/>-->
-												<!--<Text class="smallText" text="{odata_model>OBJECT}"/>-->
-												<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>
-												<Text class="smallText" text="{odata_model>OBJECT_NAME}"/>
-												<Text class="smallText" text="{odata_model>DESCRIPTION}" maxLines="2" tooltip="{odata_model>DESCRIPTION}"/>
-												<Text class="smallText" text="{odata_model>CONTACT_GROUP}"/>
-												<Text class="smallText" text="{odata_model>TAGS}"/>
-												<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>
-												<Text class="smallText" text="{odata_model>SYSTEM_ID}"/>
-												<Text class="smallText" text="{odata_model>REUSPR}"/>
-											</cells>
-										</ColumnListItem>
-									</items>
-								</Table>
-								<!--	</f:content>
+						<!--<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo}" itemPress="onTableItemPress" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}">-->
+						<Panel>
+							<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}" growingThreshold="70" growing="true"
+								growingScrollToLoad="true">
+								<headerToolbar>
+									<OverflowToolbar>
+										<ToolbarSpacer/>
+										<Button icon="sap-icon://action-settings" press="onPersoButtonPressed">
+											<layoutData>
+												<OverflowToolbarLayoutData priority="NeverOverflow"/>
+											</layoutData>
+										</Button>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column id="idmodule" minScreenWidth="Tablet" demandPopin="true" width="2rem">
+										<Text text="Module"/>
+									</Column>
+									<Column id="idsubmodule" minScreenWidth="Tablet" demandPopin="true" width="3rem">
+										<Text text="Sub-Module"/>
+									</Column>
+									<!--<Column visible="false" minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+									<!--	<Text text="System"/>-->
+									<!--</Column>-->
+									<!--<Column visible="false" minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+									<!--	<Text text="Object"/>-->
+									<!--</Column>-->
+									<Column id="idobjType" minScreenWidth="Tablet" demandPopin="true" width="2rem">
+										<Text text="Object Type"/>
+									</Column>
+									<Column id="idobjName" minScreenWidth="Tablet" demandPopin="true" width="5rem">
+										<Text text="Object Name"/>
+									</Column>
+									<Column id="idobjDesc" minScreenWidth="Tablet" demandPopin="true" width="5rem">
+										<Text text="Object Description"/>
+									</Column>
+									<Column id="idContact" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+										<Text text="Contact Group"/>
+									</Column>
+									<Column id="idContact1" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+										<Text text="Contact Group1"/>
+									</Column>
+									<Column id="idContact2" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+										<Text text="Contact Group2"/>
+									</Column>
+									<Column id="idContact3" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+										<Text text="Contact Group3"/>
+									</Column>
+									<Column id="idContact4" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+										<Text text="Contact Group4"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Navigation" press=".onListItemPress">
+										<cells>
+											<Text class="smallText" text="{odata_model>MODULE}"/>
+											<Text class="smallText" text="{odata_model>SUB_MODULE}"/>
+											<!--<Text class="smallText" text="{odata_model>SYSTEM}"/>-->
+											<!--<Text class="smallText" text="{odata_model>OBJECT}"/>-->
+											<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>
+											<Text class="smallText" text="{odata_model>OBJECT_NAME}"/>
+											<Text class="smallText" text="{odata_model>DESCRIPTION}" maxLines="2" tooltip="{odata_model>DESCRIPTION}"/>
+											<Text class="smallText" text="{odata_model>CONTACT_GROUP}"/>
+											<Text class="smallText" text="{odata_model>TAGS}"/>
+											<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>
+											<Text class="smallText" text="{odata_model>SYSTEM_ID}"/>
+											<Text class="smallText" text="{odata_model>REUSPR}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							<!--	</f:content>
 						</f:DynamicPage>-->
-							</Panel>
-						</ScrollContainer>
-						<ScrollContainer id="MigrationArtifacts" horizontal="false" vertical="true" height="100%">
-							<!--<f:DynamicPage id="dynamicPageIdMA" headerExpanded="true">-->
-							<!--	<f:header>-->
-							<!--		<f:DynamicPageHeader pinnable="true">-->
-							<!--			<f:content>-->
-							<!--<ImageContent src="sap-icon://bar-code"/>-->
-							<!--				<fb:FilterBar id="filterbarMA" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false" filterContainerWidth="6rem">-->
-							<!--					<fb:filterItems>-->
-							<!--						<fb:FilterItem name="A" label="Free Search" class="sapUiResponsiveMargin">-->
-							<!--							<fb:control>-->
-							<!--								<Input id="input" liveChange="onSearch" placeholder="Type to Search" type="Text"/>-->
-							<!--							</fb:control>-->
-							<!--						</fb:FilterItem>-->
-							<!--						<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">-->
-							<!--							<fb:control>-->
-							<!--<MultiComboBox width="200px" items="{ path: 'products>/ProductCollection', sorter: {path: 'SupplierName', descending: false, group: true} }">-->
-							<!--<core:Item key="{products>ProductId}" text="{path: 'products>Name', formatter: '.sortGroups'}" />-->
-							<!--	<core:Item key="{products>ProductId}" text="{products>Name}"/>-->
-							<!--</MultiComboBox>-->
-							<!--<MultiComboBox width="90px" items="{ path: 'odata_model>/dropdown', sorter: {path: 'SupplierName', descending: false, group: true} }">-->
-							<!--								<MultiComboBox width="160px" items="{ path: 'odata_model>/dropdown', sorter: {path: 'MODULE', descending: false, group: true} }">-->
-							<!--<core:Item key="{products>ProductId}" text="{path: 'products>Name', formatter: '.sortGroups'}" />-->
-							<!--<core:Item key="{products>ProductId}" text="{products>Name}"/>-->
-							<!--									<core:Item key="{odata_model>MODULE}" text="{odata_model>SUB_MODULE}"/>-->
-							<!--								</MultiComboBox>-->
-							<!--<MultiComboBox width="200px" class="sapUiSmallMarginTop"></MultiComboBox>-->
-							<!--							</fb:control>-->
-							<!--						</fb:FilterItem>-->
-							<!--					</fb:filterItems>-->
-							<!--				</fb:FilterBar>-->
-							<!--			</f:content>-->
-							<!--		</f:DynamicPageHeader>-->
-							<!--	</f:header>-->
-							<!--	<f:content>-->
-							<!--<Table id="idProductsTableMA" inset="false" items="{odata_model>/obj_repo}">-->
-							<!--	<columns>-->
-							<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-							<!--			<Text text="Module"/>-->
-							<!--		</Column>-->
-							<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-							<!--			<Text text="Sub_Module"/>-->
-							<!--		</Column>-->
-							<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-							<!--			<Text text="System"/>-->
-							<!--		</Column>-->
-							<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-							<!--			<Text text="Object"/>-->
-							<!--		</Column>-->
-							<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-							<!--			<Text text="Object Type"/>-->
-							<!--		</Column>-->
-							<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-							<!--			<Text text="Object Description"/>-->
-							<!--		</Column>-->
-							<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
-							<!--			<Text text="RBEI Contact"/>-->
-							<!--		</Column>-->
-							<!--	</columns>-->
-							<!--	<items>-->
-							<!--		<ColumnListItem>-->
-							<!--			<cells>-->
-							<!--				<Text class="smallText" text="{odata_model>MODULE}"/>-->
-							<!--				<Text class="smallText" text="{odata_model>SUB_MODULE}"/>-->
-							<!--				<Text class="smallText" text="{odata_model>SYSTEM}"/>-->
-							<!--				<Text class="smallText" text="{odata_model>OBJECT}"/>-->
-							<!--				<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>-->
-							<!--				<Text class="smallText" text="{odata_model>DESCRIPTION}" maxLines="5"/>-->
-							<!--				<Text class="smallText" text="{odata_model>CONTACT_ID}"/>-->
-							<!--			</cells>-->
-							<!--		</ColumnListItem>-->
-							<!--	</items>-->
-							<!--</Table>-->
-							<!--	</f:content>-->
-							<!--</f:DynamicPage>-->
-						</ScrollContainer>
-					</pages>
-				</NavContainer>
-			</tnt:mainContents>
-		</tnt:ToolPage>
-	</App>
+						</Panel>
+					</ScrollContainer>
+					<ScrollContainer id="MigrationArtifacts" horizontal="false" vertical="true" height="100%">
+						<!--<f:DynamicPage id="dynamicPageIdMA" headerExpanded="true">-->
+						<!--	<f:header>-->
+						<!--		<f:DynamicPageHeader pinnable="true">-->
+						<!--			<f:content>-->
+						<!--<ImageContent src="sap-icon://bar-code"/>-->
+						<!--				<fb:FilterBar id="filterbarMA" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false" filterContainerWidth="6rem">-->
+						<!--					<fb:filterItems>-->
+						<!--						<fb:FilterItem name="A" label="Free Search" class="sapUiResponsiveMargin">-->
+						<!--							<fb:control>-->
+						<!--								<Input id="input" liveChange="onSearch" placeholder="Type to Search" type="Text"/>-->
+						<!--							</fb:control>-->
+						<!--						</fb:FilterItem>-->
+						<!--						<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">-->
+						<!--							<fb:control>-->
+						<!--<MultiComboBox width="200px" items="{ path: 'products>/ProductCollection', sorter: {path: 'SupplierName', descending: false, group: true} }">-->
+						<!--<core:Item key="{products>ProductId}" text="{path: 'products>Name', formatter: '.sortGroups'}" />-->
+						<!--	<core:Item key="{products>ProductId}" text="{products>Name}"/>-->
+						<!--</MultiComboBox>-->
+						<!--<MultiComboBox width="90px" items="{ path: 'odata_model>/dropdown', sorter: {path: 'SupplierName', descending: false, group: true} }">-->
+						<!--								<MultiComboBox width="160px" items="{ path: 'odata_model>/dropdown', sorter: {path: 'MODULE', descending: false, group: true} }">-->
+						<!--<core:Item key="{products>ProductId}" text="{path: 'products>Name', formatter: '.sortGroups'}" />-->
+						<!--<core:Item key="{products>ProductId}" text="{products>Name}"/>-->
+						<!--									<core:Item key="{odata_model>MODULE}" text="{odata_model>SUB_MODULE}"/>-->
+						<!--								</MultiComboBox>-->
+						<!--<MultiComboBox width="200px" class="sapUiSmallMarginTop"></MultiComboBox>-->
+						<!--							</fb:control>-->
+						<!--						</fb:FilterItem>-->
+						<!--					</fb:filterItems>-->
+						<!--				</fb:FilterBar>-->
+						<!--			</f:content>-->
+						<!--		</f:DynamicPageHeader>-->
+						<!--	</f:header>-->
+						<!--	<f:content>-->
+						<!--<Table id="idProductsTableMA" inset="false" items="{odata_model>/obj_repo}">-->
+						<!--	<columns>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+						<!--			<Text text="Module"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+						<!--			<Text text="Sub_Module"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+						<!--			<Text text="System"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+						<!--			<Text text="Object"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+						<!--			<Text text="Object Type"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+						<!--			<Text text="Object Description"/>-->
+						<!--		</Column>-->
+						<!--		<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
+						<!--			<Text text="RBEI Contact"/>-->
+						<!--		</Column>-->
+						<!--	</columns>-->
+						<!--	<items>-->
+						<!--		<ColumnListItem>-->
+						<!--			<cells>-->
+						<!--				<Text class="smallText" text="{odata_model>MODULE}"/>-->
+						<!--				<Text class="smallText" text="{odata_model>SUB_MODULE}"/>-->
+						<!--				<Text class="smallText" text="{odata_model>SYSTEM}"/>-->
+						<!--				<Text class="smallText" text="{odata_model>OBJECT}"/>-->
+						<!--				<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>-->
+						<!--				<Text class="smallText" text="{odata_model>DESCRIPTION}" maxLines="5"/>-->
+						<!--				<Text class="smallText" text="{odata_model>CONTACT_ID}"/>-->
+						<!--			</cells>-->
+						<!--		</ColumnListItem>-->
+						<!--	</items>-->
+						<!--</Table>-->
+						<!--	</f:content>-->
+						<!--</f:DynamicPage>-->
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
 </mvc:View>

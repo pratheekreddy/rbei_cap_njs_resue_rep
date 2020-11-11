@@ -7,11 +7,12 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		"sap/ui/model/Filter",
 		"sap/ui/core/SeparatorItem",
 		"sap/ui/model/FilterOperator",
-		"sap/m/TablePersoController"
+		"sap/m/TablePersoController",
+		"sap/f/library"
 	],
 
 	function (BaseController, MessageBox, Utilities, PersoService, History, JSONModel, Filter, SeparatorItem, FilterOperator,
-		TablePersoController) {
+		TablePersoController, fioriLibrary) {
 		"use strict";
 
 		return BaseController.extend("RBEI_UI5.rbei_ui5_reuse_rep.controller.ToolPage", {
@@ -98,7 +99,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			},
 			onSearch: function (oEvent) {
 				// // // debugger;
-				sap.ui.core.BusyIndicator.show(60000);
+				// sap.ui.core.BusyIndicator.show(60000);
 				//Filter value 
 				// this.oFilter = new Filter(this.filterArr,true);
 				var searchvalue = this.getView().byId("Search").getValue();
@@ -214,6 +215,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					]
 				});*/
 				// this.oFilter = new Filter(this.filterArr, true);
+				debugger;
 				var oTable = this.getView().byId("idProductsTable");
 				oTable.getBinding("items").sPath = "/obj_repo_search(SEARCH='" + searchvalue + "')/Set";
 				oTable.getBinding("items").filter(oFilters, "Application");
@@ -830,6 +832,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			},
 			onRowPress: function (oEvent) {
+				var item = oEvent.getParameter("listItem").getCells()[3].getProperty("text");
+				item = item.replaceAll("/", ".");
 				var item1 = oEvent.getParameter("listItem").getCells()[5].getProperty("text");
 				var item2 = oEvent.getParameter("listItem").getCells()[6].getProperty("text");
 				var item3 = oEvent.getParameter("listItem").getCells()[7].getProperty("text");
@@ -844,10 +848,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// 	productsPath: item});
 
 				oRouter.navTo("ObjectsDetailsPage", {
+					id2: item,
 					productsPath: item1,
 					id: item2,
 					id1: item3,
-					// id2: item4,
 					id3: item5,
 					id4: item6,
 				});
@@ -1386,6 +1390,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			onInit: function () {
 				// var title = this.getView().byId("page1");
 				// title.addStyleClass("title");
+				// var dataModel = this.getOwnerComponent().getModel("settingModel");
+				// this.getView().setModel(dataModel, "DataModel");
 				this._mViewSettingsDialogs = {};
 				//        	this.oSelectName = this.getSelect("FreeSearch");
 				var oFB = this.getView().byId("filterbar");
@@ -1427,8 +1433,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					componentName: "perso",
 					persoService: PersoService
 				}).activate();
+				// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				// oRouter.getRoute("ToolPage").attachPatternMatched(this._onObjectMatched, this);
+				this.oRouter = this.getOwnerComponent().getRouter();
 			},
-
+			onAfterRendering: function (oEvent) {
+				debugger;
+				// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				// oRouter.getRoute("ToolPage").attachPatternMatched(this._onObjectMatched, this);
+			},
+			_onObjectMatched: function (oEvent) {
+				this.onSearch();
+			},
 			onExit: function () {
 
 				// to destroy templates for bound aggregations when templateShareable is true on exit to prevent duplicateId issue
@@ -1481,6 +1497,94 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			},
 			sortGroups: function (txt) {
 				return txt;
+			},
+			onListItemPress: function (oEvent) {
+				debugger;
+				var aFilters = [];
+				var value, value1, value2, value3, value4;
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				var productPath = oEvent.getSource().getBindingContext("odata_model").getPath();
+				var product = productPath.substring(productPath.lastIndexOf("/") + 5).replace(")", "");
+				product = product.replaceAll("=", " eq ");
+				product = product.replaceAll(",", " and ");
+				// var arr = product.split(",");
+				// value = arr[0].split("=");
+				// var module = value[1];
+				// value1 = arr[1].split("=");
+				// var submodule = value1[1];
+				// value2 = arr[2].split("=");
+				// var objtype = value2[1];
+				// value3 = arr[3].split("=");
+				// var objname = value3[1];
+				// value4 = arr[4].split("=");
+				// var sysID = value4[1];
+				
+				// var filter = new Filter("MODULE", sap.ui.model.FilterOperator.EQ, module);
+				// aFilters.push(filter);
+				// filter = new Filter("SUB_MODULE", sap.ui.model.FilterOperator.EQ, submodule);
+				// aFilters.push(filter);
+				// filter = new Filter("OBJECT_TYPE", sap.ui.model.FilterOperator.EQ, objtype);
+				// aFilters.push(filter);
+				// filter = new Filter("OBJECT_NAME", sap.ui.model.FilterOperator.EQ, objname);
+				// aFilters.push(filter);
+				// filter = new Filter("SYSTEM_ID", sap.ui.model.FilterOperator.EQ, sysID);
+				// aFilters.push(filter);
+				var newvalue = "*";
+				var that = this;
+				jQuery.get({
+					url: "/srv_test/repo/obj_repo_search(SEARCH='" + newvalue +
+						"')/Set?$filter="+ product ,
+					// filters: aFilters,
+					success: function (data) {
+						debugger;
+
+						that.getOwnerComponent().getModel("products").setData(data.value);
+
+						oRouter.navTo("ObjectsDetailsPage", {
+							layout: sap.f.LayoutType.TwoColumnsBeginExpanded,
+							product: "product"
+						});
+						// t.getView().byId("Search").setModel(searchmodel, "searchMdl");
+					},
+					error: function (error) {
+						// your error logic
+
+					}
+				});
+
+				// oRouter.navTo("ObjectsDetailsPage", {layout: fioriLibrary.LayoutType.TwoColumnsMidExpanded});
+				// var obj = oEvent.getSource().getAggregation("cells")[3].getText();
+				// obj = obj.replaceAll("/", ".");
+				// var grp = oEvent.getSource().getAggregation("cells")[5].getText();
+				// var tag = oEvent.getSource().getAggregation("cells")[6].getText();
+				// var type = oEvent.getSource().getAggregation("cells")[7].getText();
+				// var id = oEvent.getSource().getAggregation("cells")[8].getText();
+				// var reuse = oEvent.getSource().getAggregation("cells")[9].getText();
+
+				// this.getView().getModel("DataModel").setData({
+				// 	OBJECT_NAME: obj,
+				// 	CONTACT_GROUP: grp,
+				// 	TAGS: tag,
+				// 	OBJECT_TYPE: type,
+				// 	SYSTEM_ID: id,
+				// 	REUSPR: reuse
+				// });
+				// var array = [];
+
+				// var obj1 = {
+				// 	OBJECT_NAME: obj,
+				// 	CONTACT_GROUP: grp,
+				// 	TAGS: tag,
+				// 	OBJECT_TYPE: type,
+				// 	SYSTEM_ID: id,
+				// 	REUSPR: reuse
+				// };
+				// array.push(obj1);
+				// var product = JSON.stringify(array);
+				// // var settingModel = this.getView().getModel("settingModel").getData();
+
+				var oFCL = this.oView.getParent().getParent();
+				oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsBeginExpanded);
 			}
 
 		});

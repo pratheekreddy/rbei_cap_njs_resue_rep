@@ -1,11 +1,27 @@
-<mvc:View controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<Shell id="shell">
-		<App id="app">
-			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content></content>
-				</Page>
-			</pages>
-		</App>
-	</Shell>
+<mvc:View controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.f" xmlns:s="sap.ui.layout.form" xmlns:tnt="sap.tnt">
+	<tnt:ToolPage id="loginid">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Image width="8rem" src="./image/bosch_new1.png"/>
+				<Text text="RBEI-Reusable Repository" wrapping="false"/>
+				<ToolbarSpacer/>
+				<Button text="Sign up" type="Transparent" press="onSignup"/>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:mainContents>
+			<s:SimpleForm id="dialogform" editable="true" layout="ResponsiveGridLayout" title="Sign in (only Bosch employees)" labelSpanXL="3"
+				labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0"
+				columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+				<s:content>
+					<Label text="Email/Username"/>
+					<Input id="email" placeholder="Eg. johm@in.bosch.com or Johm"/>
+					<Button text="GET OTP" type="Emphasized" press="onGetotp"/>
+					<Label text="Enter OTP"/>
+					<Input id="otp" placeholder="Please enter OTP"/>
+					<Button text="Sign in" type="Emphasized" press="onSignin"/>
+				</s:content>
+			</s:SimpleForm>
+		</tnt:mainContents>
+	</tnt:ToolPage>
 </mvc:View>

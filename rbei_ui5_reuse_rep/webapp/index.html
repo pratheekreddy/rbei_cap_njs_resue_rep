@@ -14,9 +14,27 @@
 			data-sap-ui-async="true"
 			data-sap-ui-frameOptions="trusted">
 		</script>
+		<script>
+			sap.ui.getCore().attachInit(function () {
+				sap.ui.require([
+					"sap/m/Shell",
+					"sap/ui/core/ComponentContainer"
+				], function (Shell, ComponentContainer) {
+					new Shell({
+						app : new ComponentContainer({
+							height: "100%",
+							name: "RBEI_UI5.rbei_ui5_reuse_rep"
+						})
+					}).placeAt("content");
+				});
 
+			});
+		</script>
+	<style>
+		html, body { height: 100%; }
+	</style>
 	</head>
-	<body class="sapUiBody">
+	<body class="sapUiBody" id="content">
 		<div data-sap-ui-component data-name="RBEI_UI5.rbei_ui5_reuse_rep" data-id="container" data-settings='{"id" : "rbei_ui5_reuse_rep"}'></div>
 	</body>
 </html>

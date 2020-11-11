@@ -1,16 +1,19 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.ObjectsDetailsPage" xmlns:uxap="sap.uxap"
 	xmlns="sap.m" xmlns:form="sap.ui.layout.form">
-	<App id="app">
 		<uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false"
 			subSectionLayout="TitleOnTop">
 			<uxap:headerContent>
 				<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
 					visible="true" displayInline="false">
-					<items>
-						<Title text="{CREATED_BY}" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
-						<!--<RatingIndicator value="5" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true"/>-->
-						<ProgressIndicator id="pind" class="sapUiSmallMarginBottom" percentValue="{percentage}" displayValue="{percentage}" showValue="true" state="Success"/>
-					</items>
+					<HBox>
+						<items>
+							<Title text="{CREATED_BY}" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+							<!--<RatingIndicator value="5" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true"/>-->
+							<!--<ProgressIndicator id="pind" class="sapUiSmallMarginBottom" percentValue="{percentage}" displayValue="{percentage}" showValue="true" state="Success"/>-->
+							<Label text="Object Name:" design="Standard" width="100%" required="false" textAlign="Begin" class="sapUiSmallMarginEnd" textDirection="Inherit" visible="true"/>
+							<Text id="objName" text="{settingModel>/0/OBJECT_NAME}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+						</items>
+					</HBox>
 					<layoutData/>
 				</VBox>
 				<Label text="{DETAILED_DESCRIPTION}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
@@ -20,8 +23,8 @@
 					objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false"
 					isActionAreaAlwaysVisible="true">
 					<uxap:actions>
-						<Button text="Back to search" type="Back" iconFirst="false" width="auto" enabled="true" visible="true" iconDensityAware="false"
-							press="_onButtonPress"/>
+						<Button icon="sap-icon://decline" press="handleClose"  tooltip="Close column"
+							type="Transparent"/>
 					</uxap:actions>
 					<uxap:breadCrumbsLinks/>
 					<uxap:navigationBar/>
@@ -42,7 +45,7 @@
 														<Label text="Contact Group" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:label>
 													<form:fields>
-														<Text id="idfm" text="{KEY}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+														<Text id="idfm" text="{settingModel>/0/CONTACT_GROUP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:fields>
 												</form:FormElement>
 												<form:FormElement visible="true">
@@ -50,7 +53,7 @@
 														<Label text="Tags" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:label>
 													<form:fields>
-														<Text id="idfm1" text="{FG}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+														<Text id="idfm1" text="{settingModel>/0/TAGS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:fields>
 												</form:FormElement>
 												<form:FormElement visible="true">
@@ -58,7 +61,7 @@
 														<Label text="Object Type" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:label>
 													<form:fields>
-														<Text id="idfm2" text="{OBJ_TYPE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+														<Text id="idfm2" text="{settingModel>/0/OBJECT_TYPE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:fields>
 												</form:FormElement>
 												<form:FormElement visible="true">
@@ -66,7 +69,7 @@
 														<Label text="System ID" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:label>
 													<form:fields>
-														<Text id="idfm3" text="{TAGS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+														<Text id="idfm3" text="{settingModel>/0/SYSTEM_ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:fields>
 												</form:FormElement>
 												<form:FormElement visible="true">
@@ -74,7 +77,8 @@
 														<Label text="Reusable" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													</form:label>
 													<form:fields>
-														<ProgressIndicator height="10px" width="100px" id="pind1" class="sapUiSmallMarginBottom" percentValue="{percentage}" displayValue="{percentage}" showValue="true" state="Warning"/>
+														<ProgressIndicator height="10px" width="100px" id="pind1" class="sapUiSmallMarginBottom" percentValue="{settingModel>/0/REUSPR}"
+															displayValue="{settingModel>/0/REUSPR}" showValue="true" state="Warning"/>
 														<!--<Text id="idfm4" text="{REUSABLE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
 													</form:fields>
 												</form:FormElement>
@@ -106,5 +110,4 @@
 				</OverflowToolbar>
 			</uxap:footer>
 		</uxap:ObjectPageLayout>
-	</App>
 </mvc:View>

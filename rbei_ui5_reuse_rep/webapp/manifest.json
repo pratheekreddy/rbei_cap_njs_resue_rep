@@ -14,6 +14,10 @@
 			"version": "0.0.0"
 		},
 		"dataSources": {
+			"settingModel": {
+				"uri": "model/settingModel.json",
+				"type": "JSON"
+			},
 			"repo": {
 				"uri": "/srv_test/repo/",
 				"type": "OData",
@@ -51,17 +55,18 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "RBEI_UI5.rbei_ui5_reuse_rep.view.ToolPage",
+			"viewName": "RBEI_UI5.rbei_ui5_reuse_rep.view.App",
 			"type": "XML",
 			"async": true,
-			"id": "ToolPage"
+			"id": "App"
 		},
 		"dependencies": {
 			"minUI5Version": "1.65.6",
 			"libs": {
 				"sap.ui.core": {},
 				"sap.m": {},
-				"sap.ui.layout": {}
+				"sap.ui.layout": {},
+				"sap.f": {}
 			}
 		},
 		"contentDensities": {
@@ -74,6 +79,10 @@
 				"settings": {
 					"bundleName": "RBEI_UI5.rbei_ui5_reuse_rep.i18n.i18n"
 				}
+			},
+			"settingModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/settingModel.json"
 			},
 			"navigation": {
 				"type": "sap.ui.model.json.JSONModel",
@@ -108,44 +117,42 @@
 		},
 		"routing": {
 			"config": {
-				"routerClass": "sap.m.routing.Router",
+				"routerClass": "sap.f.routing.Router",
 				"viewType": "XML",
 				"async": true,
 				"viewPath": "RBEI_UI5.rbei_ui5_reuse_rep.view",
-				"controlId": "app",
+				"controlId": "flexibleColumnLayout",
 				"controlAggregation": "pages",
 				"clearControlAggregation": false,
 				"viewLevel": 1
 			},
 			"routes": [{
 				"name": "ToolPage",
-				"pattern": "RouteView1",
-				"target": ["TargetView1"]
+				"pattern": ":layout:",
+				"target": ["TargetView1",
+				"ObjectsDetailsPage"]
 			}, {
 				"name": "View2",
 				"pattern": "RouteView1",
 				"target": ["View2"]
 			}, {
-				"pattern": "ObjectsDetailsPage/{productsPath}/{id}/{id1}/{id3}/{id4}",
+				"pattern": "ObjectsDetailsPage/{product}/{layout}",
 				"name": "ObjectsDetailsPage",
-				"target": ["ObjectsDetailsPage"]
+				"target": ["TargetView1",
+				"ObjectsDetailsPage"]
 			}],
 			"targets": {
 				"TargetView1": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewName": "ToolPage"
+					"viewName": "ToolPage",
+					"controlAggregation": "beginColumnPages"
 				},
 				"View2": {
 					"viewType": "XML",
 					"viewName": "View2"
 				},
 				"ObjectsDetailsPage": {
-					"viewType": "XML",
 					"viewName": "ObjectsDetailsPage",
-					"viewId": "ObjectsDetailsPageId",
-					"clearControlAggregation": true
+					"controlAggregation": "midColumnPages"
 				}
 			}
 		}

@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog id="openDialog" contentWidth="50%">
+		<f:SimpleForm id="dialogform1" editable="true" layout="ResponsiveGridLayout" title="Sign up (only Bosch employees)">
+			<f:content>
+				<Label text="Email" required="true"/>
+				<Input id="email1" placeholder="Eg. johm@in.bosch.com"/>
+				<Label text="Username"/>
+				<Input id="uname" placeholder="Eg. Johnny"/>
+				<Label text="Full Name" required="true"/>
+				<Input id="fname" placeholder="Eg. John Doe"/>
+				<Label text="Department" required="true"/>
+				<Input id="dept" placeholder="Eg. RBEI/ETC5"/>
+				<Label text="Employee Id"/>
+				<Input id="eid" placeholder="Eg. 12345678"/>
+				<Label text="NT-ID"/>
+				<Input id="ntid" placeholder="Eg. JOD4COB"/>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button text="Signup" type="Emphasized" press="onSignup1"/>
+					<Button icon="sap-icon://sys-cancel" text="Close" press="handleCancelPress" type="Emphasized"/>
+				</Toolbar>
+			</f:content>
+		</f:SimpleForm>
+	</Dialog>
+</core:FragmentDefinition>

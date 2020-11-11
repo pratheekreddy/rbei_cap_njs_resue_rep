@@ -1,8 +1,9 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function (BaseController, MessageBox, Utilities, History) {
+	"sap/ui/core/routing/History",
+	"sap/f/library"
+], function (BaseController, MessageBox, Utilities, History, fioriLibrary) {
 	"use strict";
 
 	return BaseController.extend("RBEI_UI5.rbei_ui5_reuse_rep.controller.ObjectsDetailsPage", {
@@ -117,27 +118,57 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function () {
+			debugger;
+			var oOwnerComponent = this.getOwnerComponent();
+
+			this.oRouter = oOwnerComponent.getRouter();
+			this.oModel = oOwnerComponent.getModel("products");
+			var settingModel = new sap.ui.model.json.JSONModel();
+			sap.ui.getCore().setModel(settingModel, "settingModel");
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("ObjectsDetailsPage").attachPatternMatched(this._onObjectMatched, this);
 			// oRouter.getTarget("ObjectsDetailsPage").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},
-		
-		
-	_onObjectMatched: function (oEvent) {
-			var key = oEvent.getParameter("arguments").productsPath; 
-			var key1 = oEvent.getParameter("arguments").id; 
-			var key2 = oEvent.getParameter("arguments").id1; 
-			var key3 = oEvent.getParameter("arguments").id3; 
-			var key4 = oEvent.getParameter("arguments").id4; 
-			var per = key4.concat("%");
-			this.getView().byId("idfm").setText(key);
-			this.getView().byId("idfm1").setText(key1);
-			this.getView().byId("idfm2").setText(key2);
-			this.getView().byId("idfm3").setText(key3);
-			this.getView().byId("pind1").setPercentValue(per);
-			this.getView().byId("pind1").setDisplayValue(per);
-			this.getView().byId("pind").setDisplayValue(per);
-			this.getView().byId("pind").setPercentValue(per);
+
+		_onObjectMatched: function (oEvent) {
+			debugger;
+			var oOwnerComponent = this.getOwnerComponent();
+			this.oModel = oOwnerComponent.getModel("products");
+			
+			// var sRouteData = JSON.parse(oEvent.getParameter("arguments").product);
+			// var finalData = [];
+			// finalData.push(sRouteData[0].CONTACT_GROUP);
+			// finalData.push(sRouteData[0].OBJECT_NAME.replaceAll(".", "/"));
+			// finalData.push(sRouteData[0].OBJECT_TYPE);
+			// finalData.push(sRouteData[0].REUSPR);
+			// finalData.push(sRouteData[0].SYSTEM_ID);
+			// finalData.push(sRouteData[0].TAGS);
+			// var settingModel = new sap.ui.model.json.JSONModel({
+			// 	data: finalData
+			// });
+			this.getView().setModel(this.oModel, "settingModel");
+			// var key0 = oEvent.getParameter("arguments").id2;
+			// key0 = key0.replaceAll(".", "/");
+			// var key = oEvent.getParameter("arguments").productsPath;
+			// var key1 = oEvent.getParameter("arguments").id;
+			// var key2 = oEvent.getParameter("arguments").id1;
+			// var key3 = oEvent.getParameter("arguments").id3;
+			// var key4 = oEvent.getParameter("arguments").id4;
+			// var per = key4.concat("%");
+			// this.getView().byId("idfm").setText(key);
+			// this.getView().byId("idfm1").setText(key1);
+			// this.getView().byId("idfm2").setText(key2);
+			// this.getView().byId("idfm3").setText(key3);
+			// this.getView().byId("objName").setText(key0);
+			// this.getView().byId("pind1").setPercentValue(per);
+			// this.getView().byId("pind1").setDisplayValue(per);
+		},
+		handleClose: function () {
+			// var sNextLayout = "OneColumn";
+			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// oRouter.navTo("ToolPage", {layout: sNextLayout});
+			var oFCL = this.oView.getParent().getParent();
+			oFCL.setLayout(fioriLibrary.LayoutType.OneColumn);
 		}
 	});
 }, /* bExport= */ true);

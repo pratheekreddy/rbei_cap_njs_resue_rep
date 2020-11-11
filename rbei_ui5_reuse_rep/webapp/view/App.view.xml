@@ -1,0 +1,12 @@
+<mvc:View controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.f">
+	<App id="app">
+		<f:FlexibleColumnLayout id="flexibleColumnLayout" backgroundDesign="Solid">
+			<f:beginColumnPages>
+				<mvc:XMLView id="beginView" viewName="RBEI_UI5.rbei_ui5_reuse_rep.view.ToolPage"/>
+			</f:beginColumnPages>
+			<f:midColumnPages>
+				<mvc:XMLView id="detailView" viewName="RBEI_UI5.rbei_ui5_reuse_rep.view.ObjectsDetailsPage"/>
+			</f:midColumnPages>
+		</f:FlexibleColumnLayout>
+	</App>
+</mvc:View>
