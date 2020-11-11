@@ -47,7 +47,9 @@ app.use(
 );
 
 app.use(bodyParser.json());
-
+app.get('',(req,res)=>{
+	res.send('Server is up and running');
+})
 app.use('/generic',require("./routes/search"));
 app.use("/specific", require("./routes/specific_search"));
 app.use('/user',require('./login/signup'));

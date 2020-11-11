@@ -9,7 +9,7 @@
     "multer": "latest",
     "convert-excel-to-json": "latest",
     "cors": "latest",
-    "nodemailer":"latest"
+    "nodemailer": "latest"
   },
   "description": "my description",
   "devDependencies": {
