@@ -18,30 +18,40 @@ entity T_MD_USER {
 };
 
 entity T_MD_OBJ_TAG_REPO {
-	//	ID				:	Integer;//  generated always as identity(start with 1 increment by 1);
-	key MODULE			:	String(15);
-	key SUB_MODULE		:	String(50);
-	key OBJECT_TYPE		:	String(4);
-	key OBJECT_NAME		:	String(50);
-	key	SYSTEM_ID		:	String(10);
-		TAG_DOMAIN		:	String(1);
+	key	A_ID			:	Integer;//  generated always as identity(start with 1 increment by 1);
+		MODULE			:	String(15);
+		SUB_MODULE		:	String(50);
+		OBJECT_TYPE		:	String(4);
+		OBJECT_NAME		:	String(50);
+		SYSTEM_ID		:	String(10);
+		TAG_DOMAIN		:	String(35);
 		TAGS			:	String(500);
 		FUNC_GROUP		:	String(50);
 		DEV_CLASS		:	String(50);
 		REUSPR			:	Integer;
 		CONTACT_ID		:	String(50);
 		CONTACT_GROUP	:	String(25);
-		DOCUMENT_LINK	:	String(150);
+		DOCUMENT_LINK	:	String(250);
 		DESCRIPTION		:	String(500);
 		C_CREATED_BY	:	String(256);
 		C_CREATED_ON	:	Timestamp;
 		C_CHANGED_BY	:	String(256);
 		C_CHANGED_ON	:	Timestamp;
-		TARGET_TEAMS	:	String(250);
-		USAGE_SCEN		:	String(250);
-		IMPL_STEPS		:	String(150);
-		EFFORTS_SAVED	:	Integer;
+		// TARGET_TEAM		:	Composition of many T_TARGET_TEAMS on TARGET_TEAM.A_ID=$self;
+		// USAGE_SCENE		:	Composition of many T_USAGE_SCEN on USAGE_SCENE.A_ID=$self;
+		IMPL_STEPS		:	String(250);
+		EFFORTS_SAVED	:	Decimal(17,5);
 };
+
+entity T_TARGET_TEAMS{
+	key A_ID			:	Integer;//Association to T_MD_OBJ_TAG_REPO;
+	key	TARGET_TEAM		:	String(50);
+}
+
+entity T_USAGE_SCEN{
+	key A_ID			:	Integer;//Association to T_MD_OBJ_TAG_REPO;
+	key USAGE_SCEN		:	String(50);
+}
 
 entity T_SEARCH_VALUE{
 	key ID				:	Integer;
@@ -50,24 +60,15 @@ entity T_SEARCH_VALUE{
 		DATE			:	Date;
 }
 
-entity T_MD_MOD_MASTER{
-	key MODULE			:	String(15);
-	key SUB_MODULE		:	String(50);	
-}
+// entity T_PROJ_TYPE_MASTER{
+// 	key ID				:	Integer;
+// 		VALUE			:	String(50);
+// }
 
-entity T_MD_OBJ_TYP_MASTER{
-	key OBJECT_TYPE		:	String(4);
-		OBJ_DESC		:	String(100);
-}
-entity T_PROJ_TYPE_MASTER{
-	key ID				:	Integer;
-		VALUE			:	String(50);
-}
-
-entity T_TEAMS_MASTER{
-	key ID				:	Integer;
-		VALUE			:	String(70);
-}
+// entity T_TEAMS_MASTER{
+// 	key ID				:	Integer;
+// 		VALUE			:	String(70);
+// }
 
 define view V_DROPDOWN as select from T_MD_OBJ_TAG_REPO distinct
 {
@@ -109,15 +110,15 @@ define view V_CONTACT_GROUP as select from T_MD_OBJ_TAG_REPO distinct
 	key T_MD_OBJ_TAG_REPO.CONTACT_GROUP
 };
 
-define view V_TARGET_TEAMS as select from T_MD_OBJ_TAG_REPO distinct
-{
-	key T_MD_OBJ_TAG_REPO.TARGET_TEAMS
-};
+// define view V_TARGET_TEAMS as select from T_MD_OBJ_TAG_REPO distinct
+// {
+// 	key T_MD_OBJ_TAG_REPO.TARGET_TEAM
+// };
 
-define view V_USAGE_SCEN as select from T_MD_OBJ_TAG_REPO distinct
-{
-	key T_MD_OBJ_TAG_REPO.USAGE_SCEN
-};
+// define view V_USAGE_SCEN as select from T_MD_OBJ_TAG_REPO distinct
+// {
+// 	key T_MD_OBJ_TAG_REPO.USAGE_SCENE
+// };
 
 define view V_IMPL_STEPS as select from T_MD_OBJ_TAG_REPO distinct
 {
