@@ -40,7 +40,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					newvalue = "*";
 				} else {
 					jQuery.get({
-						url: "/srv_test/repo/search_result(tag='" + newvalue + "', score='0.8' )/Set?$skip=0&$top=10",
+						url: "/srv_test/repo/search_result(tag='" + newvalue + "', score = 0.8 )/Set?$skip=0&$top=10",
 						success: function (data) {
 							var searchmodel = new JSONModel(data.value);
 							t.getView().byId("Search").setModel(searchmodel, "searchMdl");
@@ -217,7 +217,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// this.oFilter = new Filter(this.filterArr, true);
 				debugger;
 				var oTable = this.getView().byId("idProductsTable");
-				oTable.getBinding("items").sPath = "/obj_repo_search(search='" + searchvalue + "', score='0.8' )/Set";
+				oTable.getBinding("items").sPath = "/obj_repo_search(search='" + searchvalue + "', score = 0.8 )/Set";
 				oTable.getBinding("items").filter(oFilters, "Application");
 
 				// oTable.bindItems(sPath,template,filter1);
@@ -1533,7 +1533,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var that = this;
 				jQuery.get({
 					url: "/srv_test/repo/obj_repo_search(search='" + newvalue +
-						"' , score='0.8')/Set?$filter="+ product ,
+						"' , score = 0.8)/Set?$filter="+ product ,
 					// filters: aFilters,
 					success: function (data) {
 						debugger;

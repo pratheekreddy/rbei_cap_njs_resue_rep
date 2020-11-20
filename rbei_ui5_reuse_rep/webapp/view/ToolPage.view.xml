@@ -162,7 +162,7 @@
 							<f:content>-->
 						<!--<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo}" itemPress="onTableItemPress" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}">-->
 						<Panel>
-							<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}" growingThreshold="70" growing="true"
+							<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(search='*' , score = 0.8)/Set}" growingThreshold="70" growing="true"
 								growingScrollToLoad="true">
 								<headerToolbar>
 									<OverflowToolbar>

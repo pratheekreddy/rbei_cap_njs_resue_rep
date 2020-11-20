@@ -20,7 +20,7 @@
 									<Button text="GET OTP" type="Emphasized" press="onGetotp"/>
 									<Label text="Enter OTP"/>
 									<Input id="otp" placeholder="Please enter OTP"/>
-									<Button text="Sign in" type="Emphasized" press="action" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" action:wiring="\{'press':\{'navigation':\{'routeName':'App'\}\}\}"/>
+									<Button text="Sign in" type="Emphasized" press="onSignin"/>
 								</s:content>
 							</s:SimpleForm>
 						</tnt:mainContents>

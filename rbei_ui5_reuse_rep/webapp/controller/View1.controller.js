@@ -11,31 +11,31 @@ sap.ui.define([
 			this.srcModel = new sap.ui.model.odata.ODataModel(URL, true);
 		},
 		onSignin: function (oEvent) {
-			// debugger;
-			// var email = this.getView().byId("email").getValue();
-			// var otp = this.getView().byId("otp").getValue();
-			// var record = {
-			// 	user: email,
-			// 	otp: otp
-			// };
-			// var that = this;
-			// var mParameters = {
-			// 	success: function (oData) {
-			// 		var msg = "Login is successful";
-			// 		MessageBox.show(msg, {
-			// 			icon: sap.m.MessageBox.Icon.SUCCESS,
-			// 			title: "Success",
-			// 			actions: [sap.m.MessageBox.Action.OK],
-			// 			onClose: function (oAction) {}.bind(this)
-			// 		});
-			// 		var oRouter = that.getOwnerComponent().getRouter();
-			// 		oRouter.navTo("ToolPage");
-			// 	},
-			// 	error: function (oErroe) {
-			// 		var err = oErroe;
-			// 	}
-			// };
-			// this.srcModel.create("/user/auth/login", record, mParameters);
+			debugger;
+			var email = this.getView().byId("email").getValue();
+			var otp = this.getView().byId("otp").getValue();
+			var record = {
+				user: email,
+				otp: otp
+			};
+			var that = this;
+			var mParameters = {
+				success: function (oData) {
+					var msg = "Login is successful";
+					MessageBox.show(msg, {
+						icon: sap.m.MessageBox.Icon.SUCCESS,
+						title: "Success",
+						actions: [sap.m.MessageBox.Action.OK],
+						onClose: function (oAction) {}.bind(this)
+					});
+					var oRouter = that.getOwnerComponent().getRouter();
+					oRouter.navTo("App");
+				},
+				error: function (oErroe) {
+					var err = oErroe;
+				}
+			};
+			this.srcModel.create("/user/auth/login", record, mParameters);
 		},
 		onSignup1: function (oEvent) {
 			var email1 = sap.ui.getCore().byId("email1").getValue();
