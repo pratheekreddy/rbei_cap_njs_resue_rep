@@ -43,8 +43,6 @@ modules:
     build-parameters:
       builder: grunt
     requires:
-      - name: uaa_rbei_cap_njs_reuse_rep
-      - name: dest_rbei_cap_njs_reuse_rep
       - name: rbei_cap_njs_reuse_api
         group: destinations
         properties:
@@ -64,14 +62,4 @@ resources:
     type: com.sap.xs.hdi-container
     properties:
       hdi-container-name: '${service-name}'
-  - name: uaa_rbei_cap_njs_reuse_rep
-    parameters:
-      path: ./xs-security.json
-      service-plan: application
-      service: xsuaa
-    type: org.cloudfoundry.managed-service
-  - name: dest_rbei_cap_njs_reuse_rep
-    parameters:
-      service-plan: lite
-      service: destination
-    type: org.cloudfoundry.managed-service
+

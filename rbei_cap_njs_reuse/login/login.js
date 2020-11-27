@@ -15,6 +15,7 @@ router.get('/otp',async(req,res)=>{
 	let client=req.db;
 	
 	let user=await client.exec(userQ)
+	console.log(user)
 	if(user.length===0){
 		return res.status(401).send({ msg : "User not registered "})
 	}
