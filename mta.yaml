@@ -43,16 +43,15 @@ modules:
     build-parameters:
       builder: grunt
     requires:
+      - name: dest_rbei_cap_njs_reuse_rep
       - name: rbei_cap_njs_reuse_api
         group: destinations
         properties:
-          forwardAuthToken: true
           name: rbei_cap_njs_reuse_api
           url: '~{url}'
       - name: srv_api
         group: destinations
         properties:
-          forwardAuthToken: true
           name: srv_api
           url: '~{url}'
 resources:
@@ -62,4 +61,8 @@ resources:
     type: com.sap.xs.hdi-container
     properties:
       hdi-container-name: '${service-name}'
-
+  - name: dest_rbei_cap_njs_reuse_rep
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
