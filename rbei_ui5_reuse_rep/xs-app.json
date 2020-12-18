@@ -1,6 +1,6 @@
 {
   "welcomeFile": "/rbei_ui5_reuse_rep/index.html",
-  "authenticationMethod": "route",
+  "authenticationMethod": "none",
   "logout": {
     "logoutEndpoint": "/do/logout"
   },
@@ -21,14 +21,14 @@
       "source": "^/rbei_ui5_reuse_rep_test/(.*)$",
       "target": "$1",
       "destination": "rbei_cap_njs_reuse_api",
-      "authenticationType": "xsuaa",
+      "authenticationType": "none",
       "csrfProtection": false
     },
     {
       "source": "^/srv_test/(.*)$",
       "target": "$1",
       "destination": "srv_api",
-      "authenticationType": "xsuaa",
+      "authenticationType": "none",
       "csrfProtection": false
     }
   ]
