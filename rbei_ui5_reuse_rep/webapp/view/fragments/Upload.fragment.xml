@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc">
+	<u:FileUploader id="AttachUploader" sameFilenameAllowed="false" fileType="XLSX,xlsx" width="700px" placeholder="Select your file to Upload"
+		style="Emphasized"/>
+	<Button icon="sap-icon://upload" type="Transparent" width="100px" press="onUpload"/>
+</core:FragmentDefinition>

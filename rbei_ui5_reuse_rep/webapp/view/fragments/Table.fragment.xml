@@ -1,0 +1,97 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<table:Table id="table0" rows="{path:'/data'}" selectionMode="None" visibleRowCount="12" visibleRowCountMode="Fixed" class="sapUiSizeCompact">
+		<table:columns>
+			<!--<table:Column width="80px">-->
+			<!--	<Label text="Status"/>-->
+			<!--	<table:template>-->
+			<!--<Text text="{EmployeeNo}"/>-->
+			<!--		<Text/>-->
+			<!--	</table:template>-->
+			<!--</table:Column>-->
+			<table:Column width="280px">
+				<Label text="Tag"/>
+				<table:template>
+					<Text text="{Tag Name( up to 8 tags)}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="40px">
+				<Label text="Tag Domain"/>
+				<table:template>
+					<Text text="{Tag Domain}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="210px">
+				<Label text="Package"/>
+				<table:template>
+					<Text text="{Package}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="230px">
+				<Label text="Function Group"/>
+				<table:template>
+					<Text text="{Function Group}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="70px">
+				<Label text="System ID"/>
+				<table:template>
+					<Text text="{System_ID}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="60px">
+				<Label text="Module"/>
+				<table:template>
+					<Text text="{Module}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="100px">
+				<Label text="Sub Module"/>
+				<table:template>
+					<Text text="{Sub Module}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="70px">
+				<Label text="Object Type"/>
+				<table:template>
+					<Text text="{Object Type}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="280px">
+				<Label text="Object Name"/>
+				<table:template>
+					<Text text="{Object Name}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="200px">
+				<Label text="Detailed Description of Object"/>
+				<table:template>
+					<Text text="{Detailed Description of Object}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="50px">
+				<Label text="Reuse Percentage"/>
+				<table:template>
+					<Text text="{Reuse Percentage (How much of the solution is reusable)}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="150px">
+				<Label text=" RBEI Contact"/>
+				<table:template>
+					<Text text="{RBEI Contact}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="80px">
+				<Label text=" Supporting Group"/>
+				<table:template>
+					<Text text="{Supporting Group}"/>
+				</table:template>
+			</table:Column>
+			<table:Column width="180px">
+				<Label text="URL"/>
+				<table:template>
+					<Text text="{URL}"/>
+				</table:template>
+			</table:Column>
+		</table:columns>
+	</table:Table>
+</core:FragmentDefinition>

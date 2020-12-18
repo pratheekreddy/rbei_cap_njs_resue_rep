@@ -28,7 +28,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					};
 
 					this.sContext = patternConvert(this.getOwnerComponent().getComponentData().startupParameters);
-
 				}
 			}
 
@@ -118,23 +117,36 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function () {
-			debugger;
+			// debugger;
 			var oOwnerComponent = this.getOwnerComponent();
 
 			this.oRouter = oOwnerComponent.getRouter();
-			this.oModel = oOwnerComponent.getModel("products");
-			var settingModel = new sap.ui.model.json.JSONModel();
-			sap.ui.getCore().setModel(settingModel, "settingModel");
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.getRoute("ObjectsDetailsPage").attachPatternMatched(this._onObjectMatched, this);
+			this.oModel = oOwnerComponent.getModel();
+
+			// this.oRouter.getRoute("TargetView1").attachPatternMatched(this._onProductMatched, this);
+			this.oRouter.getRoute("ObjectsDetailsPage").attachPatternMatched(this._onProductMatched, this);
+			// var oOwnerComponent = this.getOwnerComponent();
+
+			// this.oRouter = oOwnerComponent.getRouter();
+			// this.oModel = oOwnerComponent.getModel("products");
+
+			// this.getOwnerComponent().getRouter().getRoute("ObjectsDetailsPage").attachPatternMatched(this._onObjectMatched, this); 
+
+			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// this.oRouter.getRoute("ObjectsDetailsPage").attachPatternMatched(this._onObjectMatched, this);
 			// oRouter.getTarget("ObjectsDetailsPage").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},
 
-		_onObjectMatched: function (oEvent) {
-			debugger;
-			var oOwnerComponent = this.getOwnerComponent();
-			this.oModel = oOwnerComponent.getModel("products");
-			
+		_onProductMatched: function () {
+			// debugger;
+			this.oModel = this.getOwnerComponent().getModel("products");
+			var settingsModel = this.getOwnerComponent().getModel("products");
+			// var settingModel = new sap.ui.model.json.JSONModel();
+			this.getView().setModel(settingsModel, "settingModel");
+			// this.getView().byId("idfm").setText(settingsModel[0].SUB_MODULE);
+			// var oOwnerComponent = this.getOwnerComponent();
+			// this.oModel = oOwnerComponent.getModel("products");
+
 			// var sRouteData = JSON.parse(oEvent.getParameter("arguments").product);
 			// var finalData = [];
 			// finalData.push(sRouteData[0].CONTACT_GROUP);
@@ -146,7 +158,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// var settingModel = new sap.ui.model.json.JSONModel({
 			// 	data: finalData
 			// });
-			this.getView().setModel(this.oModel, "settingModel");
+			// this.getView().setModel(this.oModel, "settingModel");
 			// var key0 = oEvent.getParameter("arguments").id2;
 			// key0 = key0.replaceAll(".", "/");
 			// var key = oEvent.getParameter("arguments").productsPath;
@@ -167,8 +179,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// var sNextLayout = "OneColumn";
 			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			// oRouter.navTo("ToolPage", {layout: sNextLayout});
+			debugger;
 			var oFCL = this.oView.getParent().getParent();
 			oFCL.setLayout(fioriLibrary.LayoutType.OneColumn);
+			
+			this.getOwnerComponent().getRouter().navTo("TargetView1",{
+					 	layout: sap.f.LayoutType.OneColumn 
+					 });
 		}
 	});
 }, /* bExport= */ true);

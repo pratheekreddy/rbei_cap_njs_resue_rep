@@ -1,0 +1,123 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table">
+	<!--<Page id="wizardReviewPage" showHeader="false">-->
+	<!--	<content>-->
+	<Wizard id="wizard" complete="onPressReview1" showNextButton="true">
+		<WizardStep id="wizStep1" validated="true" title="Step1 : Download Template">
+			<Button icon="sap-icon://excel-attachment" type="Transparent" width="100px" press="onTemplate"/>
+			<!--<Label text="Product" labelFor="productInput" />-->
+			<!--<core:Fragment fragmentName="Repository.Repository.view.fragments.Template" type="XML"/>-->
+		</WizardStep>
+		<WizardStep id="wizStep2" validated="true" title="Step2 : Upload the data in downloaded template">
+			<u:FileUploader id="AttachUploader" sameFilenameAllowed="false" fileType="XLSX,xlsx" width="700px" placeholder="Select your file to Upload"
+				style="Emphasized"/>
+			<Button icon="sap-icon://upload" type="Transparent" width="100px" press="onUpload"/>
+			<!--<core:Fragment fragmentName="Repository.Repository.view.fragments.Upload" type="XML"/>-->
+		</WizardStep>
+		<WizardStep id="wizStep3" validated="true" title="Step3 : Display the data in Table">
+			<table:Table id="table0" rows="{path:'/data'}" selectionMode="None" visibleRowCount="12" visibleRowCountMode="Fixed"
+				class="sapUiSizeCompact">
+				<table:columns>
+					<!--<table:Column width="80px">-->
+					<!--	<Label text="Status"/>-->
+					<!--	<table:template>-->
+					<!--<Text text="{EmployeeNo}"/>-->
+					<!--		<Text/>-->
+					<!--	</table:template>-->
+					<!--</table:Column>-->
+					<table:Column width="280px">
+						<Label text="Tag"/>
+						<table:template>
+							<Text text="{Tag Name( up to 8 tags)}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="40px">
+						<Label text="Tag Domain"/>
+						<table:template>
+							<Text text="{Tag Domain}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="210px">
+						<Label text="Package"/>
+						<table:template>
+							<Text text="{Package}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="230px">
+						<Label text="Function Group"/>
+						<table:template>
+							<Text text="{Function Group}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="70px">
+						<Label text="System ID"/>
+						<table:template>
+							<Text text="{System_ID}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="60px">
+						<Label text="Module"/>
+						<table:template>
+							<Text text="{Module}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="100px">
+						<Label text="Sub Module"/>
+						<table:template>
+							<Text text="{Sub Module}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="70px">
+						<Label text="Object Type"/>
+						<table:template>
+							<Text text="{Object Type}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="280px">
+						<Label text="Object Name"/>
+						<table:template>
+							<Text text="{Object Name}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="200px">
+						<Label text="Detailed Description of Object"/>
+						<table:template>
+							<Text text="{Detailed Description of Object}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="50px">
+						<Label text="Reuse Percentage"/>
+						<table:template>
+							<Text text="{Reuse Percentage (How much of the solution is reusable)}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="150px">
+						<Label text=" RBEI Contact"/>
+						<table:template>
+							<Text text="{RBEI Contact}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="80px">
+						<Label text=" Supporting Group"/>
+						<table:template>
+							<Text text="{Supporting Group}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="180px">
+						<Label text="URL"/>
+						<table:template>
+							<Text text="{URL}"/>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+			<!--<core:Fragment fragmentName="Repository.Repository.view.fragments.Table" type="XML"/>-->
+		</WizardStep>
+		<WizardStep id="wizStep4" validated="true" title="Step4 : Click on Save to save the entries in database">
+			<Button type="Emphasized" text="Save" id="oSave" visible="true" press="onSave"/>
+			<!--<core:Fragment fragmentName="Repository.Repository.view.fragments.Save" type="XML"/>-->
+		</WizardStep>
+	</Wizard>
+	<!--	</content>-->
+	<!--</Page>-->
+</core:FragmentDefinition>

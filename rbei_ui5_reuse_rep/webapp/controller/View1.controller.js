@@ -4,16 +4,24 @@ sap.ui.define([
 	"sap/m/MessageBox"
 ], function (Controller, MessageToast, MessageBox) {
 	"use strict";
+	var otplbl, otpinp, otpbtn;
+
 	return Controller.extend("RBEI_UI5.rbei_ui5_reuse_rep.controller.View1", {
 		onInit: function () {
 			// var URL = "https://s0f2uptm05loklc9bei-cap-njs-reuse.cfapps.eu10.hana.ondemand.com";
+			// otplbl = this.getView().byId("otplbl");
+			// otpinp = this.getView().byId("otpinp");
+			// otpbtn = this.getView().byId("otpbtn");
+			// otplbl.setVisible(false);
+			// otpinp.setVisible(false);
+			// otpbtn.setVisible(false);
 			var URL = "/rbei_ui5_reuse_rep_test";
 			this.srcModel = new sap.ui.model.odata.ODataModel(URL, true);
 		},
 		onSignin: function (oEvent) {
 			debugger;
-			var email = this.getView().byId("email").getValue();
-			var otp = this.getView().byId("otp").getValue();
+			var email = this.getView().byId("emailinp").getValue();
+			var otp = this.getView().byId("otpinp").getValue();
 			var record = {
 				user: email,
 				otp: otp
@@ -28,8 +36,11 @@ sap.ui.define([
 						actions: [sap.m.MessageBox.Action.OK],
 						onClose: function (oAction) {}.bind(this)
 					});
-					var oRouter = that.getOwnerComponent().getRouter();
-					oRouter.navTo("App");
+					// var oRouter = that.getOwnerComponent().getRouter();
+					// oRouter.navTo("ToolPage");
+					that.getOwnerComponent().getRouter().navTo("TargetView1", {
+						layout: sap.f.LayoutType.OneColumn
+					});
 				},
 				error: function (oErroe) {
 					var err = oErroe;
@@ -70,7 +81,7 @@ sap.ui.define([
 		},
 		onSignup: function () {
 			if (!this._Dialog) {
-				this._Dialog = sap.ui.xmlfragment("Forum.Forum.view.Signup", this.getView().getController());
+				this._Dialog = sap.ui.xmlfragment("RBEI_UI5.rbei_ui5_reuse_rep.view.Signup", this.getView().getController());
 				this._Dialog.setModel(this.getView().getModel());
 				this.getView().addDependent(this._Dialog);
 				this._Dialog.setResizable(false);
@@ -79,12 +90,21 @@ sap.ui.define([
 		},
 		handleCancelPress: function () {
 			if (!this._Dialog) {
-				this._Dialog = sap.ui.xmlfragment("dialogID", "Forum.Forum.view.Signup", this.getView().getController());
+				this._Dialog = sap.ui.xmlfragment("dialogID", "RBEI_UI5.rbei_ui5_reuse_rep.view.Signup", this.getView().getController());
 			}
 			this._Dialog.close();
 		},
 		onGetotp: function () {
-			var email = this.getView().byId("email").getValue();
+			// var emaillbl = this.getView().byId("emaillbl");
+			// var emailinp = this.getView().byId("emailinp");
+			// var emailbtn = this.getView().byId("emailbtn");
+			// emaillbl.setVisible(false);
+			// emailinp.setVisible(false);
+			// emailbtn.setVisible(false);
+			// otplbl.setVisible(true);
+			// otpinp.setVisible(true);
+			// otpbtn.setVisible(true);
+			var email = this.getView().byId("emailinp").getValue();
 			if (email === "") {
 				var text = "please enter a valid username or email";
 				MessageToast.show(text); // sap.m.MessageBox.Warning("Fields highlighted are wrong. Kindly correct and save");
@@ -138,7 +158,10 @@ sap.ui.define([
 				if (Object.getOwnPropertyNames(oParams).length !== 0) {
 					this.getOwnerComponent().getRouter().navTo(oNavigation.routeName, oParams);
 				} else {
-					this.getOwnerComponent().getRouter().navTo(oNavigation.routeName);
+					// this.getOwnerComponent().getRouter().navTo(oNavigation.routeName);TargetView1
+					this.getOwnerComponent().getRouter().navTo("TargetView1", {
+						layout: sap.f.LayoutType.OneColumn
+					});
 				}
 			}
 		}

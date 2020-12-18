@@ -1,0 +1,123 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core"
+	xmlns:f="sap.f" height="100%" xmlns:fb="sap.ui.comp.filterbar" xmlns="sap.m" xmlns:layout="sap.ui.layout">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}">
+		<f:title>
+			<f:DynamicPageTitle >
+				<f:heading>
+					<Title text="Maintain Artifacts" textAlign="Center" width="1100px" titleStyle="H1"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true" clear="onClear"
+						showFilterConfiguration="false">
+						<fb:filterItems>
+							<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">
+								<fb:control>
+									<MultiComboBox selectionChange="onSelectionChange" id="module"
+										items="{ path: 'odata_model2>/module', sorter: {path: 'MODULE', descending: false, group: true} }">
+										<core:Item key="{odata_model2>MODULE}" text="{odata_model2>SUB_MODULE}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="C" label="Object Name">
+								<fb:control>
+									<MultiComboBox items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="OBJECT_NAME">
+										<core:Item key="{odata_model>OBJECT_NAME}" text="{odata_model>OBJECT_NAME}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="D" label="Object Type">
+								<fb:control>
+									<MultiComboBox items="{ path: 'odata_model2>/obj_type' }" selectionChange="onSelection" id="OBJECT_TYPE">
+										<core:Item key="{odata_model2>OBJECT_TYPE}" text="{odata_model2>OBJECT_TYPE}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="E" label="Contact Group">
+								<fb:control>
+									<MultiComboBox items="{ path: 'odata_model2>/contact_group' }" selectionChange="onSelection" id="CONTACT_GROUP">
+										<core:Item key="{odata_model2>CONTACT_GROUP}" text="{odata_model2>CONTACT_GROUP}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<t:Table rows="{/ProductCollection}" selectionMode="MultiToggle" visibleRowCount="5" paste="onPaste" ariaLabelledBy="title">
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="System ID"/>
+						<t:template>
+							<Text text="{System ID}" wrapping="false"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Module"/>
+						<t:template>
+							<Text text="{Module}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Sub Module"/>
+						<t:template>
+							<Text text="{Sub Module}" wrapping="false"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Object Type"/>
+						<t:template>
+							<Text text="{Object Type}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Object Name"/>
+						<t:template>
+							<Text text="{Object Name}" wrapping="false"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Contact"/>
+						<t:template>
+							<Text text="{Contact}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Tag"/>
+						<t:template>
+							<Text text="{Tag}" wrapping="false"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Tag Domain"/>
+						<t:template>
+							<Text text="{Tag Domain}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="RBEI Contact Group"/>
+						<t:template>
+							<Text text="{RBEI Contact Group}" wrapping="false"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<Label text="Document Link"/>
+						<t:template>
+							<Text text="{Document Link}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem">
+						<t:template>
+							<Button icon="sap-icon://navigation-right-arrow" press="onPress"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+		</f:content>
+	</f:DynamicPage>
+</core:FragmentDefinition>

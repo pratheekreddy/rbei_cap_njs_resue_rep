@@ -1,6 +1,10 @@
 <mvc:View controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.ToolPage" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt"
 	height="100%" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:fb="sap.ui.comp.filterbar"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartMultiInput="sap.ui.comp.smartmultiinput">
+	<!--<App id="app">-->
+	<!--	<pages>-->
+	<!--		<Page id="page">-->
+	<!--			<content>-->
 	<tnt:ToolPage id="id-toolpage">
 		<tnt:header>
 			<tnt:ToolHeader>
@@ -162,8 +166,8 @@
 							<f:content>-->
 						<!--<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo}" itemPress="onTableItemPress" items="{odata_model>/obj_repo_search(SEARCH='*')/Set}">-->
 						<Panel>
-							<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(search='*' , score = 0.8)/Set}" growingThreshold="70" growing="true"
-								growingScrollToLoad="true">
+							<Table id="idProductsTable" inset="false" items="{odata_model>/obj_repo_search(search='*',score=0.8)/Set}" growingThreshold="70"
+								growing="true" growingScrollToLoad="true">
 								<headerToolbar>
 									<OverflowToolbar>
 										<ToolbarSpacer/>
@@ -199,7 +203,7 @@
 									<Column id="idContact" minScreenWidth="Tablet" demandPopin="true" width="4rem">
 										<Text text="Contact Group"/>
 									</Column>
-									<Column id="idContact1" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+								<!--	<Column id="idContact1" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
 										<Text text="Contact Group1"/>
 									</Column>
 									<Column id="idContact2" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
@@ -210,7 +214,7 @@
 									</Column>
 									<Column id="idContact4" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
 										<Text text="Contact Group4"/>
-									</Column>
+									</Column>-->
 								</columns>
 								<items>
 									<ColumnListItem type="Navigation" press=".onListItemPress">
@@ -223,10 +227,10 @@
 											<Text class="smallText" text="{odata_model>OBJECT_NAME}"/>
 											<Text class="smallText" text="{odata_model>DESCRIPTION}" maxLines="2" tooltip="{odata_model>DESCRIPTION}"/>
 											<Text class="smallText" text="{odata_model>CONTACT_GROUP}"/>
-											<Text class="smallText" text="{odata_model>TAGS}"/>
+<!--											<Text class="smallText" text="{odata_model>TAGS}"/>
 											<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>
 											<Text class="smallText" text="{odata_model>SYSTEM_ID}"/>
-											<Text class="smallText" text="{odata_model>REUSPR}"/>
+											<Text class="smallText" text="{odata_model>REUSPR}"/>-->
 										</cells>
 									</ColumnListItem>
 								</items>
@@ -310,8 +314,18 @@
 						<!--	</f:content>-->
 						<!--</f:DynamicPage>-->
 					</ScrollContainer>
+					<ScrollContainer id="BulkUpload" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="RBEI_UI5.rbei_ui5_reuse_rep.view.fragments.MassUpload" type="XML"/>
+					</ScrollContainer>
+					<ScrollContainer id="CreateanArtifact" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="RBEI_UI5.rbei_ui5_reuse_rep.view.fragments.Change" type="XML"/>
+					</ScrollContainer>
 				</pages>
 			</NavContainer>
 		</tnt:mainContents>
 	</tnt:ToolPage>
+	<!--			</content>-->
+	<!--		</Page>-->
+	<!--	</pages>-->
+	<!--</App>-->
 </mvc:View>

@@ -40,7 +40,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					newvalue = "*";
 				} else {
 					jQuery.get({
-						url: "/srv_test/repo/search_result(tag='" + newvalue + "', score = 0.8 )/Set?$skip=0&$top=10",
+						url: "/srv_test/repo/search_result(tag='" + newvalue + "',score=0.8)/Set?$skip=0&$top=10",
 						success: function (data) {
 							var searchmodel = new JSONModel(data.value);
 							t.getView().byId("Search").setModel(searchmodel, "searchMdl");
@@ -102,6 +102,17 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// sap.ui.core.BusyIndicator.show(60000);
 				//Filter value 
 				// this.oFilter = new Filter(this.filterArr,true);
+				var art = this.getView().byId("idsidenav").getSelectedKey();
+				if (art === "MigrationArtifacts") {
+					var val = "M";
+				} else if (art === "DevelopmentArtifacts") {
+					val = "D";
+				} else {
+					val = " ";
+				}
+				// var quote_str = "'" + val + "'";
+				// var domain = "TAG_DOMAIN" + ' ' + "eq" + ' ' + quote_str;
+				var domain = new Filter("TAG_DOMAIN", FilterOperator.EQ, val);
 				var searchvalue = this.getView().byId("Search").getValue();
 				if (searchvalue === "") {
 					searchvalue = "*";
@@ -192,6 +203,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					});
 					oFilters.push(filterContact);
 				}
+				oFilters.push(domain);
 				/*var template = new sap.m.ColumnListItem({
 					cells: [
 						new sap.m.Text({
@@ -215,9 +227,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					]
 				});*/
 				// this.oFilter = new Filter(this.filterArr, true);
-				debugger;
 				var oTable = this.getView().byId("idProductsTable");
-				oTable.getBinding("items").sPath = "/obj_repo_search(search='" + searchvalue + "', score = 0.8 )/Set";
+				oTable.getBinding("items").sPath = "/obj_repo_search(search='" + searchvalue + "',score=0.8)/Set";
 				oTable.getBinding("items").filter(oFilters, "Application");
 
 				// oTable.bindItems(sPath,template,filter1);
@@ -1387,7 +1398,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			onChange: function () {
 
 			},
-			onInit: function () {
+			onInit: function (oEvent) {
+				// this.getView().bindElement({
+				// 	path: "/ProductCollection/" + oEvent.getParameter("arguments").productsPath,
+				// 	model: "maintain"
+				// });
 				// var title = this.getView().byId("page1");
 				// title.addStyleClass("title");
 				// var dataModel = this.getOwnerComponent().getModel("settingModel");
@@ -1435,10 +1450,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}).activate();
 				// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				// oRouter.getRoute("ToolPage").attachPatternMatched(this._onObjectMatched, this);
-				this.oRouter = this.getOwnerComponent().getRouter();
+				// this.onSearch();
+				// this.getOwnerComponent().getRouter().getRoute("ToolPage").attachPatternMatched(this._onObjectMatched, this);
+				// this.oRouter = this.getOwnerComponent().getRouter();
+
 			},
 			onAfterRendering: function (oEvent) {
-				debugger;
+
 				// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				// oRouter.getRoute("ToolPage").attachPatternMatched(this._onObjectMatched, this);
 			},
@@ -1486,7 +1504,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			},
 			onItemSelect: function (oEvent) {
 				var oItem = oEvent.getParameter("item");
-				this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
+				if (oItem.getKey() === "MigrationArtifacts" || oItem.getKey() === "DevelopmentArtifacts") {
+					this.onSearch();
+					this.byId("pageContainer").to("DevelopmentArtifacts");
+				} else {
+					this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
+				}
+				var oFCL = this.oView.getParent().getParent();
+				oFCL.setLayout(fioriLibrary.LayoutType.OneColumn);
 			},
 
 			//// debugger
@@ -1505,8 +1530,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				var productPath = oEvent.getSource().getBindingContext("odata_model").getPath();
 				var product = productPath.substring(productPath.lastIndexOf("/") + 5).replace(")", "");
-				product = product.replaceAll("=", " eq ");
-				product = product.replaceAll(",", " and ");
+				product = "A_ID" + ' ' + "eq" + ' ' + product;
+				// product = product.replaceAll("=", " eq ");
+				// product = product.replaceAll(",", " and ");
 				// var arr = product.split(",");
 				// value = arr[0].split("=");
 				// var module = value[1];
@@ -1518,8 +1544,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// var objname = value3[1];
 				// value4 = arr[4].split("=");
 				// var sysID = value4[1];
-				
-				// var filter = new Filter("MODULE", sap.ui.model.FilterOperator.EQ, module);
+
+				// var filter = new Filter("A_ID", sap.ui.model.FilterOperator.EQ, product);
 				// aFilters.push(filter);
 				// filter = new Filter("SUB_MODULE", sap.ui.model.FilterOperator.EQ, submodule);
 				// aFilters.push(filter);
@@ -1529,20 +1555,21 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// aFilters.push(filter);
 				// filter = new Filter("SYSTEM_ID", sap.ui.model.FilterOperator.EQ, sysID);
 				// aFilters.push(filter);
+				// product = "A_ID".concat("eq", "product");
 				var newvalue = "*";
 				var that = this;
 				jQuery.get({
-					url: "/srv_test/repo/obj_repo_search(search='" + newvalue +
-						"' , score = 0.8)/Set?$filter="+ product ,
-					// filters: aFilters,
+					url: "/srv_test/repo/obj_repo_search(search='" + newvalue + "',score=0.8)/Set?$filter=" + product,
+					// filters: [filter],
 					success: function (data) {
 						debugger;
 
 						that.getOwnerComponent().getModel("products").setData(data.value);
-
+						var settingModel = that.getOwnerComponent().getModel("products").getData();
+						// this.getView().setModel(settingModel, "settingModel");
 						oRouter.navTo("ObjectsDetailsPage", {
-							layout: sap.f.LayoutType.TwoColumnsBeginExpanded,
-							product: "product"
+							product: data.value[0].SUB_MODULE,
+							layout: sap.f.LayoutType.TwoColumnsMidExpanded
 						});
 						// t.getView().byId("Search").setModel(searchmodel, "searchMdl");
 					},

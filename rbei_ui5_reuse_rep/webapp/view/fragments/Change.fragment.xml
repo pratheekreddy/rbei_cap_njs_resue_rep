@@ -1,0 +1,128 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<!--<Page title="Create">-->
+	<!--	<content>-->
+	<!--		<VBox class="sapUiSmallMargin">-->
+	<f:Form id="FormChange480_Trial" editable="true" ariaLabelledBy="Title1">
+		<f:toolbar>
+			<Toolbar>
+				<Title id="Title1" text="Create"/>
+				<ToolbarSpacer/>
+				<Button id="save" text="Save" type="Emphasized" press="handleSavePress"/>
+				<Button id="cancel" text="Cancel" press="handleCancelPress"/>
+			</Toolbar>
+		</f:toolbar>
+		<f:title>
+			<core:Title text="Create"/>
+		</f:title>
+		<f:layout>
+			<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+				emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="System ID">
+						<f:fields>
+							<Input value="" id="cname"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Module">
+						<f:fields>
+							<Select id="cmodule" selectedKey="{Module}">
+								<items>
+									<core:Item text="SDO" key="SDO"/>
+									<core:Item text="SDD" key="SDD"/>
+									<core:Item text="SDI" key="USA"/>
+								</items>
+							</Select>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Object Type">
+						<f:fields>
+							<Select id="otype" selectedKey="{Otype}">
+								<items>
+									<core:Item text="REPS" key="REPS"/>
+									<core:Item text="FUNC" key="FUNC"/>
+									<core:Item text="CLAS" key="CLAS"/>
+								</items>
+							</Select>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Contact">
+						<f:fields>
+							<Input value="" id="contact"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Document Link">
+						<f:fields>
+							<Input value="" id="name1"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Tag">
+						<f:fields>
+							<Input value="" id="name2"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Description">
+						<f:fields>
+							<TextArea value="" width="100%"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Sub Module">
+						<f:fields>
+							<Input value=""/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Object Name">
+						<f:fields>
+							<Input value=""/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="RBEI Contact Group">
+						<f:fields>
+							<Input value=""/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="How-To Link">
+						<f:fields>
+							<Input value=""/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Tag Domain">
+						<f:fields>
+							<Select id="Tdomain" selectedKey="{Tdomain}">
+								<items>
+									<core:Item text="Development" key="Development"/>
+									<core:Item text="Migration" key="Migration"/>
+								</items>
+							</Select>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<!--<f:FormContainer>-->
+			<!--	<f:formElements>-->
+			<!--		<f:FormElement label="Description">-->
+			<!--			<f:fields>-->
+			<!--				<TextArea value="" width="100%"/>-->
+			<!--			</f:fields>-->
+			<!--		</f:FormElement>-->
+			<!--	</f:formElements>-->
+			<!--</f:FormContainer>-->
+		</f:formContainers>
+	</f:Form>
+	<!--	</VBox>-->
+	<!--</content>-->
+	<!--<footer>-->
+	<!--	<OverflowToolbar>-->
+	<!--		<ToolbarSpacer/>-->
+	<!--		<Button id="save" text="Save" type="Emphasized" press="handleSavePress"/>-->
+	<!--		<Button id="cancel" text="Cancel" press="handleCancelPress"/>-->
+	<!--	</OverflowToolbar>-->
+	<!--</footer>-->
+	<!--</Page>-->
+</core:FragmentDefinition>

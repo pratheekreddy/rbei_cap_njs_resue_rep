@@ -26,6 +26,14 @@
         "name": "RBEI_Repo_OData"
       },
       "description": "AI SRV"
+    },
+    {
+      "path": "/rbei_ui5_reuse_rep_test",
+      "target": {
+        "type": "destination",
+        "name": "RBEI_Repo_node"
+      },
+      "description": "AI SRV"
     }
     
   ],

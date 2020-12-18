@@ -55,10 +55,10 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "RBEI_UI5.rbei_ui5_reuse_rep.view.View1",
+			"viewName": "RBEI_UI5.rbei_ui5_reuse_rep.view.App",
 			"type": "XML",
 			"async": true,
-			"id": "View1"
+			"id": "flexibleColumnLayout"
 		},
 		"dependencies": {
 			"minUI5Version": "1.65.6",
@@ -111,11 +111,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -123,7 +121,7 @@
 				"viewType": "XML",
 				"async": true,
 				"viewPath": "RBEI_UI5.rbei_ui5_reuse_rep.view",
-				"controlId": "app",
+				"controlId": "flexibleColumnLayout",
 				"controlAggregation": "pages",
 				"clearControlAggregation": false,
 				"bypassed": {
@@ -132,51 +130,32 @@
 			},
 			"routes": [
 				{
-					"name": "TargetView1",
-					"pattern": "TargetView1",
-					"target": [
-						"TargetView1",
-						"ObjectsDetailsPage"
-					]
-				},
-				{
-					"name": "View2",
-					"pattern": "RouteView1",
-					"target": [
-						"View2"
-					]
-				},
-				{
-					"pattern": "ObjectsDetailsPage/{product}/{layout}",
-					"name": "ObjectsDetailsPage",
-					"target": [
-						"TargetView1",
-						"ObjectsDetailsPage"
-					]
-				},
-				{
-					"name": "App",
-					"pattern": "App",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"App"
-					]
-				},
-				{
-					"name": "View1",
-					"pattern": "View1",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"TargetView1",
-						"ObjectsDetailsPage"
-					]
-				}
-			],
+				"name": "View1",
+				"pattern": ":layout:",
+				"target": ["View1"]
+			},{
+				"name": "TargetView1",
+				"pattern": "TargetView1/{layout}",
+				"target": ["TargetView1"]
+			}, {
+				"name": "View2",
+				"pattern": "RouteView1",
+				"target": ["View2"]
+			}, {
+				"pattern": "ObjectsDetailsPage/{product}/{layout}",
+				"name": "ObjectsDetailsPage",
+				"target": ["TargetView1", "ObjectsDetailsPage"]
+			}, {
+				"name": "App",
+				"pattern": "App",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["App"]
+			}],
 			"targets": {
 				"TargetView1": {
 					"viewName": "ToolPage",
+					"viewId": "toolPage",
 					"controlAggregation": "beginColumnPages"
 				},
 				"View2": {
@@ -185,19 +164,12 @@
 				},
 				"ObjectsDetailsPage": {
 					"viewName": "ObjectsDetailsPage",
+					"viewId": "objectsDetailsPage",
 					"controlAggregation": "midColumnPages"
 				},
 				"View1": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewName": "View1"
-				},
-				"App": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewName": "App"
+					"viewName": "View1",
+					"controlAggregation": "beginColumnPages"
 				}
 			}
 		}

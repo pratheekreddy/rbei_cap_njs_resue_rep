@@ -1,113 +1,216 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="RBEI_UI5.rbei_ui5_reuse_rep.controller.ObjectsDetailsPage" xmlns:uxap="sap.uxap"
 	xmlns="sap.m" xmlns:form="sap.ui.layout.form">
-		<uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false"
-			subSectionLayout="TitleOnTop">
-			<uxap:headerContent>
-				<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-					visible="true" displayInline="false">
-					<HBox>
-						<items>
-							<Title text="{CREATED_BY}" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
-							<!--<RatingIndicator value="5" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true"/>-->
-							<!--<ProgressIndicator id="pind" class="sapUiSmallMarginBottom" percentValue="{percentage}" displayValue="{percentage}" showValue="true" state="Success"/>-->
-							<Label text="Object Name:" design="Standard" width="100%" required="false" textAlign="Begin" class="sapUiSmallMarginEnd" textDirection="Inherit" visible="true"/>
-							<Text id="objName" text="{settingModel>/0/OBJECT_NAME}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
-						</items>
-					</HBox>
-					<layoutData/>
-				</VBox>
-				<Label text="{DETAILED_DESCRIPTION}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-			</uxap:headerContent>
-			<uxap:headerTitle>
-				<uxap:ObjectPageHeader objectImageURI="sap-icon://document" objectTitle="{SUB_MODULE}" objectSubtitle="{MODULE}" headerDesign="Light"
-					objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false"
-					isActionAreaAlwaysVisible="true">
-					<uxap:actions>
-						<Button icon="sap-icon://decline" press="handleClose"  tooltip="Close column"
-							type="Transparent"/>
-					</uxap:actions>
-					<uxap:breadCrumbsLinks/>
-					<uxap:navigationBar/>
-				</uxap:ObjectPageHeader>
-			</uxap:headerTitle>
-			<uxap:sections>
-				<uxap:ObjectPageSection showTitle="true" title="Object Details" titleUppercase="true" visible="true">
-					<uxap:subSections>
-						<uxap:ObjectPageSubSection title="Basic Info" mode="Expanded">
-							<uxap:blocks>
-								<form:Form width="100%" editable="false" visible="true">
-									<form:title/>
-									<form:formContainers>
-										<form:FormContainer visible="true">
-											<form:formElements>
-												<form:FormElement visible="true">
-													<form:label>
-														<Label text="Contact Group" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:label>
-													<form:fields>
-														<Text id="idfm" text="{settingModel>/0/CONTACT_GROUP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:fields>
-												</form:FormElement>
-												<form:FormElement visible="true">
-													<form:label>
-														<Label text="Tags" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:label>
-													<form:fields>
-														<Text id="idfm1" text="{settingModel>/0/TAGS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:fields>
-												</form:FormElement>
-												<form:FormElement visible="true">
-													<form:label>
-														<Label text="Object Type" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:label>
-													<form:fields>
-														<Text id="idfm2" text="{settingModel>/0/OBJECT_TYPE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:fields>
-												</form:FormElement>
-												<form:FormElement visible="true">
-													<form:label>
-														<Label text="System ID" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:label>
-													<form:fields>
-														<Text id="idfm3" text="{settingModel>/0/SYSTEM_ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:fields>
-												</form:FormElement>
-												<form:FormElement visible="true">
-													<form:label>
-														<Label text="Reusable" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													</form:label>
-													<form:fields>
-														<ProgressIndicator height="10px" width="100px" id="pind1" class="sapUiSmallMarginBottom" percentValue="{settingModel>/0/REUSPR}"
-															displayValue="{settingModel>/0/REUSPR}" showValue="true" state="Warning"/>
-														<!--<Text id="idfm4" text="{REUSABLE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
-													</form:fields>
-												</form:FormElement>
-											</form:formElements>
-											<form:title/>
-										</form:FormContainer>
-									</form:formContainers>
-									<form:layout>
-										<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
-									</form:layout>
-								</form:Form>
-							</uxap:blocks>
-							<uxap:moreBlocks/>
-							<uxap:actions/>
-						</uxap:ObjectPageSubSection>
-					</uxap:subSections>
-					<uxap:customAnchorBarButton/>
-				</uxap:ObjectPageSection>
-			</uxap:sections>
-			<uxap:footer>
-				<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
-					<content>
-						<ToolbarSpacer width=""/>
-						<Button text="Approve" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
-						<Button text="Reject" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
-						<OverflowToolbarButton text="Action" type="Default" icon="sap-icon://action" iconFirst="true" width="auto" enabled="true" visible="true"
-							iconDensityAware="false"/>
-					</content>
-				</OverflowToolbar>
-			</uxap:footer>
-		</uxap:ObjectPageLayout>
+	<!--<App id="app">-->
+	<!--	<pages>-->
+	<!--		<Page id="page">-->
+	<!--			<content>-->
+					<uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" showFooter="false"
+						subSectionLayout="TitleOnTop">
+						<uxap:headerContent>
+							<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+								visible="true" displayInline="false">
+								<HBox>
+									<items>
+										<Title text="{settingModel>/0/CREATED_BY}" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+										<!--<RatingIndicator value="5" maxValue="5" visualMode="Half" enabled="true" visible="true" editable="true"/>-->
+										<!--<ProgressIndicator id="pind" class="sapUiSmallMarginBottom" percentValue="{percentage}" displayValue="{percentage}" showValue="true" state="Success"/>-->
+										<Label text="Object Name:" design="Standard" width="100%" required="false" textAlign="Begin" class="sapUiSmallMarginEnd"
+											textDirection="Inherit" visible="true"/>
+										<Text id="objName" text="{settingModel>/0/OBJECT_NAME}" width="auto" maxLines="1" wrapping="false" textAlign="Center"
+											textDirection="Inherit" visible="true"/>
+									</items>
+								</HBox>
+								<layoutData/>
+							</VBox>
+							<Label text="{settingModel>/0/DETAILED_DESCRIPTION}" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</uxap:headerContent>
+						<uxap:headerTitle>
+							<uxap:ObjectPageHeader objectImageURI="sap-icon://document" objectTitle="{SUB_MODULE}" objectSubtitle="{MODULE}" headerDesign="Light"
+								objectImageShape="Square" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false"
+								isActionAreaAlwaysVisible="true">
+								<uxap:actions>
+									<Button icon="sap-icon://decline" press="handleClose" tooltip="Close column" type="Transparent"/>
+								</uxap:actions>
+								<uxap:breadCrumbsLinks/>
+								<uxap:navigationBar/>
+							</uxap:ObjectPageHeader>
+						</uxap:headerTitle>
+						<uxap:sections>
+							<uxap:ObjectPageSection showTitle="true" title="Object Details" titleUppercase="true" visible="true">
+								<uxap:subSections>
+									<uxap:ObjectPageSubSection title="Basic Info" mode="Expanded">
+										<uxap:blocks>
+											<form:Form width="100%" editable="false" visible="true">
+												<form:title/>
+												<form:formContainers>
+													<form:FormContainer visible="true">
+														<form:formElements>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Tag Domain" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm" text="{settingModel>/0/TAG_DOMAIN}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Tags" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm1" text="{settingModel>/0/TAGS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Object Type" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm2" text="{settingModel>/0/OBJECT_TYPE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="System ID" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm3" text="{settingModel>/0/SYSTEM_ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Contact ID" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm4" text="{settingModel>/0/CONTACT_ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Changed By" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm5" text="{settingModel>/0/C_CHANGED_BY}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Changed On" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm6" text="{settingModel>/0/C_CHANGED_ON}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Created By" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm7" text="{settingModel>/0/C_CREATED_BY}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Created On" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm8" text="{settingModel>/0/C_CREATED_ON}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Dev Class" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm9" text="{settingModel>/0/DEV_CLASS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Document Link" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm10" text="{settingModel>/0/DOCUMENT_LINK}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Efforts Saved" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm11" text="{settingModel>/0/EFFORTS_SAVED}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Func Group" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm12" text="{settingModel>/0/FUNC_GROUP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>	
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Steps" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Text id="idfm13" text="{settingModel>/0/IMPL_STEPS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+																		visible="true"/>
+																</form:fields>
+															</form:FormElement>																
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="Reusable" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<ProgressIndicator height="10px" width="100px" id="pind1" class="sapUiSmallMarginBottom" percentValue="{settingModel>/0/REUSPR}"
+																		displayValue="{settingModel>/0/REUSPR}" showValue="true" state="Warning"/>
+																	<!--<Text id="idfm4" text="{REUSABLE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+																</form:fields>
+															</form:FormElement>
+														</form:formElements>
+														<form:title/>
+													</form:FormContainer>
+												</form:formContainers>
+												<form:layout>
+													<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+												</form:layout>
+											</form:Form>
+										</uxap:blocks>
+										<uxap:moreBlocks/>
+										<uxap:actions/>
+									</uxap:ObjectPageSubSection>
+								</uxap:subSections>
+								<uxap:customAnchorBarButton/>
+							</uxap:ObjectPageSection>
+						</uxap:sections>
+						<uxap:footer>
+							<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+								<content>
+									<ToolbarSpacer width=""/>
+									<Button text="Approve" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+									<Button text="Reject" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+									<OverflowToolbarButton text="Action" type="Default" icon="sap-icon://action" iconFirst="true" width="auto" enabled="true" visible="true"
+										iconDensityAware="false"/>
+								</content>
+							</OverflowToolbar>
+						</uxap:footer>
+					</uxap:ObjectPageLayout>
+	<!--			</content>-->
+	<!--		</Page>-->
+	<!--	</pages>-->
+	<!--</App>-->
 </mvc:View>

@@ -1,0 +1,60 @@
+{
+	"ProductCollection": [{
+			"System ID": "ALL GBs",
+			"Module": "FI",
+			"Sub Module": "ACCOUNT RECEIVABLE",
+			"Object Type": "LSMW",
+			"Object Name": "/RB9F/FMI_MIG/TRANS_DATA/OPEN_ITEMS",
+			"Contact": "BED3KOR",
+			"Tag": "ar open items,all gbs,upload program,bosch specific",
+			"Tag Domain": "M",
+			"RBEI Contact Group": "Central Migration Service",
+			"Document Link": "N/A"
+		}, {
+			"System ID": "ALL GBs",
+			"Module": "FI",
+			"Sub Module": "GL",
+			"Object Type": "LSMW",
+			"Object Name": "/RB9F/FMI_MIG/TRANS_DATA/OPEN_ITEMS",
+			"Contact": "BED3KOR",
+			"Tag": "gl open items,all gbs,upload program,bosch specific",
+			"Tag Domain": "D",
+			"RBEI Contact Group": "Central Migration Service",
+			"Document Link": "N/A"
+		}, {
+			"System ID": "ALL GBs",
+			"Module": "FI",
+			"Sub Module": "GL",
+			"Object Type": "LSMW",
+			"Object Name": "/RB9F/FMI_MIG/TRANS_DATA/OPEN_ITEMS",
+			"Contact": "BED3KOR",
+			"Tag": "gl open items,all gbs,upload program,bosch specific",
+			"Tag Domain": "M",
+			"RBEI Contact Group": "Central Migration Service",
+			"Document Link": "N/A"
+		}, {
+			"System ID": "ALL GBs",
+			"Module": "FI",
+			"Sub Module": "ACCOUNT RECEIVABLE",
+			"Object Type": "LSMW",
+			"Object Name": "/RB9F/FMI_MIG/TRANS_DATA/OPEN_ITEMS",
+			"Contact": "BED3KOR",
+			"Tag": "ar open items,all gbs,bosch specific",
+			"Tag Domain": "M",
+			"RBEI Contact Group": "Central Migration Service",
+			"Document Link": "N/A"
+		}, {
+			"System ID": "ALL GBs",
+			"Module": "FI",
+			"Sub Module": "GL",
+			"Object Type": "LSMW",
+			"Object Name": "/RB9F/FMI_MIG/TRANS_DATA/OPEN_ITEMS",
+			"Contact": "BED3KOR",
+			"Tag": "gl open items,central finance recommended program,bosch specific",
+			"Tag Domain": "M",
+			"RBEI Contact Group": "Central Migration Service",
+			"Document Link": "N/A"
+		}
+
+	]
+}

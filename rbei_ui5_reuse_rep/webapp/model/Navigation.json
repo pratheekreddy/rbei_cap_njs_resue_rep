@@ -42,13 +42,8 @@
 				"expanded": true,
 				"visible": true
 			}, {
-				"title": "Change an Artifact",
+				"title": "Maintain Artifact",
 				"key": "ChangeanArtifact",
-				"enabled": true,
-				"visible": true
-			}, {
-				"title": "Delete an Artifact",
-				"key": "DeleteanArtifact",
 				"enabled": true,
 				"visible": true
 			}]
