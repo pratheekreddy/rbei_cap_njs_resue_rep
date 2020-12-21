@@ -179,10 +179,10 @@
 									</OverflowToolbar>
 								</headerToolbar>
 								<columns>
-									<Column id="idmodule" minScreenWidth="Tablet" demandPopin="true" width="2rem">
+									<Column id="idmodule" minScreenWidth="Tablet" demandPopin="true" >
 										<Text text="Module"/>
 									</Column>
-									<Column id="idsubmodule" minScreenWidth="Tablet" demandPopin="true" width="3rem">
+									<Column id="idsubmodule" minScreenWidth="Tablet" demandPopin="true" >
 										<Text text="Sub-Module"/>
 									</Column>
 									<!--<Column visible="false" minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
@@ -191,19 +191,19 @@
 									<!--<Column visible="false" minScreenWidth="Tablet" demandPopin="true" width="5rem">-->
 									<!--	<Text text="Object"/>-->
 									<!--</Column>-->
-									<Column id="idobjType" minScreenWidth="Tablet" demandPopin="true" width="2rem">
+									<Column id="idobjType" minScreenWidth="Tablet" demandPopin="true">
 										<Text text="Object Type"/>
 									</Column>
-									<Column id="idobjName" minScreenWidth="Tablet" demandPopin="true" width="5rem">
+									<Column id="idobjName" minScreenWidth="Tablet" demandPopin="true">
 										<Text text="Object Name"/>
 									</Column>
-									<Column id="idobjDesc" minScreenWidth="Tablet" demandPopin="true" width="5rem">
+									<Column id="idobjDesc" minScreenWidth="Tablet" demandPopin="true">
 										<Text text="Object Description"/>
 									</Column>
-									<Column id="idContact" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+									<Column id="idContact" minScreenWidth="Tablet" demandPopin="true">
 										<Text text="Contact Group"/>
 									</Column>
-								<!--	<Column id="idContact1" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
+									<!--	<Column id="idContact1" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
 										<Text text="Contact Group1"/>
 									</Column>
 									<Column id="idContact2" visible="false" minScreenWidth="Tablet" demandPopin="true" width="4rem">
@@ -227,7 +227,7 @@
 											<Text class="smallText" text="{odata_model>OBJECT_NAME}"/>
 											<Text class="smallText" text="{odata_model>DESCRIPTION}" maxLines="2" tooltip="{odata_model>DESCRIPTION}"/>
 											<Text class="smallText" text="{odata_model>CONTACT_GROUP}"/>
-<!--											<Text class="smallText" text="{odata_model>TAGS}"/>
+											<!--											<Text class="smallText" text="{odata_model>TAGS}"/>
 											<Text class="smallText" text="{odata_model>OBJECT_TYPE}"/>
 											<Text class="smallText" text="{odata_model>SYSTEM_ID}"/>
 											<Text class="smallText" text="{odata_model>REUSPR}"/>-->
@@ -319,6 +319,9 @@
 					</ScrollContainer>
 					<ScrollContainer id="CreateanArtifact" horizontal="false" vertical="true" height="100%">
 						<core:Fragment fragmentName="RBEI_UI5.rbei_ui5_reuse_rep.view.fragments.Change" type="XML"/>
+					</ScrollContainer>
+					<ScrollContainer id="ChangeanArtifact" horizontal="false" vertical="true" height="100%">
+						<core:Fragment fragmentName="RBEI_UI5.rbei_ui5_reuse_rep.view.fragments.Maintain" type="XML"/>
 					</ScrollContainer>
 				</pages>
 			</NavContainer>

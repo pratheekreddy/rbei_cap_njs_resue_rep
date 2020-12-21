@@ -1506,10 +1506,29 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oItem = oEvent.getParameter("item");
 				if (oItem.getKey() === "MigrationArtifacts" || oItem.getKey() === "DevelopmentArtifacts") {
 					this.onSearch();
-					this.byId("pageContainer").to("DevelopmentArtifacts");
+					this.byId("pageContainer").to(this.getView().createId("DevelopmentArtifacts"));
+				} else if (oItem.getKey() === "ChangeanArtifact") {
+					var that = this;
+					var oModel = new JSONModel();
+					jQuery.ajax(sap.ui.require.toUrl("RBEI_UI5/rbei_ui5_reuse_rep/model/maintain.json"), {
+						dataType: "json",
+						success: function (oData) {
+							oModel.setData(oData);
+							// this.byId("pageContainer").to(this.getView().setModel(oModel));
+							// that.byId("pageContainer").to(that.getView().setModel(oModel));
+							that.byId("pageContainer").to(that.getView().createId(oItem.getKey()));
+							that.getView().setModel(oModel);
+							// 
+						}
+					});
+					return oModel;
+
+				} else if (oItem.getKey() === "") {
+					this.getOwnerComponent().getRouter().navTo("View1", {}, true);
 				} else {
 					this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
 				}
+
 				var oFCL = this.oView.getParent().getParent();
 				oFCL.setLayout(fioriLibrary.LayoutType.OneColumn);
 			},

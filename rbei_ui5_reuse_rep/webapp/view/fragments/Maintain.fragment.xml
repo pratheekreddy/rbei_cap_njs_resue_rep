@@ -1,54 +1,56 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core"
 	xmlns:f="sap.f" height="100%" xmlns:fb="sap.ui.comp.filterbar" xmlns="sap.m" xmlns:layout="sap.ui.layout">
-	<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}">
-		<f:title>
-			<f:DynamicPageTitle >
-				<f:heading>
-					<Title text="Maintain Artifacts" textAlign="Center" width="1100px" titleStyle="H1"/>
-				</f:heading>
-			</f:DynamicPageTitle>
-		</f:title>
-		<f:header>
-			<f:DynamicPageHeader pinnable="true">
-				<f:content>
-					<fb:FilterBar id="filterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true" clear="onClear"
-						showFilterConfiguration="false">
-						<fb:filterItems>
-							<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">
-								<fb:control>
-									<MultiComboBox selectionChange="onSelectionChange" id="module"
-										items="{ path: 'odata_model2>/module', sorter: {path: 'MODULE', descending: false, group: true} }">
-										<core:Item key="{odata_model2>MODULE}" text="{odata_model2>SUB_MODULE}"/>
-									</MultiComboBox>
-								</fb:control>
-							</fb:FilterItem>
-							<fb:FilterItem name="C" label="Object Name">
-								<fb:control>
-									<MultiComboBox items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="OBJECT_NAME">
-										<core:Item key="{odata_model>OBJECT_NAME}" text="{odata_model>OBJECT_NAME}"/>
-									</MultiComboBox>
-								</fb:control>
-							</fb:FilterItem>
-							<fb:FilterItem name="D" label="Object Type">
-								<fb:control>
-									<MultiComboBox items="{ path: 'odata_model2>/obj_type' }" selectionChange="onSelection" id="OBJECT_TYPE">
-										<core:Item key="{odata_model2>OBJECT_TYPE}" text="{odata_model2>OBJECT_TYPE}"/>
-									</MultiComboBox>
-								</fb:control>
-							</fb:FilterItem>
-							<fb:FilterItem name="E" label="Contact Group">
-								<fb:control>
-									<MultiComboBox items="{ path: 'odata_model2>/contact_group' }" selectionChange="onSelection" id="CONTACT_GROUP">
-										<core:Item key="{odata_model2>CONTACT_GROUP}" text="{odata_model2>CONTACT_GROUP}"/>
-									</MultiComboBox>
-								</fb:control>
-							</fb:FilterItem>
-						</fb:filterItems>
-					</fb:FilterBar>
-				</f:content>
-			</f:DynamicPageHeader>
-		</f:header>
-		<f:content>
+	<!--<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}">-->
+	<!--	<f:title>-->
+	<!--		<f:DynamicPageTitle >-->
+	<!--			<f:heading>-->
+	<!--				<Title text="Maintain Artifacts" textAlign="Center" width="900px" titleStyle="H1"/>-->
+	<!--			</f:heading>-->
+	<!--		</f:DynamicPageTitle>-->
+	<!--	</f:title>-->
+	<!--	<f:header>-->
+	<!--		<f:DynamicPageHeader pinnable="true">-->
+	<!--			<f:content>-->
+	<ScrollContainer id="MaintainArtifacts" horizontal="false" vertical="true" height="100%">
+		<fb:FilterBar id="mfilterbar" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showClearOnFB="true" clear="onClear"
+			showFilterConfiguration="false">
+			<fb:filterItems>
+				<fb:FilterItem name="B" label="Module Sub-Module Search" class="sapUiResponsiveMargin">
+					<fb:control>
+						<MultiComboBox selectionChange="onSelectionChange" id="mmodule"
+							items="{ path: 'odata_model2>/module', sorter: {path: 'MODULE', descending: false, group: true} }">
+							<core:Item key="{odata_model2>MODULE}" text="{odata_model2>SUB_MODULE}"/>
+						</MultiComboBox>
+					</fb:control>
+				</fb:FilterItem>
+				<fb:FilterItem name="C" label="Object Name">
+					<fb:control>
+						<MultiComboBox items="{ path: 'odata_model>/obj_repo' }" selectionChange="onSelection" id="mOBJECT_NAME">
+							<core:Item key="{odata_model>OBJECT_NAME}" text="{odata_model>OBJECT_NAME}"/>
+						</MultiComboBox>
+					</fb:control>
+				</fb:FilterItem>
+				<fb:FilterItem name="D" label="Object Type">
+					<fb:control>
+						<MultiComboBox items="{ path: 'odata_model2>/obj_type' }" selectionChange="onSelection" id="mOBJECT_TYPE">
+							<core:Item key="{odata_model2>OBJECT_TYPE}" text="{odata_model2>OBJECT_TYPE}"/>
+						</MultiComboBox>
+					</fb:control>
+				</fb:FilterItem>
+				<fb:FilterItem name="E" label="Contact Group">
+					<fb:control>
+						<MultiComboBox items="{ path: 'odata_model2>/contact_group' }" selectionChange="onSelection" id="mCONTACT_GROUP">
+							<core:Item key="{odata_model2>CONTACT_GROUP}" text="{odata_model2>CONTACT_GROUP}"/>
+						</MultiComboBox>
+					</fb:control>
+				</fb:FilterItem>
+			</fb:filterItems>
+		</fb:FilterBar>
+		<!--		</f:content>-->
+		<!--	</f:DynamicPageHeader>-->
+		<!--</f:header>-->
+		<!--<f:content>-->
+		<Panel>
 			<t:Table rows="{/ProductCollection}" selectionMode="MultiToggle" visibleRowCount="5" paste="onPaste" ariaLabelledBy="title">
 				<t:columns>
 					<t:Column width="11rem">
@@ -118,6 +120,8 @@
 					</t:Column>
 				</t:columns>
 			</t:Table>
-		</f:content>
-	</f:DynamicPage>
+		</Panel>
+	</ScrollContainer>
+	<!--	</f:content>-->
+	<!--</f:DynamicPage>-->
 </core:FragmentDefinition>

@@ -17,6 +17,11 @@ sap.ui.define([
 			// otpbtn.setVisible(false);
 			var URL = "/rbei_ui5_reuse_rep_test";
 			this.srcModel = new sap.ui.model.odata.ODataModel(URL, true);
+			this.getOwnerComponent().getRouter().getRoute("View1").attachPatternMatched(this._onProductMatched, this);                         
+		},
+		_onProductMatched: function () {
+			this.getView().byId("emailinp").setValue("");
+			this.getView().byId("otpinp").setValue("");
 		},
 		onSignin: function (oEvent) {
 			debugger;
@@ -30,12 +35,13 @@ sap.ui.define([
 			var mParameters = {
 				success: function (oData) {
 					var msg = "Login is successful";
-					MessageBox.show(msg, {
-						icon: sap.m.MessageBox.Icon.SUCCESS,
-						title: "Success",
-						actions: [sap.m.MessageBox.Action.OK],
-						onClose: function (oAction) {}.bind(this)
-					});
+					MessageToast.show(msg);
+					// MessageBox.show(msg, {
+					// 	icon: sap.m.MessageBox.Icon.SUCCESS,
+					// 	title: "Success",
+					// 	actions: [sap.m.MessageBox.Action.OK],
+					// 	onClose: function (oAction) {}.bind(this)
+					// });
 					// var oRouter = that.getOwnerComponent().getRouter();
 					// oRouter.navTo("ToolPage");
 					that.getOwnerComponent().getRouter().navTo("TargetView1", {
@@ -43,7 +49,8 @@ sap.ui.define([
 					});
 				},
 				error: function (oErroe) {
-					var err = oErroe;
+					var err = oErroe.response.body;
+					MessageToast.show(err);
 				}
 			};
 			this.srcModel.create("/user/auth/login", record, mParameters);
@@ -55,6 +62,10 @@ sap.ui.define([
 			var dept = sap.ui.getCore().byId("dept").getValue();
 			var eid = sap.ui.getCore().byId("eid").getValue();
 			var ntid = sap.ui.getCore().byId("ntid").getValue();
+			if (email1 === '' || fname === '' || dept === '') {
+				var text = "Enter Mandatory Fields";
+				MessageToast.show(text);
+			}
 			var record = {
 				email: email1,
 				idno: eid,
@@ -74,7 +85,8 @@ sap.ui.define([
 					});
 				},
 				error: function (oErroe) {
-					var err = oErroe;
+					var err = oErroe.response.body;
+					MessageToast.show(err);
 				}
 			};
 			this.srcModel.create("/user/signup", record, mParameters);
@@ -113,12 +125,13 @@ sap.ui.define([
 				var mParameters = {
 					success: function (data, response) {
 						var message = response.body;
-						MessageBox.show(message, {
-							icon: sap.m.MessageBox.Icon.INFORMATION,
-							title: "Information",
-							actions: [sap.m.MessageBox.Action.OK],
-							onClose: function (oAction) {}.bind(this)
-						});
+						MessageToast.show(message);
+						// MessageBox.show(message, {
+						// 	icon: sap.m.MessageBox.Icon.INFORMATION,
+						// 	title: "Information",
+						// 	actions: [sap.m.MessageBox.Action.OK],
+						// 	onClose: function (oAction) {}.bind(this)
+						// });
 					},
 					error: function (error) {
 						// your error logic
