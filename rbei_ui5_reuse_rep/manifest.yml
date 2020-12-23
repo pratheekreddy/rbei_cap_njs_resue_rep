@@ -1,0 +1,21 @@
+applications:
+- name: rbei_ui5_reuse_rep
+  disk-quota: 512M
+  type: html5
+  build-parameters:
+    builder: grunt
+  memory: 256M
+  env:
+    destinations: >
+      [
+        {
+          "name":"rbei_cap_njs_reuse_api",
+          "url":"https://bmh1078076.apac.bosch.com:51098/",
+          "forwardAuthToken":false
+        },
+        {
+          "name":"srv_api",
+          "url":"https://bmh1078076.apac.bosch.com:51096/",
+          "forwardAuthToken":false
+        }
+      ]

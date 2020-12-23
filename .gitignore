@@ -12,7 +12,7 @@ target/
 # Web IDE, App Studio
 .che/
 .gen/
-
+.mta
 # MTA
 *_mta_build_tmp
 *.mtar

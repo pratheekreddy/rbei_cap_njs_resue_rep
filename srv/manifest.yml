@@ -1,0 +1,5 @@
+applications:
+- name: rbei_cap_njs_reuse_rep-srv
+  memory: 256M
+  services:
+    - rbei_cap_njs_reuse_rep-db-hdi-container

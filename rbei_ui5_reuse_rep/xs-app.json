@@ -6,13 +6,6 @@
   },
   "routes": [
     {
-      "source": "^/RBEI_Repo_OData/(.*)$",
-      "target": "$1",
-      "authenticationType": "none",
-      "destination": "RBEI_Repo_OData",
-      "csrfProtection": false
-    },
-    {
       "source": "^/rbei_ui5_reuse_rep/(.*)$",
       "target": "$1",
       "localDir": "webapp"
